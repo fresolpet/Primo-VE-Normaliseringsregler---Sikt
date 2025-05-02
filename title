@@ -8,10 +8,3 @@ rule "Primo VE - Title"
         remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
 		create pnx."display"."title" with TEMP"1"
 end
-
-Rule "Test"
-	when
-		test
-	then
-	   	test
-end
