@@ -1,0 +1,50 @@
+LDS91 - Display
+
+rule "Primo VE - Lds91"
+	when
+		MARC is "082"."a" AND NOT
+MARC."082"."q" match "NO-OsNB"
+	then
+set TEMP"1" to MARC."082" sub without sort "a"
+		create pnx."display"."lds91" with TEMP"1"
+end
+
+rule "Primo VE - Lds91 - 2"
+	when
+		MARC is "082"."a" AND
+MARC."082"."q" match "NO-OsNB"
+	then
+set TEMP"1" to MARC."082" sub without sort "a"
+add suffix (TEMP"1"," (NB)")
+		create pnx."display"."lds91" with TEMP"1"
+end
+
+rule "Primo VE - Lds91 - 3"
+	when
+		MARC is "083"."a"
+	then
+set TEMP"1" to MARC."083" sub without sort "a"
+		create pnx."display"."lds91" with TEMP"1"
+end
+
+LSR91 - Search and facet
+
+rule "Primo VE Marc - Lsr91"
+	when
+		MARC is "082"."a" AND NOT
+MARC."082"."q" match "NO-OsNB"
+	then
+set TEMP"1" to MARC."082" sub without sort "a"
+		create pnx."search"."lsr91" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr91 - 2"
+	when
+		MARC is "082"."a" AND
+MARC."082"."q" match "NO-OsNB"
+	then
+set TEMP"1" to MARC."082" sub without sort "a"
+add suffix (TEMP"1"," (NB)")
+		create pnx."search"."lsr91" with TEMP"1"
+end
+
