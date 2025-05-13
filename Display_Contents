@@ -1,0 +1,107 @@
+rule "Primo VE Display - Contents 505/0/_,0"
+
+	when
+		MARC."505" has any "a,g,r,t" AND
+		MARC."505".ind"1" equals "0"
+	then
+		set TEMP"1" to MARC."505" sub without sort "a,g,r,t"
+		remove leading and trailing spaces (TEMP"1")
+		add prefix (TEMP"1","<p><b>Innhold</b>: ")
+		add suffix (TEMP"1","</p>")
+		create pnx."display"."contents" with TEMP"1"
+end
+
+rule "Primo VE Display - Contents 505/1/_,0"
+
+	when
+		MARC."505" has any "a,g,r,t" AND
+		MARC."505".ind"1" equals "1"
+	then
+		set TEMP"1" to MARC."505" sub without sort "a,g,r,t"
+		remove leading and trailing spaces (TEMP"1")
+		add prefix (TEMP"1","<p><b>Ukomplett innhold</b>: ")
+		add suffix (TEMP"1","</p>")
+		create pnx."display"."contents" with TEMP"1"
+end
+
+rule "Primo VE Display - Contents 505/2/_,0"
+
+	when
+		MARC."505" has any "a,g,r,t" AND
+		MARC."505".ind"1" equals "2"
+	then
+		set TEMP"1" to MARC."505" sub without sort "a,g,r,t"
+		remove leading and trailing spaces (TEMP"1")
+		add prefix (TEMP"1","<p><b>Av innholdet</b>: ")
+		add suffix (TEMP"1","</p>")
+		create pnx."display"."contents" with TEMP"1"
+end
+
+rule "Primo VE Display - Contents 505/8/_,0"
+
+	when
+		MARC."505" has any "a,g,r,t" AND
+		MARC."505".ind"1" equals "8"
+	then
+		set TEMP"1" to MARC."505" sub without sort "a,g,r,t"
+		remove leading and trailing spaces (TEMP"1")
+		add prefix (TEMP"1","<p> ")
+		add suffix (TEMP"1","</p>")
+		create pnx."display"."contents" with TEMP"1"
+end
+
+rule "Primo VE Display - contents 880_505_0"
+
+	when
+		MARC is "880" AND
+		MARC."880".ind"1" equals "0" AND
+		MARC."880"."6" match "505-.*"
+	then
+		set TEMP"1" to MARC "880" excluding num subfields without sort
+		remove leading and trailing spaces (TEMP"1")
+		add prefix (TEMP"1","<p><b>Innhold</b>: ")
+		add suffix (TEMP"1","</p>")
+		create pnx."display"."contents" with TEMP"1"
+end
+
+rule "Primo VE Display - contents 880_505_1"
+
+	when
+		MARC is "880" AND
+		MARC."880".ind"1" equals "1" AND
+		MARC."880"."6" match "505-.*"
+	then
+		set TEMP"1" to MARC "880" excluding num subfields without sort
+		remove leading and trailing spaces (TEMP"1")
+		add prefix (TEMP"1","<p><b>Ukomplett innhold</b>: ")
+		add suffix (TEMP"1","</p>")
+		create pnx."display"."contents" with TEMP"1"
+end
+
+rule "Primo VE Display - contents 880_505_2"
+
+	when
+		MARC is "880" AND
+		MARC."880".ind"1" equals "2" AND
+		MARC."880"."6" match "505-.*"
+	then
+		set TEMP"1" to MARC "880" excluding num subfields without sort
+		remove leading and trailing spaces (TEMP"1")
+		add prefix (TEMP"1","<p><b>Av innholdet</b>: ")
+		add suffix (TEMP"1","</p>")
+		create pnx."display"."contents" with TEMP"1"
+end
+
+rule "Primo VE Display - contents 880_505_8"
+
+	when
+		MARC is "880" AND
+		MARC."880".ind"1" equals "8" AND
+		MARC."880"."6" match "505-.*"
+	then
+		set TEMP"1" to MARC "880" excluding num subfields without sort
+		remove leading and trailing spaces (TEMP"1")
+		add prefix (TEMP"1","<p>")
+		add suffix (TEMP"1","</p>")
+		create pnx."display"."contents" with TEMP"1"
+end
