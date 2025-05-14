@@ -1,3 +1,7 @@
+## Contributor
+## Based on ORBIS and BIBSYS
+## Newest update: 5/14/2025
+
 rule "Primo VE Display - contributor 700"
 priority 20
     when
@@ -5,7 +9,11 @@ priority 20
         MARC."700"."a" match ".*" AND NOT MARC."700"."t" match ".*" AND
         MARC.control is "001"
     then
-        set TEMP"1" to MARC."700" sub without sort "a,b,c,d,e,4,j,q,u"
+        set TEMP"1" to MARC."700" sub without sort "a,b,c,d,j,q,u"
+		set TEMP"4" to MARC."700" subfields "e,4" delimited by "/" remove substring using regex "/.*"
+		add prefix (TEMP"4","(")
+		add suffix (TEMP"4",")")
+		concatenate with delimiter (TEMP"1",TEMP"4"," ")
         remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
         set TEMP"2" to MARC."700" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
