@@ -1,5 +1,8 @@
-rule "Primo VE Display - Contents 505/0/_,0"
+## Contents
+## Based on ORBIS
+## Newest update: 5/14/2025
 
+rule "Primo VE Display - Contents 505/0/_,0"
 	when
 		MARC."505" has any "a,g,r,t" AND
 		MARC."505".ind"1" equals "0"
