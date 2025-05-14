@@ -1,0 +1,161 @@
+## Publisher
+## Based on ORBIS and BIBSYS
+## Newest update: 5/14/2025
+
+rule "Primo VE - publisher 502a"
+	when
+		MARC is "502"."a"
+	then
+		create pnx."display"."publisher" with MARC."502"."a"
+end
+
+rule "Primo VE - publisher 260 3#"
+	when
+		MARC is "260"."b" AND
+		MARC."260".ind"1" equals "3" 
+	then
+		set TEMP"1" to MARC."260"."b"
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+        create pnx."display"."publisher" with TEMP"1"
+end
+
+rule "Primo VE - publisher 260 NOT 3#"
+	when
+		MARC is "260"."b" AND NOT
+		MARC."260".ind"1" equals "3" 
+	then
+		set TEMP"1" to MARC."260"."b"
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+        create pnx."display"."publisher" with TEMP"1"
+end
+
+rule "Primo VE - publisher 264 31"
+	when
+		MARC is "264"."b" AND
+		MARC."264".ind"1" equals "3" AND
+		MARC."264".ind"2" equals "1"
+	then
+		set TEMP"1" to MARC."264"."b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		create pnx."display"."publisher" with TEMP"1"
+end
+
+rule "Primo VE - publisher 264 NOT 31"
+	when
+		MARC is "264"."b" AND NOT
+		MARC."264".ind"1" equals "3" AND NOT
+		MARC."264".ind"2" equals "1"
+	then
+		set TEMP"1" to MARC."264"."b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		create pnx."display"."publisher" with TEMP"1"
+end
+
+rule "Primo VE - publisher 773d"
+	when
+		MARC is "773"."d"
+	then
+		set TEMP"1" to MARC."773"."d"
+		remove substring using regex (TEMP"1","^[^:]*:")
+		remove substring using regex (TEMP"1",",.*")
+		create pnx."display"."publisher" with TEMP"1"
+end
+
+rule "Primo VE - Alternate Publisher 880-502 ##"
+	when
+		MARC is "880"."a" AND
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880"."a"
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		set pnx."display"."alternate_publisher" to TEMP"1"
+end
+
+rule "Primo VE - Alternate Publisher 880-260 3#"
+	when
+		MARC."880" has any "a,b" AND
+		MARC."880"."6" match "260-.*" AND
+		MARC."880".ind"1" equals "3" AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a,b"
+		set TEMP"2" to MARC."880" subfields "3"
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		create pnx."display"."alternate_publisher" with TEMP"2"
+end
+
+rule "Primo VE - Alternate Publisher 880-264 31 - Sikt"
+	when
+		MARC."880" has any "a,b" AND
+		MARC."880".ind"1" equals "3" AND
+		MARC."880".ind"2" equals "1" AND
+		MARC."880"."6" match "264-.*" AND NOT
+		MARC."880"."6" match "260-.*" AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a,b"
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
+		add prefix (TEMP"1","<b>Current Publisher</b>: ")
+		create pnx."display"."alternate_publisher" with TEMP"1"
+end
+
+rule "Primo VE - Alternate Publisher 880-260 NO 3# 260 or 3# 264 - Sikt"
+	when
+		MARC."880" has any "a,b" AND
+		MARC."880"."6" match "260-.*" AND NOT
+		(MARC."880"."6" match "260-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		(MARC."880"."6" match "264-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a,b"
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
+		create pnx."display"."alternate_publisher" with TEMP"1"
+end
+
+rule "Primo VE - Alternate Publisher 880-264 NO 3# 260 or 3# 264 - Sikt"
+	when
+		MARC."880" has any "a,b" AND
+		MARC."880"."6" match "264-.*" AND NOT
+		MARC."880"."6" match "260-.*"AND NOT
+		(MARC."880"."6" match "264-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a,b"
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
+		create pnx."display"."alternate_publisher" with TEMP"1"
+end
