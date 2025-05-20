@@ -5,13 +5,18 @@
 ## * Evaluate whether all the subfields used are required.
 
 rule "Primo VE Display - contributor 700"
+## Person
 priority 20
     when
         MARC."700" has any "a,b,c,d,e,4,j,q" 
         MARC."700"."a" match ".*" AND NOT MARC."700"."t" match ".*" AND
         MARC.control is "001"
     then
-        set TEMP"1" to MARC."700" sub without sort "a,b,c,d,j,q"
+        set TEMP"1" to MARC."700" sub without sort "a,b,c,j,q"
+        set TEMP"5" to MARC."700" subfields "d"
+        add prefix (TEMP"5","(")
+		add suffix (TEMP"5",")")
+        concatenate with delimiter (TEMP"1",TEMP"5"," ")
 		set TEMP"4" to MARC."700" subfields "e,4" delimited by "/" remove substring using regex "/.*"
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
@@ -28,6 +33,7 @@ priority 20
 end
 
 rule "Primo VE Display - contributor 710"
+## Corporation
 priority 30
     when
         MARC."710" has any "a,b,c,d,e,4,j,q"
@@ -50,6 +56,7 @@ priority 30
 end
 
 rule "Primo VE Display - contributor 711"
+## Conference/Meeting/Exhibition
 priority 30
     when
         MARC."711" has any "a,b,c,d,e,4,j,q"
