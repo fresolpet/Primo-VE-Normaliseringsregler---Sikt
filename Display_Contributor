@@ -5,11 +5,11 @@
 rule "Primo VE Display - contributor 700"
 priority 20
     when
-        MARC."700" has any "a,b,c,d,e,4,j,q,u" 
+        MARC."700" has any "a,b,c,d,e,4,j,q" 
         MARC."700"."a" match ".*" AND NOT MARC."700"."t" match ".*" AND
         MARC.control is "001"
     then
-        set TEMP"1" to MARC."700" sub without sort "a,b,c,d,j,q,u"
+        set TEMP"1" to MARC."700" sub without sort "a,b,c,d,j,q"
 		set TEMP"4" to MARC."700" subfields "e,4" delimited by "/" remove substring using regex "/.*"
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
@@ -28,12 +28,11 @@ end
 rule "Primo VE Display - contributor 710"
 priority 30
     when
-        MARC."710" has any "a,b,c,d,e,4,j,q,u"
+        MARC."710" has any "a,b,c,d,e,4,j,q"
         MARC."710"."a" match ".*" AND NOT MARC."710"."t" match ".*" 
     then
-        set TEMP"1" to MARC."710" sub without sort "a,b,c,d,j,q,u"
+        set TEMP"1" to MARC."710" sub without sort "a,b,c,d,j,q"
         set TEMP"4" to MARC."710" subfields "e,4" delimited by "/" remove substring using regex "/.*"
-        remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
 		concatenate with delimiter (TEMP"1",TEMP"4"," ")
@@ -51,10 +50,10 @@ end
 rule "Primo VE Display - contributor 711"
 priority 30
     when
-        MARC."711" has any "a,b,c,d,e,4,j,q,u"
+        MARC."711" has any "a,b,c,d,e,4,j,q"
         MARC."711"."a" match ".*" AND NOT MARC."711"."t" match ".*" 
     then
-        set TEMP"1" to MARC."711" sub without sort "a,b,c,d,j,q,u"
+        set TEMP"1" to MARC."711" sub without sort "a,b,c,d,j,q"
         set TEMP"4" to MARC."711" subfields "e,4" delimited by "/" remove substring using regex "/.*"
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
