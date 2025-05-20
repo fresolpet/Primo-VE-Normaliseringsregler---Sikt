@@ -1,6 +1,8 @@
 ## Contributor
 ## Based on ORBIS and BIBSYS
 ## Newest update: 5/20/2025
+## To do list:
+## * Evaluate whether all the subfields used are required.
 
 rule "Primo VE Display - contributor 700"
 priority 20
