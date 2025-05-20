@@ -1,6 +1,7 @@
 ## Publisher
 ## Based on ORBIS and BIBSYS
 ## Newest update: 5/14/2025
+## Place is not targetable - possible bug. Using Display_Publisher&Place instead.
 
 rule "Primo VE - publisher 502a"
 	when
@@ -158,4 +159,12 @@ rule "Primo VE - Alternate Publisher 880-264 NO 3# 260 or 3# 264 - Sikt"
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
 		create pnx."display"."alternate_publisher" with TEMP"1"
+end
+
+## Do not delete - necessary to prevent 362 pollution in "publisher"
+rule "Primo VE - publisher notes 362"
+	when
+		MARC."362" has any "a,z"
+	then
+		create pnx."display"."publisher_notes" with "N/A"
 end
