@@ -1,6 +1,6 @@
 ## Contributor
 ## Based on ORBIS and BIBSYS
-## Newest update: 5/14/2025
+## Newest update: 5/20/2025
 
 rule "Primo VE Display - contributor 700"
 priority 20
@@ -31,9 +31,14 @@ priority 30
         MARC."710" has any "a,b,c,d,e,4,j,q,u"
         MARC."710"."a" match ".*" AND NOT MARC."710"."t" match ".*" 
     then
-        set TEMP"1" to MARC."710" sub without sort "a,b,c,d,e,n,3"
+        set TEMP"1" to MARC."710" sub without sort "a,b,c,d,j,q,u"
+        set TEMP"4" to MARC."710" subfields "e,4" delimited by "/" remove substring using regex "/.*"
         remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        set TEMP"2" to MARC."710" sub without sort "a,b"
+		add prefix (TEMP"4","(")
+		add suffix (TEMP"4",")")
+		concatenate with delimiter (TEMP"1",TEMP"4"," ")
+        remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+        set TEMP"2" to MARC."710" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -49,7 +54,11 @@ priority 30
         MARC."711" has any "a,b,c,d,e,4,j,q,u"
         MARC."711"."a" match ".*" AND NOT MARC."711"."t" match ".*" 
     then
-        set TEMP"1" to MARC."711" sub without sort "a,b,c,d,e,j,n,q,3"
+        set TEMP"1" to MARC."711" sub without sort "a,b,c,d,j,q,u"
+        set TEMP"4" to MARC."711" subfields "e,4" delimited by "/" remove substring using regex "/.*"
+		add prefix (TEMP"4","(")
+		add suffix (TEMP"4",")")
+		concatenate with delimiter (TEMP"1",TEMP"4"," ")
         remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
         set TEMP"2" to MARC."711" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -64,10 +73,14 @@ end
 rule "Primo VE Display - alternate contributor 880-700"
 priority 10
     when
-        MARC."880" has any "a,b,c,d,e,j,q,u" AND
+        MARC."880" has any "a,b,c,d,e,4" AND
         MARC."880"."6" match "700-.*"
     then
-        set TEMP"1" to MARC."880" sub without sort "a,b,c,d,j,q"
+        set TEMP"1" to MARC."880" sub without sort "a,b,c,d"
+        set TEMP"4" to MARC."880" subfields "e,4" delimited by "/" remove substring using regex "/.*"
+		add prefix (TEMP"4","(")
+		add suffix (TEMP"4",")")
+		concatenate with delimiter (TEMP"1",TEMP"4"," ")
         remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
         set TEMP"2" to MARC."880" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -76,25 +89,29 @@ priority 10
         concatenate with delimiter (TEMP"1",TEMP"2","")
         set TEMP"3" to multilingual by "880" "Contributor" "display"
         concatenate with delimiter (TEMP"1",TEMP"3","")
-        create pnx."display"."alternate_contributor" with TEMP"1"
+        create pnx."display"."contributor" with TEMP"1"
 end
 
 rule "Primo VE Display - alternate contributor 880-710 "
 priority 30
     when
-        MARC."880" has any "a,b,c,d,e" AND
+        MARC."880" has any "a,b,c,d,e,4" AND
         MARC."880"."6" match "710-.*"
     then
         set TEMP"1" to MARC."880" sub without sort "a,b,c,d"
+        set TEMP"4" to MARC."880" subfields "e,4" delimited by "/" remove substring using regex "/.*"
+		add prefix (TEMP"4","(")
+		add suffix (TEMP"4",")")
+		concatenate with delimiter (TEMP"1",TEMP"4"," ")
         remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        set TEMP"2" to MARC."880" sub without sort "a,b"
+        set TEMP"2" to MARC."880" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
         concatenate with delimiter (TEMP"1",TEMP"2","")
         set TEMP"3" to multilingual by "880" "Contributor" "display"
         concatenate with delimiter (TEMP"1",TEMP"3","")
-        create pnx."display"."alternate_contributor" with TEMP"1"
+        create pnx."display"."contributor" with TEMP"1"
 end
 
 rule "Primo VE Display - alternate contributor 880-711"
@@ -103,7 +120,11 @@ priority 30
         MARC."880" has any "a,b,c,d,n" AND
         MARC."880"."6" match "711-.*"
     then
-        set TEMP"1" to MARC."880" sub without sort "a,b,c,d,n"
+        set TEMP"1" to MARC."880" sub without sort "a,b,c,d"
+        set TEMP"4" to MARC."880" subfields "e,4" delimited by "/" remove substring using regex "/.*"
+		add prefix (TEMP"4","(")
+		add suffix (TEMP"4",")")
+		concatenate with delimiter (TEMP"1",TEMP"4"," ")
         remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
         set TEMP"2" to MARC."880" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -112,5 +133,5 @@ priority 30
         concatenate with delimiter (TEMP"1",TEMP"2","")
         set TEMP"3" to multilingual by "880" "Contributor" "display"
         concatenate with delimiter (TEMP"1",TEMP"3","")
-        create pnx."display"."alternate_contributor" with TEMP"1"
+        create pnx."display"."contributor" with TEMP"1"
 end
