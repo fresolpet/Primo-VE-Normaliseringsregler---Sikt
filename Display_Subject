@@ -3,6 +3,7 @@
 ## Newest update: 5/20/2025
 ## To do list:
 ## * Split 653 $a into multiple fields
+## **** Have split into multiple fields, but can't remove delimiter stars (*)
 
 rule "Primo VE Display - Subject 600"
 ## Person
@@ -116,14 +117,17 @@ rule "Primo VE Display - Subject 653"
 		MARC."653" has any "a-z" AND NOT
 		MARC."653"."9" match "N"
 	then
-		set TEMP"1" to MARC."653" subfields "a-u" delimited by " " remove substring using regex "\\.+$"
-		set TEMP"2" to MARC."653" sub without sorting "v,x-z" delimited by " -- "
+		set TEMP"1" to MARC."653" sub without sort "a-u" wrap subfields
+		replace wrapping delimiters (TEMP"1","a","*","*")
+		return list using regex (TEMP"5",TEMP"1","\\*[^*]+\\*")
+set TEMP"2" to MARC."653" sub without sorting "v,x-z" delimited by " -- "
 		remove substring using regex (TEMP"2","\\.+$")
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
 		set TEMP"3" to multilingual by "653" "Subject" "display"
-		concatenate with delimiter (TEMP"1",TEMP"3","")
-		create pnx."display"."subject" with TEMP"1"
+concatenate with delimiter (TEMP"1",TEMP"3","")
+		create pnx."display"."subject" with list TEMP"5" 
 end
+
 
 rule "Primo VE Display - Subject 654"
 ## Genre and Form
