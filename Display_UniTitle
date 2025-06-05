@@ -1,0 +1,111 @@
+## Uniform Title
+## Based on BIBSYS
+## Newest update: 6/03/2025
+## To do list:
+
+
+rule "Primo VE - Uniform Title 130"
+priority 10
+	when
+		MARC is "130"
+	then
+		set TEMP"1" to MARC."130" subfields "a"
+		set TEMP"2" to MARC."130" subfields "g"
+		add prefix (TEMP"2",". ")
+		set TEMP"3" to MARC."130" subfields "d"
+		add prefix (TEMP"3",", ")
+		set TEMP"4" to MARC."130" subfields "f"
+		add prefix (TEMP"4",", ")
+		set TEMP"5" to MARC."130" subfields "m"
+		add prefix (TEMP"5",", ")
+		set TEMP"6" to MARC."130" subfields "h"
+		add prefix (TEMP"6",", ")
+		set TEMP"7" to MARC."130" subfields "k"
+		add prefix (TEMP"7",". ")
+		set TEMP"8" to MARC."130" subfields "n"
+		add prefix (TEMP"8",", ")
+		set TEMP"9" to MARC."130" subfields "r"
+		add prefix (TEMP"9",", ")
+		set TEMP"10" to MARC."130" subfields "s"
+		add prefix (TEMP"10",". ")
+		set TEMP"11" to MARC."130" subfields "p"
+		add prefix (TEMP"11",", ")
+		set TEMP"12" to MARC."130" subfields "o"
+		add prefix (TEMP"12","; ")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		concatenate with delimiter (TEMP"1",TEMP"5","")
+		concatenate with delimiter (TEMP"1",TEMP"6","")
+		concatenate with delimiter (TEMP"1",TEMP"7","")
+		concatenate with delimiter (TEMP"1",TEMP"8","")
+		concatenate with delimiter (TEMP"1",TEMP"9","")
+		concatenate with delimiter (TEMP"1",TEMP"10","")
+		concatenate with delimiter (TEMP"1",TEMP"11","")
+		concatenate with delimiter (TEMP"1",TEMP"12","")	
+        set pnx."display"."unititle" to TEMP"1"
+end
+
+rule "Primo VE - Uniform Title 240"
+priority 20
+	when
+		MARC is "240" AND
+		MARC."240".ind"1" equals "1"
+	then
+		set TEMP"1" to MARC."240" subfields "a"
+		set TEMP"2" to MARC."240" subfields "g"
+		add prefix (TEMP"2",". ")
+		set TEMP"3" to MARC."240" subfields "d"
+		add prefix (TEMP"3",", ")
+		set TEMP"4" to MARC."240" subfields "f"
+		add prefix (TEMP"4",", ")
+		set TEMP"5" to MARC."240" subfields "m"
+		add prefix (TEMP"5",", ")
+		set TEMP"6" to MARC."240" subfields "h"
+		add prefix (TEMP"6",", ")
+		set TEMP"7" to MARC."240" subfields "k"
+		add prefix (TEMP"7",". ")
+		set TEMP"8" to MARC."240" subfields "n"
+		add prefix (TEMP"8",", ")
+		set TEMP"9" to MARC."240" subfields "r"
+		add prefix (TEMP"9",", ")
+		set TEMP"10" to MARC."240" subfields "s"
+		add prefix (TEMP"10",". ")
+		set TEMP"11" to MARC."240" subfields "p"
+		add prefix (TEMP"11",", ")
+		set TEMP"12" to MARC."240" subfields "o"
+		add prefix (TEMP"12","; ")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		concatenate with delimiter (TEMP"1",TEMP"5","")
+		concatenate with delimiter (TEMP"1",TEMP"6","")
+		concatenate with delimiter (TEMP"1",TEMP"7","")
+		concatenate with delimiter (TEMP"1",TEMP"8","")
+		concatenate with delimiter (TEMP"1",TEMP"9","")
+		concatenate with delimiter (TEMP"1",TEMP"10","")
+		concatenate with delimiter (TEMP"1",TEMP"11","")
+		concatenate with delimiter (TEMP"1",TEMP"12","")	
+        set pnx."display"."unititle" to TEMP"1"
+end
+
+rule "Primo VE - Alternate Uniform Title 880-130"
+priority 10
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "130-.*"
+	then
+		set TEMP"1" to MARC."880" excluding num subfields without sort
+		set pnx."display"."alternate_uniform_title" to TEMP"1"
+end
+
+rule "Primo VE - Alternate Uniform Title 880-240"
+priority 20
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding num subfields without sort
+
+        set pnx."display"."alternate_uniform_title" to TEMP"1"
+end
