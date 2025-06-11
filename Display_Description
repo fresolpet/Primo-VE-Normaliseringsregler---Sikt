@@ -116,13 +116,14 @@ rule "Primo VE - Description 246 - i"
 		create pnx."display"."description" with TEMP"1"
 end
 
-rule "Primo VE - Description 500"
-	when
-		MARC is "500"."a" AND NOT
-		MARC."500"."5" match ".*"
-	then 
-		create pnx."display"."description" with MARC."500"."a"
-end
+## Part of "Notes" Local Field
+##rule "Primo VE - Description 500"
+##	when
+##		MARC is "500"."a" AND NOT
+##		MARC."500"."5" match ".*"
+##	then 
+##		create pnx."display"."description" with MARC."500"."a"
+##end
 
 rule "Primo VE - Description 502"
 	when
