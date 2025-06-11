@@ -1,86 +1,396 @@
 ## Description
-## Newest update: 5/14/2025
+## Based on ORBIS and BIBSYS
+## Newest update: 6/11/2025
 
-rule "Primo VE - Description 700 - Sikt BO"
-when
-MARC "700" has any "a,b,c,d,e,m,n,o,p,s,t" AND
-MARC "700".ind"2" equals "2" AND NOT
-MARC."505" has any "a,t" AND NOT
-MARC."700"."9" match ".*"
-then
-set TEMP"1" to MARC."700" sub without sort "a,b,c,d,e,m,n,o,p,s,t"
-create pnx."display"."description" with TEMP"1"
+## NOTES gamle lds03 / Noter
+
+rule "Primo VE - Description 020 - Innbundet"
+	when
+		MARC is "020"."q" AND
+		MARC."020"."q" match "ib."
+	then 
+		create pnx."display"."description" with "Innbundet"
+end
+
+rule "Primo VE - Description 020 - Heftet"
+	when
+		MARC is "020"."q" AND
+		MARC."020"."q" match "h."
+	then 
+		create pnx."display"."description" with "Heftet"
+end
+
+rule "Primo VE - Description 028 - ind1 = 0 AND ind2 = 1 or 2"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "0" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Utgavenummer: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 028 - ind1 = 1 AND ind2 = 1 or 2"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "1" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Matrisenummer: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 028 - ind1 = 2 AND ind2 = 1 or 2"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "2" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Platenummmer: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 028 - ind1 = 3 AND ind2 = 1 or 2"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "3" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Annet musikknummer: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 028 - ind1 = 4 AND ind2 = 1 or 2"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "4" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Videonummer: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 028 - ind1 = 5 AND ind2 = 1 or 2"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "5" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Annet utgivernummer: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 028 - ind1 = 6 AND ind2 = 1 or 2"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "6" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Distributørnummer: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 246 - i"
+	when
+		MARC is "246"."a" AND
+		MARC."246".ind"1" equals "1" AND NOT
+		MARC."246"."i" match "Originaltittel"
+	then 
+		set TEMP"1" to MARC."246" subfields "i"
+		set TEMP"2" to MARC."246" subfields "a"
+		concatenate with delimiter (TEMP"1",TEMP"2",": ")
+		create pnx."display"."description" with TEMP"1"
 end
 
 rule "Primo VE - Description 500"
-when
-MARC is "500"."a" AND NOT
-MARC."500"."5" match ".*"
-then 
-create pnx."display"."description" with MARC."500"."a"
+	when
+		MARC is "500"."a" AND NOT
+		MARC."500"."5" match ".*"
+	then 
+		create pnx."display"."description" with MARC."500"."a"
+end
+
+rule "Primo VE - Description 502"
+	when
+		MARC is "502"."a"
+	then 
+		create pnx."display"."description" with MARC."502"."a"
 end
 
 rule "Primo VE - Description 504"
-when
-MARC is "504"."a"
-then 
-create pnx."display"."description" with MARC."504"."a"
+	when
+		MARC is "504"."a"
+	then 
+		create pnx."display"."description" with MARC."504"."a"
 end
+
+rule "Primo VE - Description 508"
+	when
+		MARC is "508"."a"
+	then 
+		create pnx."display"."description" with MARC."508"."a"
+end
+
+rule "Primo VE - Description 518"
+	when
+		MARC is "518"."a"
+	then 
+		create pnx."display"."description" with MARC."518"."a"
+end
+
+rule "Primo VE - Description 534"
+	when
+		MARC is "534"."a"
+	then 
+		set TEMP"1" to MARC."534" subfields "a"
+		add prefix (TEMP"1","Originalutgivelse: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 546"
+	when
+		MARC is "546"."a"
+	then 
+		create pnx."display"."description" with MARC."546"."a"
+end
+
+rule "Primo VE - Description 580"
+	when
+		MARC is "580"."a"
+	then 
+		create pnx."display"."description" with MARC."580"."a"
+end
+
+rule "Primo VE - Description 588 - ind1=#"
+	when
+		MARC is "588"."a" AND
+		MARC."588".ind"1" equals "#"
+	then 
+		create pnx."display"."description" with MARC."588"."a"
+end
+
+rule "Primo VE - Description 588 - ind1=0"
+	when
+		MARC is "588"."a" AND
+		MARC."588".ind"1" equals "0"
+	then 
+		set TEMP"1" to MARC."588" subfields "a"
+		add prefix (TEMP"1","Beskrivelsen bygger på: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 588 - ind1=1"
+	when
+		MARC is "588"."a" AND
+		MARC."588".ind"1" equals "0"
+	then 
+		set TEMP"1" to MARC."588" subfields "a"
+		add prefix (TEMP"1","Siste konsulterte nummer: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+## DESCRIPTION
 
 rule "Primo VE - Description 515"
-when
-MARC is "515"."a"
-then 
-create pnx."display"."description" with MARC."515"."a"
+	when
+		MARC is "515"."a"
+	then 
+		create pnx."display"."description" with MARC."515"."a"
 end
 
-rule "Primo VE - Description 555"
-when
-MARC."555" has any "a,b,c,d,u,3"
-then 
-create pnx."display"."description" with MARC."555" sub without sort "a,b,c,d,u,3"
+rule "Primo VE - Description 520 - Sikt BO - 520/ab/[-0,-1,-2,-3,-4,-8],_"
+	when
+		MARC "520" has any "a,b" AND NOT
+		MARC "520".ind"1" equals "0" AND NOT
+		MARC "520".ind"1" equals "1" AND NOT
+		MARC "520".ind"1" equals "2" AND NOT
+		MARC "520".ind"1" equals "3" AND NOT
+		MARC "520".ind"1" equals "4" AND NOT
+		MARC "520".ind"1" equals "8"
+	then
+		set TEMP"1" to MARC."520" sub without sort "a,b"
+		add prefix (TEMP"1","Sammendrag: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 520 - Sikt BO - 520/ab/0,_"
+	when
+		MARC "520" has any "a,b" AND
+		MARC "520".ind"1" equals "0" 
+	then
+		set TEMP"1" to MARC."520" sub without sort "a,b"
+		add prefix (TEMP"1","Emne: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 520 - Sikt BO - 520/ab/1,_"
+	when
+		MARC "520" has any "a,b" AND
+		MARC "520".ind"1" equals "1" 
+	then
+		set TEMP"1" to MARC."520" sub without sort "a,b"
+		add prefix (TEMP"1","Anmeldelse: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 520 - Sikt BO - 520/ab/2,_"
+	when
+		MARC "520" has any "a,b" AND
+		MARC "520".ind"1" equals "2" 
+	then
+		set TEMP"1" to MARC."520" sub without sort "a,b"
+		add prefix (TEMP"1","Omfang og innhold: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 520 - Sikt BO - 520/ab/3,_"
+	when
+		MARC "520" has any "a,b" AND
+		MARC "520".ind"1" equals "3" 
+	then
+		set TEMP"1" to MARC."520" sub without sort "a,b"
+		add prefix (TEMP"1","Abstrakt: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 520 - Sikt BO - 520/ab/4,_"
+	when
+		MARC "520" has any "a,b" AND
+		MARC "520".ind"1" equals "4" 
+	then
+		set TEMP"1" to MARC."520" sub without sort "a,b"
+		add prefix (TEMP"1","Advarsel om innhold: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 520 - Sikt BO - 520/ab/8,_"
+	when
+		MARC "520" has any "a,b" AND
+		MARC "520".ind"1" equals "8" 
+	then
+		set TEMP"1" to MARC."520" sub without sort "a,b"
+		create pnx."display"."description" with TEMP"1"
 end
 
 rule "Primo VE - Description 522"
-when
-MARC is "522"."a"
-then
-set TEMP"1" to MARC."522" subfields "a"
-add prefix (TEMP"1","<b>Geographical coverage:</b> ")
-create pnx."display"."description" with TEMP"1"
+	when
+		MARC is "522"."a"
+	then
+		set TEMP"1" to MARC."522" subfields "a"
+		add prefix (TEMP"1","Geographical coverage: ")
+		create pnx."display"."description" with TEMP"1"
 end
 
 rule "Primo VE - Description 525"
-when
-MARC is "525"."a"
-then 
-create pnx."display"."description" with MARC."525"."a"
-end
-
-rule "Primo VE - Description 550"
-when
-MARC is "550"."a"
-then
-set TEMP"1" to MARC."550" subfields "a"
-add prefix (TEMP"1","<b>Issuing body:</b> ")
-create pnx."display"."description" with TEMP"1"
+	when
+		MARC is "525"."a"
+	then 
+		create pnx."display"."description" with MARC."525"."a"
 end
 
 rule "Primo VE - Description 547"
-when
-MARC is "547"."a"
-then 
-create pnx."display"."description" with MARC."547"."a"
+	when
+		MARC is "547"."a"
+	then 
+		create pnx."display"."description" with MARC."547"."a"
 end
 
-rule "Primo VE - Description 490"
-# 490 ind1=1 fields do have a corresponding 8xx field which is preferable for precise hyperlink-based searching. So, such 490 fields should not generate their own hyperlink. Rule stanza moved from lds43 rule (a hyperlinked field).
+rule "Primo VE - Description 550"
 	when
-		MARC."490" has any "a" AND
-		MARC."490".ind"1" equals "1"
+		MARC is "550"."a"
 	then
-		set TEMP"1" to MARC "490" excluding num subfields without sort
-		add prefix (TEMP"1","<b>Series statement:</b> ")
+		set TEMP"1" to MARC."550" subfields "a"
+		add prefix (TEMP"1","Issuing body: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 555"
+	when
+		MARC."555" has any "a,b,c,d,u,3"
+	then 
+		create pnx."display"."description" with MARC."555" sub without sort "a,b,c,d,u,3"
+end
+
+rule "Primo VE - Description 700 - Sikt BO - 700/abcdemnopst/_,2"
+	when
+		MARC "700" has any "a,b,c,d,e,m,n,o,p,s,t" AND
+		MARC "700".ind"2" equals "2" AND NOT
+		MARC."505" has any "a,t" AND NOT
+		MARC."700"."9" match ".*"
+	then
+		set TEMP"1" to MARC."700" sub without sort "a,b,c,d,e,m,n,o,p,s,t"
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 700 - Sikt BO - 700/i"
+	when
+		MARC is "700"."i" AND
+		MARC."700"."a" match ".*" AND
+		MARC."700"."t" match ".*"
+	then
+		set TEMP"1" to MARC."700" sub without sort "a,i"
+		set TEMP"2" to MARC."700" sub without sort "t"
+		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 710 - Sikt BO"
+	when
+		MARC "710" has any "a,b,c,d,e,m,n,o,p,s,t" AND
+		MARC "710".ind"2" equals "2" AND NOT
+		MARC."505" has any "a,t" AND NOT
+		MARC."710"."9" match ".*"
+	then
+		set TEMP"1" to MARC."710" sub without sort "a,b,c,d,e,m,n,o,p,s,t"
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 710 - Sikt BO - 710/i"
+	when
+		MARC is "710"."i" AND
+		MARC."710"."a" match ".*" AND
+		MARC."710"."t" match ".*"
+	then
+		set TEMP"1" to MARC."710" sub without sort "a,i"
+		set TEMP"2" to MARC."710" sub without sort "t"
+		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 711 - Sikt BO"
+	when
+		MARC "711" has any "a,c,d,e,n,p,q,s,t" AND
+		MARC "711".ind"2" equals "2" AND NOT
+		MARC."505" has any "a,t" AND NOT
+		MARC."711"."9" match ".*"
+	then
+		set TEMP"1" to MARC."711" sub without sort "a,c,d,e,n,p,q,s,t"
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 711 - Sikt BO - 711/i"
+	when
+		MARC is "711"."i" AND
+		MARC."711"."a" match ".*" AND
+		MARC."711"."t" match ".*"
+	then
+		set TEMP"1" to MARC."711" sub without sort "a,i"
+		set TEMP"2" to MARC."711" sub without sort "t"
+		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
 		create pnx."display"."description" with TEMP"1"
 end
 
@@ -100,6 +410,14 @@ when
         create pnx."display"."description" with MARC."880" excluding num subfields without sort
 end
 
+rule "Primo VE - Description 880-505"
+when
+        MARC is "880" AND
+        MARC."880"."6" match "505-.*"
+	then
+        create pnx."display"."description" with MARC."880" excluding num subfields without sort
+end
+
 rule "Primo VE - Description 880-515"
 when
         MARC is "880" AND
@@ -108,10 +426,10 @@ when
         create pnx."display"."description" with MARC."880" excluding num subfields without sort
 end
 
-rule "Primo VE - Description 880-555"
+rule "Primo VE - Description 880-520"
 when
         MARC is "880" AND
-        MARC."880"."6" match "555-.*"
+        MARC."880"."6" match "520-.*"
 	then
         create pnx."display"."description" with MARC."880" excluding num subfields without sort
 end
@@ -132,14 +450,6 @@ when
         create pnx."display"."description" with MARC."880" excluding num subfields without sort
 end
 
-rule "Primo VE - Description 880-550"
-when
-        MARC is "880" AND
-        MARC."880"."6" match "550-.*"
-	then
-        create pnx."display"."description" with MARC."880" excluding num subfields without sort
-end
-
 rule "Primo VE - Description 880-547"
 when
         MARC is "880" AND
@@ -148,13 +458,18 @@ when
         create pnx."display"."description" with MARC."880" excluding num subfields without sort
 end
 
-rule "Primo VE - Description 880-490"
-# 490 ind1=1 fields do have a corresponding 8xx field which is preferable for precise hyperlink-based searching. So, such 880-490 fields should not generate their own hyperlink. Rule stanza moved from lds43 rule (a hyperlinked field).
-	when
-		MARC."880" has any "a" AND
-		MARC."880"."6" match "490-1.*"
+rule "Primo VE - Description 880-550"
+when
+        MARC is "880" AND
+        MARC."880"."6" match "550-.*"
 	then
-		set TEMP"1" to MARC "880" excluding num subfields without sort
-		add prefix (TEMP"1","<b>Series statement:</b> ")
-		create pnx."display"."description" with TEMP"1"
+        create pnx."display"."description" with MARC."880" excluding num subfields without sort
+end
+
+rule "Primo VE - Description 880-555"
+when
+        MARC is "880" AND
+        MARC."880"."6" match "555-.*"
+	then
+        create pnx."display"."description" with MARC."880" excluding num subfields without sort
 end
