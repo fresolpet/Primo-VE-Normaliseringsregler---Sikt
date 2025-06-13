@@ -1,0 +1,11 @@
+## Includes
+## Based on ORBIS and BIBSYS
+## Newest update: 6/13/2025
+## Rule is functionally empty - field not in use.
+
+rule "Primo VE - Includes"
+    when
+        MARC is "XXX"."a"
+    then
+        create pnx."display"."includes" with MARC "XXX"."a"
+end
