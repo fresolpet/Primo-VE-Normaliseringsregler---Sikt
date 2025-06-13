@@ -9,22 +9,21 @@ rule "Primo VE - publisher 260"
 	then
 		set TEMP"1" to MARC."260" subfields "a"
         set TEMP"2" to MARC."260" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
         set pnx."display"."publisher" to TEMP"1"
 end
@@ -37,22 +36,21 @@ rule "Primo VE - publisher 260 -3#"
 	then
 		set TEMP"1" to MARC."260" subfields "a"
         set TEMP"2" to MARC."260" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
         set pnx."display"."publisher" to TEMP"1"
 end
@@ -65,22 +63,21 @@ rule "Primo VE - publisher 260 3#"
 	then
 		set TEMP"1" to MARC."260" subfields "a"
         set TEMP"2" to MARC."260" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
         set pnx."display"."publisher" to TEMP"1"
 end
@@ -94,22 +91,21 @@ rule "Primo VE - publisher 264 31"
 	then
 		set TEMP"1" to MARC."264" subfields "a"
         set TEMP"2" to MARC."264" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
         set pnx."display"."publisher" to TEMP"1"
 end
@@ -121,22 +117,21 @@ rule "Primo VE - publisher 264"
 	then
 		set TEMP"1" to MARC."264" subfields "a"
         set TEMP"2" to MARC."264" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
-        remove leading and trailing spaces (TEMP"1")
+		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
         set pnx."display"."publisher" to TEMP"1"
 end
@@ -146,16 +141,13 @@ rule "Primo VE - publisher 773d"
 		MARC is "773"."d"
 	then
 		set TEMP"1" to MARC."773"."d"
-		remove substring using regex (TEMP"1",",.*")
-		replace string by string (TEMP"1"," :",":")
-		remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		replace string by string (TEMP"1"," :",":")
         create pnx."display"."publisher" with TEMP"1"
 end
 
@@ -166,22 +158,21 @@ rule "Primo VE - Alternate Publisher 880-502 ##"
 	then
 		set TEMP"1" to MARC."880" subfields "a"
         set TEMP"2" to MARC."880" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
 		set pnx."display"."alternate_publisher" to TEMP"1"
 end
@@ -195,22 +186,21 @@ rule "Primo VE - Alternate Publisher 880-260 3#"
 	then
 		set TEMP"1" to MARC."880" subfields "a"
         set TEMP"2" to MARC."880" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."alternate_publisher" with TEMP"1"
 end
@@ -226,22 +216,21 @@ rule "Primo VE - Alternate Publisher 880-264 31 - Sikt"
 	then
 		set TEMP"1" to MARC."880" subfields "a"
         set TEMP"2" to MARC."880" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."alternate_publisher" with TEMP"1"
 end
@@ -256,22 +245,21 @@ rule "Primo VE - Alternate Publisher 880-260 NO 3# 260 or 3# 264 - Sikt"
 	then
 		set TEMP"1" to MARC."880" subfields "a"
         set TEMP"2" to MARC."880" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."alternate_publisher" with TEMP"1"
 end
@@ -286,22 +274,21 @@ rule "Primo VE - Alternate Publisher 880-264 NO 3# 260 or 3# 264 - Sikt"
 	then
 		set TEMP"1" to MARC."880" subfields "a"
         set TEMP"2" to MARC."880" subfields "b"
-        remove string (TEMP"1","<<")
-		remove string (TEMP"1",">>")
-		remove string (TEMP"1","\\(")
-		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove substring using regex (TEMP"1","\\]$")
 		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
-        remove string (TEMP"2","<<")
-		remove string (TEMP"2",">>")
-		remove string (TEMP"2","\\(")
-		remove string (TEMP"2","\\)")
-		remove leading and trailing spaces (TEMP"2")
+        remove leading and trailing spaces (TEMP"2")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"2","\\]$")
+		remove substring using regex (TEMP"2","^\\[")
+		remove substring using regex (TEMP"2","\\)$")
+		remove substring using regex (TEMP"2","^\\(")
         concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."alternate_publisher" with TEMP"1"
 end
