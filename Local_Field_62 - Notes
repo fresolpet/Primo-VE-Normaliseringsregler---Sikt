@@ -1,0 +1,34 @@
+rule "Primo VE - Lds62"
+	when
+		MARC is "580"."a"
+	then 
+		create pnx."display"."description" with MARC."580"."a"
+end
+
+rule "Primo VE -  Lds62 - 1"
+	when
+		MARC is "588"."a" AND
+		MARC."588".ind"1" equals "#"
+	then 
+		create pnx."display"."description" with MARC."588"."a"
+end
+
+rule "Primo VE -  Lds62 - 2"
+	when
+		MARC is "588"."a" AND
+		MARC."588".ind"1" equals "0"
+	then 
+		set TEMP"1" to MARC."588" subfields "a"
+		add prefix (TEMP"1","Beskrivelsen bygger på: ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE -  Lds62 - 3"
+	when
+		MARC is "588"."a" AND
+		MARC."588".ind"1" equals "1"
+	then 
+		set TEMP"1" to MARC."588" subfields "a"
+		add prefix (TEMP"1","Siste konsulterte nummer: ")
+		create pnx."display"."description" with TEMP"1"
+end
