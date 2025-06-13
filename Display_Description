@@ -1,6 +1,6 @@
 ## Description
 ## Based on ORBIS and BIBSYS
-## Newest update: 6/11/2025
+## Newest update: 6/13/2025
 
 ## NOTES gamle lds03 / Noter
 
@@ -116,14 +116,6 @@ rule "Primo VE - Description 246 - i"
 		create pnx."display"."description" with TEMP"1"
 end
 
-## Part of "Notes" Local Field
-##rule "Primo VE - Description 500"
-##	when
-##		MARC is "500"."a" AND NOT
-##		MARC."500"."5" match ".*"
-##	then 
-##		create pnx."display"."description" with MARC."500"."a"
-##end
 
 rule "Primo VE - Description 502"
 	when
@@ -169,40 +161,50 @@ rule "Primo VE - Description 546"
 		create pnx."display"."description" with MARC."546"."a"
 end
 
-rule "Primo VE - Description 580"
-	when
-		MARC is "580"."a"
-	then 
-		create pnx."display"."description" with MARC."580"."a"
-end
+## Part of "Notes" Local Field
+##rule "Primo VE - Description 500"
+##	when
+##		MARC is "500"."a" AND NOT
+##		MARC."500"."5" match ".*"
+##	then 
+##		create pnx."display"."description" with MARC."500"."a"
+##end
 
-rule "Primo VE - Description 588 - ind1=#"
-	when
-		MARC is "588"."a" AND
-		MARC."588".ind"1" equals "#"
-	then 
-		create pnx."display"."description" with MARC."588"."a"
-end
 
-rule "Primo VE - Description 588 - ind1=0"
-	when
-		MARC is "588"."a" AND
-		MARC."588".ind"1" equals "0"
-	then 
-		set TEMP"1" to MARC."588" subfields "a"
-		add prefix (TEMP"1","Beskrivelsen bygger på: ")
-		create pnx."display"."description" with TEMP"1"
-end
+##rule "Primo VE - Description 580"
+##	when
+##		MARC is "580"."a"
+##	then 
+##		create pnx."display"."description" with MARC."580"."a"
+##end
 
-rule "Primo VE - Description 588 - ind1=1"
-	when
-		MARC is "588"."a" AND
-		MARC."588".ind"1" equals "0"
-	then 
-		set TEMP"1" to MARC."588" subfields "a"
-		add prefix (TEMP"1","Siste konsulterte nummer: ")
-		create pnx."display"."description" with TEMP"1"
-end
+##rule "Primo VE - Description 588 - ind1=#"
+##	when
+##		MARC is "588"."a" AND
+##		MARC."588".ind"1" equals "#"
+##	then 
+##		create pnx."display"."description" with MARC."588"."a"
+##end
+
+##rule "Primo VE - Description 588 - ind1=0"
+##	when
+##		MARC is "588"."a" AND
+##		MARC."588".ind"1" equals "0"
+##	then 
+##		set TEMP"1" to MARC."588" subfields "a"
+##		add prefix (TEMP"1","Beskrivelsen bygger på: ")
+##		create pnx."display"."description" with TEMP"1"
+##end
+
+##rule "Primo VE - Description 588 - ind1=1"
+##	when
+##		MARC is "588"."a" AND
+##		MARC."588".ind"1" equals "1"
+##	then 
+##		set TEMP"1" to MARC."588" subfields "a"
+##		add prefix (TEMP"1","Siste konsulterte nummer: ")
+##		create pnx."display"."description" with TEMP"1"
+##end
 
 ## DESCRIPTION
 
@@ -345,7 +347,11 @@ rule "Primo VE - Description 700 - Sikt BO - 700/i"
 	then
 		set TEMP"1" to MARC."700" sub without sort "a,i"
 		set TEMP"2" to MARC."700" sub without sort "t"
+		set TEMP"3" to MARC."700" sub without sort "n"
+		set TEMP"4" to MARC."700" sub without sort "p"
 		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
+		concatenate with delimiter (TEMP"1",TEMP"3",", ")
+		concatenate with delimiter (TEMP"1",TEMP"4",", ")
 		create pnx."display"."description" with TEMP"1"
 end
 
