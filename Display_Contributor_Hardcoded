@@ -1,8 +1,10 @@
 ## Contributor
 ## Based on ORBIS and BIBSYS
-## Newest update: 6/13/2025
+## Newest update: 5/20/2025
 ## To do list:
 ## * Evaluate whether all the subfields used are required.
+## Ulemper: Hardkoda på norsk
+
 
 rule "Primo VE Display - contributor 700"
 ## Person
