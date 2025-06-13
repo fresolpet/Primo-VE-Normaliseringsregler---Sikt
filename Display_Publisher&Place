@@ -1,6 +1,6 @@
 ## Publisher and Place of Publication
 ## Based on ORBIS and BIBSYS
-## Newest update: 5/20/2025
+## Newest update: 6/13/2025
 
 rule "Primo VE - publisher 260"
         priority 15	
@@ -15,6 +15,8 @@ rule "Primo VE - publisher 260"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
@@ -41,6 +43,8 @@ rule "Primo VE - publisher 260 -3#"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
@@ -67,6 +71,8 @@ rule "Primo VE - publisher 260 3#"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
@@ -94,6 +100,8 @@ rule "Primo VE - publisher 264 31"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
@@ -119,6 +127,8 @@ rule "Primo VE - publisher 264"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
@@ -136,12 +146,16 @@ rule "Primo VE - publisher 773d"
 		MARC is "773"."d"
 	then
 		set TEMP"1" to MARC."773"."d"
+		remove substring using regex (TEMP"1",",.*")
+		replace string by string (TEMP"1"," :",":")
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
 		remove string (TEMP"1","\\)")
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         create pnx."display"."publisher" with TEMP"1"
 end
 
@@ -158,6 +172,8 @@ rule "Primo VE - Alternate Publisher 880-502 ##"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
@@ -185,6 +201,8 @@ rule "Primo VE - Alternate Publisher 880-260 3#"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
@@ -214,6 +232,8 @@ rule "Primo VE - Alternate Publisher 880-264 31 - Sikt"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
@@ -242,6 +262,8 @@ rule "Primo VE - Alternate Publisher 880-260 NO 3# 260 or 3# 264 - Sikt"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
@@ -270,6 +292,8 @@ rule "Primo VE - Alternate Publisher 880-264 NO 3# 260 or 3# 264 - Sikt"
 		remove string (TEMP"1","\\)")
         remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
         add suffix (TEMP"1",":")
         replace string by string (TEMP"1"," :",":")
         remove string (TEMP"2","<<")
