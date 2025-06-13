@@ -1,6 +1,7 @@
 ## Creator with roles hardcoded
 ## Based on ORBIS and BIBSYS
 ## Newest update: 6/13/2025
+## Ulemper: Hardkoda på norsk
 
 rule "Primo VE Display - Creator 100"
 ## Person
