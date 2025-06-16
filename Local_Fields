@@ -1,6 +1,18 @@
 Local fields:
 
+local_field_51	Ubrukt
+local_field_52	Bibliografier og virtuelle samlinger
+local_field_53	Avhandlinger/Oppgaver
+local_field_54  Teaterroller - Kvinner
+local_field_55	Teaterroller - Menn
+local_field_56	Teaterroller - Totalt
+local_field_59	Ubrukt
 local_field_60	Statement of responsibility
 local_field_61	Series number
 local_field_62	Notes
+local_field_63  Local Notes (Vurdert kastet)
+local_field_64  Local Dewey
 local_field_91	Dewey
+local_field_92  Relations
+local_field_93  Merged with to form
+
