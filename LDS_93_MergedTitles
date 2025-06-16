@@ -1,0 +1,20 @@
+rule "Primo VE - Lds93"
+	when
+		MARC."785" has any "t" AND
+		MARC."785".ind"1" equals "0" AND
+		MARC."785".ind"2" equals "7"
+	then
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		set TEMP"3" to MARC."785" prima_w_relation "w"
+		set TEMP"4" to MARC."785" prima_x_relation "x"
+		set TEMP"5" to MARC."785" prima_x_relation "z"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		concatenate with delimiter (TEMP"1",TEMP"5","")
+		create pnx."display"."lds93" with TEMP"1"
+end
