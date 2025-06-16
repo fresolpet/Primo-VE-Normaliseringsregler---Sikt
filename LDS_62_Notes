@@ -1,34 +1,198 @@
 rule "Primo VE - Lds62"
 	when
-		MARC is "580"."a"
+		MARC is "020"."q" AND
+		MARC."020"."q" match "ib."
 	then 
-		create pnx."display"."description" with MARC."580"."a"
+		create pnx."display"."lds62" with "Innbundet"
 end
 
-rule "Primo VE -  Lds62 - 1"
+rule "Primo VE - Lds62 1"
+	when
+		MARC is "020"."q" AND
+		MARC."020"."q" match "h."
+	then 
+		create pnx."display"."lds62" with "Heftet"
+end
+
+rule "Primo VE - Lds 2"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "0" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Utgavenummer: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds 3"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "1" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Matrisenummer: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds 4"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "2" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Platenummmer: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds 5"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "3" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Annet musikknummer: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds 6"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "4" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Videonummer: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds 7"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "5" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Annet utgivernummer: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds 8"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "6" AND
+		(MARC."028".ind"2" equals "1" OR
+		MARC."028".ind"2" equals "2")
+	then 
+		set TEMP"1" to MARC."028" subfields "a"
+		add prefix (TEMP"1","Distributørnummer: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds 9"
+	when
+		MARC is "246"."a" AND
+		MARC."246".ind"1" equals "1" AND NOT
+		MARC."246"."i" match "Originaltittel"
+	then 
+		set TEMP"1" to MARC."246" subfields "i"
+		set TEMP"2" to MARC."246" subfields "a"
+		concatenate with delimiter (TEMP"1",TEMP"2",": ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds 10"
+	when
+		MARC is "500"."a" AND NOT
+		MARC."500"."5" match ".*"
+	then 
+		create pnx."display"."lds62" with MARC."500"."a"
+end
+
+rule "Primo VE - Lds 11"
+	when
+		MARC is "502"."a"
+	then 
+		create pnx."display"."lds62" with MARC."502"."a"
+end
+
+rule "Primo VE - Lds 12"
+	when
+		MARC is "504"."a"
+	then 
+		create pnx."display"."lds62" with MARC."504"."a"
+end
+
+rule "Primo VE - Lds 13"
+	when
+		MARC is "508"."a"
+	then 
+		create pnx."display"."lds62" with MARC."508"."a"
+end
+
+rule "Primo VE - Lds 14"
+	when
+		MARC is "518"."a"
+	then 
+		create pnx."display"."lds62" with MARC."518"."a"
+end
+
+rule "Primo VE - Lds 15"
+	when
+		MARC is "534"."a"
+	then 
+		set TEMP"1" to MARC."534" subfields "a"
+		add prefix (TEMP"1","Originalutgivelse: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds 16"
+	when
+		MARC is "546"."a"
+	then 
+		create pnx."display"."lds62" with MARC."546"."a"
+end
+
+rule "Primo VE - Lds 17"
+	when
+		MARC is "580"."a"
+	then 
+		create pnx."display"."lds62" with MARC."580"."a"
+end
+
+rule "Primo VE - Lds 18"
 	when
 		MARC is "588"."a" AND
 		MARC."588".ind"1" equals "#"
 	then 
-		create pnx."display"."description" with MARC."588"."a"
+		create pnx."display"."lds62" with MARC."588"."a"
 end
 
-rule "Primo VE -  Lds62 - 2"
+rule "Primo VE - Lds 19"
 	when
 		MARC is "588"."a" AND
 		MARC."588".ind"1" equals "0"
 	then 
 		set TEMP"1" to MARC."588" subfields "a"
 		add prefix (TEMP"1","Beskrivelsen bygger på: ")
-		create pnx."display"."description" with TEMP"1"
+		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE -  Lds62 - 3"
+rule "Primo VE - Lds 20"
 	when
 		MARC is "588"."a" AND
 		MARC."588".ind"1" equals "1"
 	then 
 		set TEMP"1" to MARC."588" subfields "a"
 		add prefix (TEMP"1","Siste konsulterte nummer: ")
-		create pnx."display"."description" with TEMP"1"
+		create pnx."display"."lds62" with TEMP"1"
 end
