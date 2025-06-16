@@ -1,212 +1,6 @@
 ## Description
 ## Based on ORBIS and BIBSYS
-## Newest update: 6/13/2025
-
-## NOTES gamle lds03 / Noter
-
-rule "Primo VE - Description 020 - Innbundet"
-	when
-		MARC is "020"."q" AND
-		MARC."020"."q" match "ib."
-	then 
-		create pnx."display"."description" with "Innbundet"
-end
-
-rule "Primo VE - Description 020 - Heftet"
-	when
-		MARC is "020"."q" AND
-		MARC."020"."q" match "h."
-	then 
-		create pnx."display"."description" with "Heftet"
-end
-
-rule "Primo VE - Description 028 - ind1 = 0 AND ind2 = 1 or 2"
-	when
-		MARC is "028"."a" AND
-		MARC."028".ind"1" equals "0" AND
-		(MARC."028".ind"2" equals "1" OR
-		MARC."028".ind"2" equals "2")
-	then 
-		set TEMP"1" to MARC."028" subfields "a"
-		add prefix (TEMP"1","Utgavenummer: ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 028 - ind1 = 1 AND ind2 = 1 or 2"
-	when
-		MARC is "028"."a" AND
-		MARC."028".ind"1" equals "1" AND
-		(MARC."028".ind"2" equals "1" OR
-		MARC."028".ind"2" equals "2")
-	then 
-		set TEMP"1" to MARC."028" subfields "a"
-		add prefix (TEMP"1","Matrisenummer: ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 028 - ind1 = 2 AND ind2 = 1 or 2"
-	when
-		MARC is "028"."a" AND
-		MARC."028".ind"1" equals "2" AND
-		(MARC."028".ind"2" equals "1" OR
-		MARC."028".ind"2" equals "2")
-	then 
-		set TEMP"1" to MARC."028" subfields "a"
-		add prefix (TEMP"1","Platenummmer: ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 028 - ind1 = 3 AND ind2 = 1 or 2"
-	when
-		MARC is "028"."a" AND
-		MARC."028".ind"1" equals "3" AND
-		(MARC."028".ind"2" equals "1" OR
-		MARC."028".ind"2" equals "2")
-	then 
-		set TEMP"1" to MARC."028" subfields "a"
-		add prefix (TEMP"1","Annet musikknummer: ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 028 - ind1 = 4 AND ind2 = 1 or 2"
-	when
-		MARC is "028"."a" AND
-		MARC."028".ind"1" equals "4" AND
-		(MARC."028".ind"2" equals "1" OR
-		MARC."028".ind"2" equals "2")
-	then 
-		set TEMP"1" to MARC."028" subfields "a"
-		add prefix (TEMP"1","Videonummer: ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 028 - ind1 = 5 AND ind2 = 1 or 2"
-	when
-		MARC is "028"."a" AND
-		MARC."028".ind"1" equals "5" AND
-		(MARC."028".ind"2" equals "1" OR
-		MARC."028".ind"2" equals "2")
-	then 
-		set TEMP"1" to MARC."028" subfields "a"
-		add prefix (TEMP"1","Annet utgivernummer: ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 028 - ind1 = 6 AND ind2 = 1 or 2"
-	when
-		MARC is "028"."a" AND
-		MARC."028".ind"1" equals "6" AND
-		(MARC."028".ind"2" equals "1" OR
-		MARC."028".ind"2" equals "2")
-	then 
-		set TEMP"1" to MARC."028" subfields "a"
-		add prefix (TEMP"1","Distributørnummer: ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 246 - i"
-	when
-		MARC is "246"."a" AND
-		MARC."246".ind"1" equals "1" AND NOT
-		MARC."246"."i" match "Originaltittel"
-	then 
-		set TEMP"1" to MARC."246" subfields "i"
-		set TEMP"2" to MARC."246" subfields "a"
-		concatenate with delimiter (TEMP"1",TEMP"2",": ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-
-rule "Primo VE - Description 502"
-	when
-		MARC is "502"."a"
-	then 
-		create pnx."display"."description" with MARC."502"."a"
-end
-
-rule "Primo VE - Description 504"
-	when
-		MARC is "504"."a"
-	then 
-		create pnx."display"."description" with MARC."504"."a"
-end
-
-rule "Primo VE - Description 508"
-	when
-		MARC is "508"."a"
-	then 
-		create pnx."display"."description" with MARC."508"."a"
-end
-
-rule "Primo VE - Description 518"
-	when
-		MARC is "518"."a"
-	then 
-		create pnx."display"."description" with MARC."518"."a"
-end
-
-rule "Primo VE - Description 534"
-	when
-		MARC is "534"."a"
-	then 
-		set TEMP"1" to MARC."534" subfields "a"
-		add prefix (TEMP"1","Originalutgivelse: ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 546"
-	when
-		MARC is "546"."a"
-	then 
-		create pnx."display"."description" with MARC."546"."a"
-end
-
-## Part of "Notes" Local Field
-##rule "Primo VE - Description 500"
-##	when
-##		MARC is "500"."a" AND NOT
-##		MARC."500"."5" match ".*"
-##	then 
-##		create pnx."display"."description" with MARC."500"."a"
-##end
-
-
-##rule "Primo VE - Description 580"
-##	when
-##		MARC is "580"."a"
-##	then 
-##		create pnx."display"."description" with MARC."580"."a"
-##end
-
-##rule "Primo VE - Description 588 - ind1=#"
-##	when
-##		MARC is "588"."a" AND
-##		MARC."588".ind"1" equals "#"
-##	then 
-##		create pnx."display"."description" with MARC."588"."a"
-##end
-
-##rule "Primo VE - Description 588 - ind1=0"
-##	when
-##		MARC is "588"."a" AND
-##		MARC."588".ind"1" equals "0"
-##	then 
-##		set TEMP"1" to MARC."588" subfields "a"
-##		add prefix (TEMP"1","Beskrivelsen bygger på: ")
-##		create pnx."display"."description" with TEMP"1"
-##end
-
-##rule "Primo VE - Description 588 - ind1=1"
-##	when
-##		MARC is "588"."a" AND
-##		MARC."588".ind"1" equals "1"
-##	then 
-##		set TEMP"1" to MARC."588" subfields "a"
-##		add prefix (TEMP"1","Siste konsulterte nummer: ")
-##		create pnx."display"."description" with TEMP"1"
-##end
-
-## DESCRIPTION
+## Newest update: 6/16/2025
 
 rule "Primo VE - Description 515"
 	when
@@ -397,6 +191,29 @@ rule "Primo VE - Description 711 - Sikt BO - 711/i"
 	then
 		set TEMP"1" to MARC."711" sub without sort "a,i"
 		set TEMP"2" to MARC."711" sub without sort "t"
+		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 730 - Sikt BO"
+	when
+		MARC "730" has any "a,c,d,e,n,p,q,s,t" AND
+		MARC "730".ind"2" equals "2" AND NOT
+		MARC."505" has any "a,t" AND NOT
+		MARC."730"."9" match ".*"
+	then
+		set TEMP"1" to MARC."730" sub without sort "a,c,d,e,n,p,q,s,t"
+		create pnx."display"."description" with TEMP"1"
+end
+
+rule "Primo VE - Description 730 - Sikt BO - 730/i"
+	when
+		MARC is "730"."i" AND
+		MARC."730"."a" match ".*" AND
+		MARC."730"."t" match ".*"
+	then
+		set TEMP"1" to MARC."730" sub without sort "a,i"
+		set TEMP"2" to MARC."730" sub without sort "t"
 		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
 		create pnx."display"."description" with TEMP"1"
 end
