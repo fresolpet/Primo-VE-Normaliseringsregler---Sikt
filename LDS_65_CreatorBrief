@@ -1,0 +1,106 @@
+rule "Primo VE - Lds65"
+## Person
+priority 10
+	when
+		MARC."100" has any "a,b,c,d,e,j,u,q,0,4"
+	then
+		set TEMP"1" to MARC."100" sub without sort "a,b,c,j,q"
+        set TEMP"5" to MARC."100" subfields "d"
+        add prefix (TEMP"5","(")
+		add suffix (TEMP"5",")")
+        concatenate with delimiter (TEMP"1",TEMP"5"," ")
+		set TEMP"2" to MARC."100" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "100" "Creator" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds65" to TEMP"1"
+end
+
+rule "Primo VE - Lds65 1"
+## Corporation
+priority 20
+	when
+		MARC."110" has any "a,b,c,d,e,q,0,4"
+	then
+		set TEMP"1" to MARC."110" excluding num subfields without sort
+		set TEMP"2" to MARC."110" sub without sort "a,b"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        set TEMP"3" to multilingual by "110" "Creator" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds65" to TEMP"1"
+end
+
+rule "Primo VE - Lds65 2"
+## Conference/Meeting/Exhibition
+priority 30
+	when
+		MARC."111" has any "a,b,c,d,e,q,0,4"
+	then
+		set TEMP"1" to MARC."111" excluding num subfields without sort
+		set TEMP"2" to MARC."111" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        set TEMP"3" to multilingual by "111" "Creator" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds65" to TEMP"1"
+end
+
+
+rule "Primo VE - Lds65 3"
+priority 10
+	when
+		MARC."880" has any "a,b,c,d,n" AND
+		MARC."880"."6" match "100-.*"
+	then
+	    set TEMP"1" to MARC."880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "880" "Creator" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds65" to TEMP"1"
+end
+
+rule "Primo VE - Lds65 4"
+priority 20
+	when
+		MARC."880" has any "a,b,c,d,n" AND
+		MARC."880"."6" match "110-.*"
+	then
+	    set TEMP"1" to MARC."880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "a,b"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "880" "Creator" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds65" to TEMP"1"
+end
+
+rule "Primo VE - Lds65 5"
+priority 30
+	when
+		MARC."880" has any "a,b,c,d,n" AND
+		MARC."880"."6" match "111-.*"
+	then
+	    set TEMP"1" to MARC."880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "880" "Creator" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds65" to TEMP"1"
+end
