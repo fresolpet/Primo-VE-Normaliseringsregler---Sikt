@@ -1,4 +1,10 @@
 rule "Primo VE - Lds65"
+## Brief view Creator
+## Based on ORBIS and BIBSYS
+## Newest update: 6/16/2025
+## To do list:
+## * Evaluate whether all the subfields used are required.
+
 ## Person
 priority 10
 	when
