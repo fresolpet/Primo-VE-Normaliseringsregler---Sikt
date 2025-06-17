@@ -1,0 +1,14 @@
+rule "Primo VE - Lds67"
+	when
+		MARC is "380"."a"
+	then
+		create pnx."display"."lds67" with MARC "380"."a"
+end
+
+rule "Primo VE - Lds67 - 2"
+  when
+    MARC is "655"."a" AND NOT
+    MARC."655"."9" equals "N"
+  then
+    create pnx."display"."lds67" with MARC "655"."a"
+end
