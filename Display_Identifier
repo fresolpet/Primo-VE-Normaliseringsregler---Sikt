@@ -1,0 +1,114 @@
+rule "Primo VE - Identifier 020"
+	when
+		MARC is "020"."a"
+	then
+		set TEMP"1" to MARC "020"."a"
+		add prefix (TEMP"1","$$CISBN$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+
+rule "Primo VE - Identifier 022"
+	when
+		MARC is "022"."a"
+	then
+		set TEMP"1" to MARC "022"."a"
+		add prefix (TEMP"1","$$CISSN$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 024"
+	when
+		MARC is "024"."a" AND
+		MARC."024".ind"1"  equals "2"
+	then
+		set TEMP"1" to MARC "024"."a"
+		add prefix (TEMP"1","$$CISMN$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+## 028 forskjellige varianter
+
+rule "Primo VE - Identifier 028 - 0,1"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "0" AND
+		(MARC."028".ind"2" equals "1" OR 
+		MARC."028".ind"2" equals "2")
+	then
+		set TEMP"1" to MARC "028"."a"
+		add prefix (TEMP"1","$$CUtgavenummer$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 028 - 1,1"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "1" AND
+		(MARC."028".ind"2" equals "1" OR 
+		MARC."028".ind"2" equals "2")
+	then
+		set TEMP"1" to MARC "028"."a"
+		add prefix (TEMP"1","$$Matrisenummer$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 028 - 2,1"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "2" AND
+		(MARC."028".ind"2" equals "1" OR 
+		MARC."028".ind"2" equals "2")
+	then
+		set TEMP"1" to MARC "028"."a"
+		add prefix (TEMP"1","$$CPlatenummer$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 028 - 3,1"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "3" AND
+		(MARC."028".ind"2" equals "1" OR 
+		MARC."028".ind"2" equals "2")
+	then
+		set TEMP"1" to MARC "028"."a"
+		add prefix (TEMP"1","$$CAnnet musikknummer$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 028 - 4,1"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "4" AND
+		(MARC."028".ind"2" equals "1" OR 
+		MARC."028".ind"2" equals "2")
+	then
+		set TEMP"1" to MARC "028"."a"
+		add prefix (TEMP"1","$$CVideonummer$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 028 - 5,1"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "5" AND
+		(MARC."028".ind"2" equals "1" OR 
+		MARC."028".ind"2" equals "2")
+	then
+		set TEMP"1" to MARC "028"."a"
+		add prefix (TEMP"1","$$CAndre nummer$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 028 - 6,1"
+	when
+		MARC is "028"."a" AND
+		MARC."028".ind"1" equals "6" AND
+		(MARC."028".ind"2" equals "1" OR 
+		MARC."028".ind"2" equals "2")
+	then
+		set TEMP"1" to MARC "028"."a"
+		add prefix (TEMP"1","$$CDistributørnummer$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
