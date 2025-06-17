@@ -1,3 +1,8 @@
+## Identifier
+## Based on ORBIS and BIBSYS
+## Newest update: 6/17/2025
+## To do list:
+
 rule "Primo VE - Identifier 020"
 	when
 		MARC is "020"."a"
@@ -6,7 +11,6 @@ rule "Primo VE - Identifier 020"
 		add prefix (TEMP"1","$$CISBN$$V")
 		create pnx."display"."identifier" with TEMP"1"
 end
-
 
 rule "Primo VE - Identifier 022"
 	when
@@ -111,4 +115,4 @@ rule "Primo VE - Identifier 028 - 6,1"
 		set TEMP"1" to MARC "028"."a"
 		add prefix (TEMP"1","$$CDistributørnummer$$V")
 		create pnx."display"."identifier" with TEMP"1"
-end
+end
