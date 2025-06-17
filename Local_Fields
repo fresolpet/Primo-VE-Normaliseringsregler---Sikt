@@ -12,6 +12,7 @@ local_field_61	Series number
 local_field_62	Notes
 local_field_63  Local Notes (Vurdert kastet)
 local_field_64  Local Dewey
+local_field_67	manufacturing form
 local_field_91	Dewey
 local_field_92  Relations
 local_field_93  Merged with to form
