@@ -139,6 +139,13 @@ rule "Primo VE - Lds 13"
 		create pnx."display"."lds62" with MARC."508"."a"
 end
 
+rule "Primo VE - Lds 13"
+	when
+		MARC is "515"."a"
+	then 
+		create pnx."display"."lds62" with MARC."515"."a"
+end
+
 rule "Primo VE - Lds 14"
 	when
 		MARC is "518"."a"
