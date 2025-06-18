@@ -14,7 +14,7 @@ rule "Primo VE - Lds62 1"
 		create pnx."display"."lds62" with "Heftet"
 end
 
-rule "Primo VE - Lds 2"
+rule "Primo VE - Lds62 2"
 	when
 		MARC is "028"."a" AND
 		MARC."028".ind"1" equals "0" AND
@@ -26,7 +26,7 @@ rule "Primo VE - Lds 2"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 3"
+rule "Primo VE - Lds62 3"
 	when
 		MARC is "028"."a" AND
 		MARC."028".ind"1" equals "1" AND
@@ -38,7 +38,7 @@ rule "Primo VE - Lds 3"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 4"
+rule "Primo VE - Lds62 4"
 	when
 		MARC is "028"."a" AND
 		MARC."028".ind"1" equals "2" AND
@@ -50,7 +50,7 @@ rule "Primo VE - Lds 4"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 5"
+rule "Primo VE - Lds62 5"
 	when
 		MARC is "028"."a" AND
 		MARC."028".ind"1" equals "3" AND
@@ -62,7 +62,7 @@ rule "Primo VE - Lds 5"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 6"
+rule "Primo VE - Lds62 6"
 	when
 		MARC is "028"."a" AND
 		MARC."028".ind"1" equals "4" AND
@@ -74,7 +74,7 @@ rule "Primo VE - Lds 6"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 7"
+rule "Primo VE - Lds62 7"
 	when
 		MARC is "028"."a" AND
 		MARC."028".ind"1" equals "5" AND
@@ -86,7 +86,7 @@ rule "Primo VE - Lds 7"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 8"
+rule "Primo VE - Lds62 8"
 	when
 		MARC is "028"."a" AND
 		MARC."028".ind"1" equals "6" AND
@@ -98,7 +98,7 @@ rule "Primo VE - Lds 8"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 9"
+rule "Primo VE - Lds62 9"
 	when
 		MARC is "246"."a" AND
 		MARC."246".ind"1" equals "1" AND NOT
@@ -110,7 +110,7 @@ rule "Primo VE - Lds 9"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 10"
+rule "Primo VE - Lds62 10"
 	when
 		MARC is "500"."a" AND NOT
 		MARC."500"."5" match ".*"
@@ -118,42 +118,42 @@ rule "Primo VE - Lds 10"
 		create pnx."display"."lds62" with MARC."500"."a"
 end
 
-rule "Primo VE - Lds 11"
+rule "Primo VE - Lds62 11"
 	when
 		MARC is "502"."a"
 	then 
 		create pnx."display"."lds62" with MARC."502"."a"
 end
 
-rule "Primo VE - Lds 12"
+rule "Primo VE - Lds62 12"
 	when
 		MARC is "504"."a"
 	then 
 		create pnx."display"."lds62" with MARC."504"."a"
 end
 
-rule "Primo VE - Lds 13"
+rule "Primo VE - Lds62 13"
 	when
 		MARC is "508"."a"
 	then 
 		create pnx."display"."lds62" with MARC."508"."a"
 end
 
-rule "Primo VE - Lds 14"
+rule "Primo VE - Lds62 14"
 	when
 		MARC is "515"."a"
 	then 
 		create pnx."display"."lds62" with MARC."515"."a"
 end
 
-rule "Primo VE - Lds 15"
+rule "Primo VE - Lds62 15"
 	when
 		MARC is "518"."a"
 	then 
 		create pnx."display"."lds62" with MARC."518"."a"
 end
 
-rule "Primo VE - Lds 16"
+rule "Primo VE - Lds62 16"
 	when
 		MARC is "534"."a"
 	then 
@@ -162,21 +162,40 @@ rule "Primo VE - Lds 16"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 17"
+rule "Primo VE - Lds62 17"
+	when
+		MARC is "538"."a" AND NOT
+		MARC."538"."i" match ".*"
+	then 
+		set TEMP"1" to MARC."538" subfields "a"
+		add prefix (TEMP"1","Systemdetaljer: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds62 18"
+	when
+		MARC is "538"."a" AND
+		MARC."538"."i" match ".*"
+	then 
+		set TEMP"1" to MARC."538" subfields "i,a"
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds62 19"
 	when
 		MARC is "546"."a"
 	then 
 		create pnx."display"."lds62" with MARC."546"."a"
 end
 
-rule "Primo VE - Lds 18"
+rule "Primo VE - Lds62 20"
 	when
 		MARC is "580"."a"
 	then 
 		create pnx."display"."lds62" with MARC."580"."a"
 end
 
-rule "Primo VE - Lds 19"
+rule "Primo VE - Lds62 21"
 	when
 		MARC is "588"."a" AND
 		MARC."588".ind"1" equals "#"
@@ -184,7 +203,7 @@ rule "Primo VE - Lds 19"
 		create pnx."display"."lds62" with MARC."588"."a"
 end
 
-rule "Primo VE - Lds 20"
+rule "Primo VE - Lds62 22"
 	when
 		MARC is "588"."a" AND
 		MARC."588".ind"1" equals "0"
@@ -194,7 +213,7 @@ rule "Primo VE - Lds 20"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 21"
+rule "Primo VE - Lds62 23"
 	when
 		MARC is "588"."a" AND
 		MARC."588".ind"1" equals "1"
