@@ -139,21 +139,21 @@ rule "Primo VE - Lds 13"
 		create pnx."display"."lds62" with MARC."508"."a"
 end
 
-rule "Primo VE - Lds 13"
+rule "Primo VE - Lds 14"
 	when
 		MARC is "515"."a"
 	then 
 		create pnx."display"."lds62" with MARC."515"."a"
 end
 
-rule "Primo VE - Lds 14"
+rule "Primo VE - Lds 15"
 	when
 		MARC is "518"."a"
 	then 
 		create pnx."display"."lds62" with MARC."518"."a"
 end
 
-rule "Primo VE - Lds 15"
+rule "Primo VE - Lds 16"
 	when
 		MARC is "534"."a"
 	then 
@@ -162,21 +162,21 @@ rule "Primo VE - Lds 15"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 16"
+rule "Primo VE - Lds 17"
 	when
 		MARC is "546"."a"
 	then 
 		create pnx."display"."lds62" with MARC."546"."a"
 end
 
-rule "Primo VE - Lds 17"
+rule "Primo VE - Lds 18"
 	when
 		MARC is "580"."a"
 	then 
 		create pnx."display"."lds62" with MARC."580"."a"
 end
 
-rule "Primo VE - Lds 18"
+rule "Primo VE - Lds 19"
 	when
 		MARC is "588"."a" AND
 		MARC."588".ind"1" equals "#"
@@ -184,7 +184,7 @@ rule "Primo VE - Lds 18"
 		create pnx."display"."lds62" with MARC."588"."a"
 end
 
-rule "Primo VE - Lds 19"
+rule "Primo VE - Lds 20"
 	when
 		MARC is "588"."a" AND
 		MARC."588".ind"1" equals "0"
@@ -194,7 +194,7 @@ rule "Primo VE - Lds 19"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds 20"
+rule "Primo VE - Lds 21"
 	when
 		MARC is "588"."a" AND
 		MARC."588".ind"1" equals "1"
