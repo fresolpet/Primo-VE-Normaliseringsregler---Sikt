@@ -3,10 +3,10 @@
 ## Newest update: 5/20/2025
 ## To do list:
 ## * Split 653 $a into multiple fields
-## **** Have split into multiple fields, but can't remove delimiter stars (*)
+## **** Have split into multiple fields, but 653 is lowercase and therefore won't match with existing 650.
 
 rule "Primo VE Display - Subject 600"
-## Person
+## 600 Emneinnførsel personnavn (R)
 	when
 		MARC."600" has any "a-z" AND NOT
 		MARC."600"."9" match "N"
@@ -21,7 +21,7 @@ rule "Primo VE Display - Subject 600"
 end
 
 rule "Primo VE Display - Subject 610"
-## Corporation
+## 610 Emneinnførsel korporasjonsnavn (R)
 	when
 		MARC."610" has any "a-z" AND NOT
 		MARC."610"."9" match "N"
@@ -36,7 +36,7 @@ rule "Primo VE Display - Subject 610"
 end
 
 rule "Primo VE Display - Subject 611"
-## Conference/Meeting/Exhibition
+## 611 Emneinnførsel konferanse-, møte-, utstillingsnavn etc. (R)
 	when
 		MARC."611" has any "a-z" AND NOT
 		MARC."611"."9" match "N"
@@ -51,7 +51,7 @@ rule "Primo VE Display - Subject 611"
 end
 
 rule "Primo VE Display - Subject 630"
-## Uniform Title
+## 630 Emneinnførsel standardtittel (R)
 	when
 		MARC."630" has any "a-z" AND NOT
 		MARC."630"."9" match "N"
@@ -66,7 +66,7 @@ rule "Primo VE Display - Subject 630"
 end
 
 rule "Primo VE Display - Subject 648"
-## Chronological term
+## 648 Emneinnførsel kronologisk term (R)
 	when
 		MARC."648" has any "a-z" AND NOT
 		MARC."648"."9" match "N"
@@ -82,7 +82,7 @@ end
 
 
 rule "Primo VE Display - Subject 650"
-## General Subject Terms
+## 650 Generelle emneord(R)
 	when
 		MARC."650" has any "a-z" AND NOT
 		MARC."650"."9" match "N"
@@ -97,7 +97,7 @@ rule "Primo VE Display - Subject 650"
 end
 
 rule "Primo VE Display - Subject 651"
-## Geographic Location
+## 651 Geografisk sted som emneord (R)
 	when
 		MARC."651" has any "a-z" AND NOT
 		MARC."651"."9" match "N"
@@ -111,23 +111,18 @@ rule "Primo VE Display - Subject 651"
 		create pnx."display"."subject" with TEMP"1"
 end
 
-rule "Primo VE Display - Subject 653"
-## Keywords
+rule "Primo VE Display- Subject 653"
+## 653 Nøkkelord (R)
 	when
-		MARC."653" has any "a-z" AND NOT
+		MARC is "653"."a" AND NOT
 		MARC."653"."9" match "N"
 	then
-		set TEMP"1" to MARC."653" sub without sort "a-u" wrap subfields
-		replace wrapping delimiters (TEMP"1","a","*","*")
-		return list using regex (TEMP"5",TEMP"1","\\*[^*]+\\*")
-set TEMP"2" to MARC."653" sub without sorting "v,x-z" delimited by " -- "
-		remove substring using regex (TEMP"2","\\.+$")
-		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
-		set TEMP"3" to multilingual by "653" "Subject" "display"
-concatenate with delimiter (TEMP"1",TEMP"3","")
-		create pnx."display"."subject" with list TEMP"5" 
+		set TEMP"1" to MARC."653"."a"
+		remove substring using regex (TEMP"1","\\.+$")
+		set TEMP"2" to multilingual by "653" "Subject" "display"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."subject" with TEMP"1"
 end
-
 
 rule "Primo VE Display - Subject 654"
 ## Genre and Form
