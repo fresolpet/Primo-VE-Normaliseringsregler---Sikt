@@ -8,7 +8,7 @@ local_field_55	Teaterroller - Menn
 local_field_56	Teaterroller - Totalt
 local_field_59	Ubrukt
 local_field_60	Statement of responsibility
-local_field_61	Series number
+local_field_61	Series number (utkast) - Klarer ikke koble riktig nummer med serie når det er flere. Tar heller nummer direkte i Series
 local_field_62	Notes
 local_field_63  Local Notes (Vurdert kastet)
 local_field_64  Local Dewey
