@@ -1,6 +1,6 @@
 ## Description
 ## Based on ORBIS and BIBSYS
-## Newest update: 6/16/2025
+## Newest update: 7/1/2025
 
 rule "Primo VE - Description 520 - Sikt BO - 520/ab/[-0,-1,-2,-3,-4,-8],_"
 #520 Sammendrag (R)
@@ -116,16 +116,17 @@ rule "Primo VE - Description 555"
 		create pnx."display"."description" with MARC."555" sub without sort "a,b,c,d,u,3"
 end
 
-rule "Primo VE - Description 700 - Sikt BO - 700/abcdemnopst/_,2"
-	when
-		MARC "700" has any "a,b,c,d,e,m,n,o,p,s,t" AND
-		MARC "700".ind"2" equals "2" AND NOT
-		MARC."505" has any "a,t" AND NOT
-		MARC."700"."9" match ".*"
-	then
-		set TEMP"1" to MARC."700" sub without sort "a,b,c,d,e,m,n,o,p,s,t"
-		create pnx."display"."description" with TEMP"1"
-end
+## Denne er inkludert i "Includes" i stedet for "Description"
+## rule "Primo VE - Description 700 - Sikt BO - 700/abcdemnopst/_,2"
+##	when
+##		MARC "700" has any "a,b,c,d,e,m,n,o,p,s,t" AND
+##		MARC "700".ind"2" equals "2" AND NOT
+##		MARC."505" has any "a,t" AND NOT
+##		MARC."700"."9" match ".*"
+##	then
+##		set TEMP"1" to MARC."700" sub without sort "a,b,c,d,e,m,n,o,p,s,t"
+##		create pnx."display"."description" with TEMP"1"
+##end
 
 rule "Primo VE - Description 700 - Sikt BO - 700/i"
 	when
