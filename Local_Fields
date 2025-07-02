@@ -12,7 +12,8 @@ local_field_61	Series number (utkast) - Klarer ikke koble riktig nummer med seri
 local_field_62	Notes
 local_field_63  Local Notes (Vurdert kastet)
 local_field_64  Local Dewey
-local_field_67	manufacturing form
+local_field_67	Manufacturing Form
+local_field_68  Financing
 
 Search and facet
 local_field_91	Dewey
@@ -21,4 +22,4 @@ local_field_93  Merged with to form
 local_field_94	Medium of Performance
 local_field_95	Key
 local_field_96	Performers (Ikke ferdig, mangler 700 info)
-
+local_field_97  Keywords (653)
