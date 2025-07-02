@@ -4,6 +4,7 @@
 ## To do list:
 ## * Split 653 $a into multiple fields
 ## **** Have split into multiple fields, but 653 is lowercase and therefore won't match with existing 650.
+## Currently 653 is not included here - see local field Keywords
 
 rule "Primo VE Display - Subject 600"
 ## 600 Emneinnførsel personnavn (R)
@@ -108,19 +109,6 @@ rule "Primo VE Display - Subject 651"
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
 		set TEMP"3" to multilingual by "651" "Subject" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
-		create pnx."display"."subject" with TEMP"1"
-end
-
-rule "Primo VE Display- Subject 653"
-## 653 Nøkkelord (R)
-	when
-		MARC is "653"."a" AND NOT
-		MARC."653"."9" match "N"
-	then
-		set TEMP"1" to MARC."653"."a"
-		remove substring using regex (TEMP"1","\\.+$")
-		set TEMP"2" to multilingual by "653" "Subject" "display"
-		concatenate with delimiter (TEMP"1",TEMP"2","")
 		create pnx."display"."subject" with TEMP"1"
 end
 
