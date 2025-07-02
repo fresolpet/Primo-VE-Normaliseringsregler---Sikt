@@ -14,15 +14,15 @@ priority 20
         MARC."700"."a" match ".*" AND NOT MARC."700"."t" match ".*" AND
         MARC.control is "001"
     then
-        set TEMP"1" to MARC."700" sub without sort "a,b,c,j,q"
-        set TEMP"5" to MARC."700" subfields "d"
-        add prefix (TEMP"5","(")
+		set TEMP"1" to MARC."700" sub without sort "a,b,c,j,q"
+		set TEMP"5" to MARC."700" subfields "d"
+		add prefix (TEMP"5","(")
 		add suffix (TEMP"5",")")
-        concatenate with delimiter (TEMP"1",TEMP"5"," ")
+		concatenate with delimiter (TEMP"1",TEMP"5"," ")
 		set TEMP"4" to MARC."700" subfields "e,4"
 		replace string by string (TEMP"4"," ","/") # convert list to slash-separated	
 		
-					# code list starts here
+		# code list starts here
 			# Three letters (abc)
 				replace string by string (TEMP"4","abr(?=/|$)","forkorter")
 				replace string by string (TEMP"4","act(?=/|$)","skuespiller")
@@ -594,11 +594,11 @@ priority 30
         MARC."710" has any "a,b,c,d,e,4,j,q"
         MARC."710"."a" match ".*" AND NOT MARC."710"."t" match ".*" 
     then
-        set TEMP"1" to MARC."710" sub without sort "a,b,c,d,j,q"
-        set TEMP"4" to MARC."710" subfields "e,4"
+		set TEMP"1" to MARC."710" sub without sort "a,b,c,d,j,q"
+		set TEMP"4" to MARC."710" subfields "e,4"
 		replace string by string (TEMP"4"," ","/") # convert list to slash-separated	
 		
-					# code list starts here
+		# code list starts here
 			# Three letters (abc)
 				replace string by string (TEMP"4","abr(?=/|$)","forkorter")
 				replace string by string (TEMP"4","act(?=/|$)","skuespiller")
@@ -1152,15 +1152,15 @@ priority 30
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
 		concatenate with delimiter (TEMP"1",TEMP"4"," ")
-        remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        set TEMP"2" to MARC."710" sub without sort "a"
-        remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
-        add prefix (TEMP"2","$$Q")
-        remove substring using regex (TEMP"2","^$$Q$")
-        concatenate with delimiter (TEMP"1",TEMP"2","")
-        set TEMP"3" to multilingual by "710" "Contributor" "display"
-        concatenate with delimiter (TEMP"1",TEMP"3","")
-        create pnx."display"."contributor" with TEMP"1"
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		set TEMP"2" to MARC."710" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "710" "Contributor" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		create pnx."display"."contributor" with TEMP"1"
 end
 
 rule "Primo VE Display - contributor 711"
@@ -1170,11 +1170,11 @@ priority 30
         MARC."711" has any "a,b,c,d,e,4,j,q"
         MARC."711"."a" match ".*" AND NOT MARC."711"."t" match ".*" 
     then
-        set TEMP"1" to MARC."711" sub without sort "a,b,c,d,j,q"
-        set TEMP"4" to MARC."711" subfields "e,4"
+		set TEMP"1" to MARC."711" sub without sort "a,b,c,d,j,q"
+		set TEMP"4" to MARC."711" subfields "e,4"
 		replace string by string (TEMP"4"," ","/") # convert list to slash-separated	
 		
-					# code list starts here
+		# code list starts here
 			# Three letters (abc)
 				replace string by string (TEMP"4","abr(?=/|$)","forkorter")
 				replace string by string (TEMP"4","act(?=/|$)","skuespiller")
@@ -1728,15 +1728,15 @@ priority 30
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
 		concatenate with delimiter (TEMP"1",TEMP"4"," ")
-        remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        set TEMP"2" to MARC."711" sub without sort "a"
-        remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
-        add prefix (TEMP"2","$$Q")
-        remove substring using regex (TEMP"2","^$$Q$")
-        concatenate with delimiter (TEMP"1",TEMP"2","")
-        set TEMP"3" to multilingual by "711" "Contributor" "display"
-        concatenate with delimiter (TEMP"1",TEMP"3","")
-        create pnx."display"."contributor" with TEMP"1"
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		set TEMP"2" to MARC."711" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "711" "Contributor" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		create pnx."display"."contributor" with TEMP"1"
 end
 
 rule "Primo VE Display - alternate contributor 880-700"
@@ -1745,11 +1745,11 @@ priority 10
         MARC."880" has any "a,b,c,d,e,4" AND
         MARC."880"."6" match "700-.*"
     then
-        set TEMP"1" to MARC."880" sub without sort "a,b,c,d"
-        set TEMP"4" to MARC."880" subfields "e,4"
+		set TEMP"1" to MARC."880" sub without sort "a,b,c,d"
+		set TEMP"4" to MARC."880" subfields "e,4"
 		replace string by string (TEMP"4"," ","/") # convert list to slash-separated	
 		
-					# code list starts here
+		# code list starts here
 			# Three letters (abc)
 				replace string by string (TEMP"4","abr(?=/|$)","forkorter")
 				replace string by string (TEMP"4","act(?=/|$)","skuespiller")
@@ -2874,7 +2874,7 @@ priority 30
 				replace string by string (TEMP"4","forfatter av supplerende tekstinnhold(?=/|$)","forfatter av supplerende tekstinnhold")
 
 		# code list ends here
-		
+
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
 		concatenate with delimiter (TEMP"1",TEMP"4"," ")
