@@ -1,8 +1,7 @@
 ## Uniform Title
 ## Based on BIBSYS
-## Newest update: 6/03/2025
+## Newest update: 05/08/2025
 ## To do list:
-
 
 rule "Primo VE - Uniform Title 130"
 priority 10
@@ -87,6 +86,14 @@ priority 20
 		concatenate with delimiter (TEMP"1",TEMP"11","")
 		concatenate with delimiter (TEMP"1",TEMP"12","")	
         set pnx."display"."unititle" to TEMP"1"
+end
+
+rule "Primo VE - Uniform Title 240 - No display"
+	when
+		MARC is "240" AND NOT
+		MARC."240".ind"1" equals "1"
+	then
+		create pnx."display"."unititle" with "N/A"
 end
 
 rule "Primo VE - Alternate Uniform Title 880-130"
