@@ -570,8 +570,7 @@ priority 20
 				replace string by string (TEMP"4","vitne(?=/|$|.)","vitne")
 				replace string by string (TEMP"4","(?=/|$|.)","")
 				replace string by string (TEMP"4","forfatter/av/supplerende/tekstinnhold(?=/|$|.)","forfatter av supplerende tekstinnhold")
-	replace string by string 
-				(TEMP"4","issuing/body(?=/|$|.)","issuing body")
+				replace string by string (TEMP"4","issuing/body(?=/|$|.)","issuing body")
 
 
 		# code list ends here
@@ -1149,8 +1148,7 @@ priority 30
 				replace string by string (TEMP"4","vitne(?=/|$|.)","vitne")
 				replace string by string (TEMP"4","(?=/|$|.)","")
 				replace string by string (TEMP"4","forfatter/av/supplerende/tekstinnhold(?=/|$|.)","forfatter av supplerende tekstinnhold")
-	replace string by string 
-				(TEMP"4","issuing/body(?=/|$|.)","issuing body")
+				replace string by string (TEMP"4","issuing/body(?=/|$|.)","issuing body")
 
 		# code list ends here
 		
@@ -1727,8 +1725,7 @@ priority 30
 				replace string by string (TEMP"4","vitne(?=/|$|.)","vitne")
 				replace string by string (TEMP"4","(?=/|$|.)","")
 				replace string by string (TEMP"4","forfatter/av/supplerende/tekstinnhold(?=/|$|.)","forfatter av supplerende tekstinnhold")
-	replace string by string 
-				(TEMP"4","issuing/body(?=/|$|.)","issuing body")
+				replace string by string (TEMP"4","issuing/body(?=/|$|.)","issuing body")
 
 		# code list ends here
 		
@@ -2304,8 +2301,7 @@ priority 10
 				replace string by string (TEMP"4","vitne(?=/|$|.)","vitne")
 				replace string by string (TEMP"4","(?=/|$|.)","")
 				replace string by string (TEMP"4","forfatter/av/supplerende/tekstinnhold(?=/|$|.)","forfatter av supplerende tekstinnhold")
-	replace string by string 
-				(TEMP"4","issuing/body(?=/|$|.)","issuing body")
+				replace string by string (TEMP"4","issuing/body(?=/|$|.)","issuing body")
 
 
 		# code list ends here
@@ -2882,8 +2878,7 @@ priority 30
 				replace string by string (TEMP"4","vitne(?=/|$|.)","vitne")
 				replace string by string (TEMP"4","(?=/|$|.)","")
 				replace string by string (TEMP"4","forfatter/av/supplerende/tekstinnhold(?=/|$|.)","forfatter av supplerende tekstinnhold")
-	replace string by string 
-				(TEMP"4","issuing/body(?=/|$|.)","issuing body")
+				replace string by string (TEMP"4","issuing/body.(?=/|$)","issuing body")
 
 
 		# code list ends here
