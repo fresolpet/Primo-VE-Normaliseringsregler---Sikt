@@ -170,6 +170,28 @@ rule "Primo VE - Lds62 15"
 end
 
 rule "Primo VE - Lds62 16"
+#518 Målgruppenote (R)
+	when
+		MARC is "521"."a" AND
+		MARC."521".ind"1" equals "#"
+	then 
+		set TEMP"1" to MARC."521" subfields "a"
+		add prefix (TEMP"1","Målgruppe: ")
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds62 17"
+#518 Målgruppenote (R)
+	when
+		MARC is "521"."a" AND NOT
+		MARC."521".ind"1" equals "#"
+	then 
+		set TEMP"1" to MARC."521" subfields "a"
+		create pnx."display"."lds62" with TEMP"1"
+end
+
+
+rule "Primo VE - Lds62 18"
 #534 Original versjon (R)
 	when
 		MARC is "534"."a"
@@ -179,7 +201,7 @@ rule "Primo VE - Lds62 16"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds62 17"
+rule "Primo VE - Lds62 19"
 #538 Systemdetaljer og filkarakteristika (R)
 	when
 		MARC is "538"."a" AND NOT
@@ -190,7 +212,7 @@ rule "Primo VE - Lds62 17"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds62 18"
+rule "Primo VE - Lds62 20"
 #538 Systemdetaljer og filkarakteristika (R)
 	when
 		MARC is "538"."a" AND
@@ -200,7 +222,7 @@ rule "Primo VE - Lds62 18"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds62 19"
+rule "Primo VE - Lds62 21"
 #546 Språknote (R)
 	when
 		MARC is "546"."a"
@@ -208,7 +230,7 @@ rule "Primo VE - Lds62 19"
 		create pnx."display"."lds62" with MARC."546"."a"
 end
 
-rule "Primo VE - Lds62 20"
+rule "Primo VE - Lds62 22"
 #580 Note om bibliografisk historikk og tilknytning til andre ressurser (R)
 	when
 		MARC is "580"."a"
@@ -216,7 +238,7 @@ rule "Primo VE - Lds62 20"
 		create pnx."display"."lds62" with MARC."580"."a"
 end
 
-rule "Primo VE - Lds62 21"
+rule "Primo VE - Lds62 23"
 #588 Kilde for opplysningene (R)
 	when
 		MARC is "588"."a" AND
@@ -225,7 +247,7 @@ rule "Primo VE - Lds62 21"
 		create pnx."display"."lds62" with MARC."588"."a"
 end
 
-rule "Primo VE - Lds62 22"
+rule "Primo VE - Lds62 24"
 #588 Kilde for opplysningene (R)
 	when
 		MARC is "588"."a" AND
@@ -236,7 +258,7 @@ rule "Primo VE - Lds62 22"
 		create pnx."display"."lds62" with TEMP"1"
 end
 
-rule "Primo VE - Lds62 23"
+rule "Primo VE - Lds62 25"
 #588 Kilde for opplysningene (R)
 	when
 		MARC is "588"."a" AND
