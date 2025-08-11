@@ -1,0 +1,15 @@
+rule "Primo VE - Lds96"
+	when
+		MARC is "913"."a"
+	then
+		create pnx."display"."lds96" with MARC "913"."a"
+end
+
+-----------------------------------------------------------------------
+
+rule "Primo VE Marc - Lsr96"
+	when
+		MARC is "913"."a"
+	then
+		create pnx."search"."lsr96" with MARC "913"."a"
+end
