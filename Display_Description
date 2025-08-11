@@ -1,9 +1,15 @@
 ## Description
 ## Based on ORBIS and BIBSYS
-## Newest update: 7/1/2025
+## Newest update: 6/16/2025
+
+rule "Primo VE - Description 515"
+	when
+		MARC is "515"."a"
+	then 
+		create pnx."display"."description" with MARC."515"."a"
+end
 
 rule "Primo VE - Description 520 - Sikt BO - 520/ab/[-0,-1,-2,-3,-4,-8],_"
-#520 Sammendrag (R)
 	when
 		MARC "520" has any "a,b" AND NOT
 		MARC "520".ind"1" equals "0" AND NOT
@@ -114,34 +120,6 @@ rule "Primo VE - Description 555"
 		MARC."555" has any "a,b,c,d,u,3"
 	then 
 		create pnx."display"."description" with MARC."555" sub without sort "a,b,c,d,u,3"
-end
-
-## Denne er inkludert i "Includes" i stedet for "Description"
-## rule "Primo VE - Description 700 - Sikt BO - 700/abcdemnopst/_,2"
-##	when
-##		MARC "700" has any "a,b,c,d,e,m,n,o,p,s,t" AND
-##		MARC "700".ind"2" equals "2" AND NOT
-##		MARC."505" has any "a,t" AND NOT
-##		MARC."700"."9" match ".*"
-##	then
-##		set TEMP"1" to MARC."700" sub without sort "a,b,c,d,e,m,n,o,p,s,t"
-##		create pnx."display"."description" with TEMP"1"
-##end
-
-rule "Primo VE - Description 700 - Sikt BO - 700/i"
-	when
-		MARC is "700"."i" AND
-		MARC."700"."a" match ".*" AND
-		MARC."700"."t" match ".*"
-	then
-		set TEMP"1" to MARC."700" sub without sort "a,i"
-		set TEMP"2" to MARC."700" sub without sort "t"
-		set TEMP"3" to MARC."700" sub without sort "n"
-		set TEMP"4" to MARC."700" sub without sort "p"
-		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
-		concatenate with delimiter (TEMP"1",TEMP"3",", ")
-		concatenate with delimiter (TEMP"1",TEMP"4",", ")
-		create pnx."display"."description" with TEMP"1"
 end
 
 rule "Primo VE - Description 710 - Sikt BO"
