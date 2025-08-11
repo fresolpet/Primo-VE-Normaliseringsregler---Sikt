@@ -6,3 +6,14 @@ rule "Primo VE - Lds97"
 		set TEMP"1" to MARC."653" subfields "a-u,w" delimited by ", " remove substring using regex "\\.+$"
 		create pnx."display"."lds97" with TEMP"1"
 end
+
+
+-------------------------------------------------------
+
+rule "Primo VE Marc - Lsr97"
+	when
+		MARC is "653"."a" AND NOT
+		MARC."653"."9" match "N"
+	then
+		create pnx."search"."lsr97" with MARC "653"."a"
+end
