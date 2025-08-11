@@ -1,13 +1,6 @@
 ## Description
 ## Based on ORBIS and BIBSYS
-## Newest update: 6/16/2025
-
-rule "Primo VE - Description 515"
-	when
-		MARC is "515"."a"
-	then 
-		create pnx."display"."description" with MARC."515"."a"
-end
+## Newest update: 08/11/2025
 
 rule "Primo VE - Description 520 - Sikt BO - 520/ab/[-0,-1,-2,-3,-4,-8],_"
 	when
