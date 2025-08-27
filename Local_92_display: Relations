@@ -394,7 +394,7 @@ rule "Primo VE - Lds92_765"
 	when
 		MARC."765" has any "t"
 	then
-		set TEMP"1" to MARC "765" excluding subfields without sorting or default "i|u|w|x|y|z|6"
+		set TEMP"1" to MARC "765" excluding subfields without sorting or default "i|g|u|w|x|y|z|6"
 		add prefix (TEMP"1","$$Corig_language$$V")
 		set TEMP"2" to MARC."765" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -415,7 +415,7 @@ rule "Primo VE - Lds92_880-765"
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "765-.*"
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|u|w|x|y|z"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|g|u|w|x|y|z"
 		add prefix (TEMP"1","$$Corig_language$$V")
 		set TEMP"2" to MARC."880" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -429,7 +429,7 @@ rule "Primo VE - Lds92_767"
 	when
 		MARC."767" has any "t"
 	then
-		set TEMP"1" to MARC "767" excluding subfields without sorting or default "i|u|w|x|y|z|6"
+		set TEMP"1" to MARC "767" excluding subfields without sorting or default "i|g|u|w|x|y|z|6"
 		add prefix (TEMP"1","$$Ctranslation$$V")
 		set TEMP"2" to MARC."767" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -450,7 +450,7 @@ rule "Primo VE - Lds92_880-767"
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "767-.*"
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|u|w|x|y|z"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|g|u|w|x|y|z"
 		add prefix (TEMP"1","$$Ctranslation$$V")
 		set TEMP"2" to MARC."880" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -464,7 +464,7 @@ rule "Primo VE - Lds92_770"
 	when
 		MARC."770" has any "t"
 	then
-		set TEMP"1" to MARC "770" excluding subfields without sorting or default "i|u|w|x|y|z|9|6"
+		set TEMP"1" to MARC "770" excluding subfields without sorting or default "i|g|u|w|x|y|z|9|6"
 		add prefix (TEMP"1","$$Csupplement$$V")
 		set TEMP"2" to MARC."770" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -485,7 +485,7 @@ rule "Primo VE - Lds92_880-770"
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "770-.*"
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|u|w|x|y|z"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|g|u|w|x|y|z"
 		add prefix (TEMP"1","$$Csupplement$$V")
 		set TEMP"2" to MARC."880" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -499,7 +499,7 @@ rule "Primo VE - Lds92_772"
 	when
 		MARC."772" has any "t"
 	then
-		set TEMP"1" to MARC "772" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "772" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$Csupp_parent$$V")
 		set TEMP"2" to MARC."772" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -520,7 +520,7 @@ rule "Primo VE - Lds92_880-772"
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "772-.*"
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|u|w|x|y|z"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|g|u|w|x|y|z"
 		add prefix (TEMP"1","$$Csupp_parent$$V")
 		set TEMP"2" to MARC."880" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -536,7 +536,7 @@ rule "Primo VE - Lds92_774_without_9"
 		MARC."774"."9" not match ".*"
 		
 	then
-		set TEMP"1" to MARC "774" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "774" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$Cconstituent$$V")
 		set TEMP"2" to MARC."774" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -559,7 +559,7 @@ rule "Primo VE - Lds92_880-774_without_9"
 		MARC."880"."9" not match "774-.*"
 		
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$Cconstituent$$V")
 		set TEMP"2" to MARC."880" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -574,7 +574,7 @@ rule "Primo VE - Lds92_774_with_9"
 		MARC."774" has any "t" AND
 		MARC."774"."9" match ".*"
 	then
-		set TEMP"1" to MARC "774" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "774" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$Cconstituent$$V")
 		set TEMP"2" to MARC."774" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -600,7 +600,7 @@ rule "Primo VE - Lds92_880-774_with_9"
 		MARC."880"."9" match "774-.*"
 		
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$Cconstituent$$V")
 		set TEMP"2" to MARC."880" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -653,7 +653,7 @@ rule "Primo VE - Lds92_78000_prefix"
 		MARC."780".ind"1" equals "0" AND
 		MARC."780".ind"2" equals "0"
 	then
-		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CContinues : $$V")
 		set TEMP"2" to MARC."780" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -675,7 +675,7 @@ rule "Primo VE - Lds92_78001_prefix"
 		MARC."780".ind"1" equals "0" AND
 		MARC."780".ind"2" equals "1"
 	then
-		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CContinues in part : $$V")
 		set TEMP"2" to MARC."780" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -697,7 +697,7 @@ rule "Primo VE - Lds92_78002_prefix"
 		MARC."780".ind"1" equals "0" AND
 		MARC."780".ind"2" equals "2"
 	then
-		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CSupersedes : $$V")
 		set TEMP"2" to MARC."780" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -719,7 +719,7 @@ rule "Primo VE - Lds92_78003_prefix"
 		MARC."780".ind"1" equals "0" AND
 		MARC."780".ind"2" equals "3"
 	then
-		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CSupersedes in part : $$V")
 		set TEMP"2" to MARC."780" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -741,7 +741,7 @@ rule "Primo VE - Lds92_78004_prefix"
 		MARC."780".ind"1" equals "0" AND
 		MARC."780".ind"2" equals "4"
 	then
-		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CUnion of : $$V")
 		set TEMP"2" to MARC."780" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -763,7 +763,7 @@ rule "Primo VE - Lds92_78005_prefix"
 		MARC."780".ind"1" equals "0" AND
 		MARC."780".ind"2" equals "5"
 	then
-		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CAbsorbed : $$V")
 		set TEMP"2" to MARC."780" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -785,7 +785,7 @@ rule "Primo VE - Lds92_78006_prefix"
 		MARC."780".ind"1" equals "0" AND
 		MARC."780".ind"2" equals "6"
 	then
-		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CAbsorbed in part : $$V")
 		set TEMP"2" to MARC."780" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -807,7 +807,7 @@ rule "Primo VE - Lds92_78007_prefix"
 		MARC."780".ind"1" equals "0" AND
 		MARC."780".ind"2" equals "7"
 	then
-		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CSeparated from : $$V")
 		set TEMP"2" to MARC."780" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -876,7 +876,7 @@ rule "Primo VE - Lds92_78500_prefix"
 		MARC."785".ind"1" equals "0" AND
 		MARC."785".ind"2" equals "0"
 	then
-		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CContinued by : $$V")
 		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -898,7 +898,7 @@ rule "Primo VE - Lds92_78501_prefix"
 		MARC."785".ind"1" equals "0" AND
 		MARC."785".ind"2" equals "1"
 	then
-		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CContinued in part by : $$V")
 		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -920,7 +920,7 @@ rule "Primo VE - Lds92_78502_prefix"
 		MARC."785".ind"1" equals "0" AND
 		MARC."785".ind"2" equals "2"
 	then
-		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CSuperseded by : $$V")
 		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -942,7 +942,7 @@ rule "Primo VE - Lds92_78503_prefix"
 		MARC."785".ind"1" equals "0" AND
 		MARC."785".ind"2" equals "3"
 	then
-		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CSuperseded in part by : $$V")
 		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -964,7 +964,7 @@ rule "Primo VE - Lds92_78504_prefix"
 		MARC."785".ind"1" equals "0" AND
 		MARC."785".ind"2" equals "4"
 	then
-		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CAbsorbed by : $$V")
 		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -986,7 +986,7 @@ rule "Primo VE - Lds92_78505_prefix"
 		MARC."785".ind"1" equals "0" AND
 		MARC."785".ind"2" equals "5"
 	then
-		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CAbsorbed in part by : $$V")
 		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -1008,7 +1008,7 @@ rule "Primo VE - Lds92_78506_prefix"
 		MARC."785".ind"1" equals "0" AND
 		MARC."785".ind"2" equals "6"
 	then
-		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CSplit into : $$V")
 		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -1030,7 +1030,7 @@ rule "Primo VE - Lds92_78508_prefix"
 		MARC."785".ind"1" equals "0" AND
 		MARC."785".ind"2" equals "8"
 	then
-		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$CChanged back to : $$V")
 		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -1097,7 +1097,7 @@ rule "Primo VE - Lds92_786"
 	when
 		MARC."786" has any "t"
 	then
-		set TEMP"1" to MARC "786" excluding subfields without sorting or default "i|u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "786" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$Cdata_source$$V")
 		set TEMP"2" to MARC."786" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -1118,7 +1118,7 @@ rule "Primo VE - Lds92_880-786"
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "786-.*"
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|u|w|x|y|z"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|g|u|w|x|y|z"
 		add prefix (TEMP"1","$$Cdata_source$$V")
 		set TEMP"2" to MARC."880" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
