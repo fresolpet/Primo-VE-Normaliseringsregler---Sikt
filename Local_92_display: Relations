@@ -838,7 +838,7 @@ rule "Primo VE - Lds92_780_generic"
 		MARC."780".ind"2" equals "6" AND NOT
 		MARC."780".ind"2" equals "7"))
 	then
-		set TEMP"1" to MARC "780" excluding subfields without sorting or default "u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "780" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$Cearlier_title$$V")
 		set TEMP"2" to MARC."780" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -1062,7 +1062,7 @@ rule "Primo VE - Lds92_785_generic"
 		MARC."785".ind"2" equals "7" AND NOT
 		MARC."785".ind"2" equals "8"))
 	then
-		set TEMP"1" to MARC "785" excluding subfields without sorting or default "u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "785" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$Clater_title$$V")
 		set TEMP"2" to MARC."785" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -1083,7 +1083,7 @@ rule "Primo VE - Lds92_880-785"
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "785-.*"
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|u|w|x|y|z"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "i|g|6|u|w|x|y|z"
 		add prefix (TEMP"1","$$Clater_title$$V")
 		set TEMP"2" to MARC."880" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -1118,7 +1118,7 @@ rule "Primo VE - Lds92_880-786"
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "786-.*"
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|i|g|u|w|x|y|z"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "6|u|w|x|y|z"
 		add prefix (TEMP"1","$$Cdata_source$$V")
 		set TEMP"2" to MARC."880" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
@@ -1132,7 +1132,7 @@ rule "Primo VE - Lds92_787"
 	when
 		MARC."787" has any "t"
 	then
-		set TEMP"1" to MARC "787" excluding subfields without sorting or default "u|w|x|y|z|6|9"
+		set TEMP"1" to MARC "787" excluding subfields without sorting or default "i|g|u|w|x|y|z|6|9"
 		add prefix (TEMP"1","$$Cother_relationship$$V")
 		set TEMP"2" to MARC."787" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
