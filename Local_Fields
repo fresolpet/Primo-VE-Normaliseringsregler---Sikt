@@ -1,25 +1,38 @@
 Local fields:
 
-local_field_51	Ubrukt
-local_field_52	Bibliografier og virtuelle samlinger
-local_field_53	Avhandlinger/Oppgaver
+local_field_51	UBRUKT
+local_field_52	UBRUKT
+local_field_53	Type of Dissertation
 local_field_54  Teaterroller - Kvinner
 local_field_55	Teaterroller - Menn
 local_field_56	Teaterroller - Totalt
-local_field_59	Ubrukt
+local_field_57  UBRUKT
+local_field_58  UBRUKT
+local_field_59	UBRUKT
 local_field_60	Statement of responsibility
 local_field_61	Series number (utkast) - Klarer ikke koble riktig nummer med serie når det er flere. Tar heller nummer direkte i Series
 local_field_62	Notes
-local_field_63  Local Notes (Vurdert kastet)
+local_field_63  UBRUKT
 local_field_64  Local Dewey
+local_field_65  Brief Display Creator
+local_field_66  Brief Display Contributor
 local_field_67	Manufacturing Form
 local_field_68  Financing
+local_field_69	See child record(s) for:
+local_field_70	Merged with <br> Merged into	
+local_field_71  Relations
+
+
+
 
 Search and facet
-local_field_91	Dewey
-local_field_92  Relations
-local_field_93  Merged with to form
-local_field_94	Medium of Performance
-local_field_95	Key
-local_field_96	Performers (Ikke ferdig, mangler 700 info)
-local_field_97  Keywords (653)
+local_field_90  UBRUKT
+local_field_91  Dewey
+local_field_92  UBRUKT
+local_field_93  UDK
+local_field_94	Type of Composition
+local_field_95	Instrument
+local_field_96	Bibliography
+local_field_97  Humord
+local_field_98  UBRUKT
+local_field_99  773 - Searchable
