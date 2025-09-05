@@ -39,7 +39,7 @@ priority 10
 				replace string by string (TEMP"4","aud(?=/|$)","dialogforfatter")
 				replace string by string (TEMP"4","aui(?=/|$)","forfatter av forord")
 				replace string by string (TEMP"4","aus(?=/|$)","manusforfatter")
-				replace string by string (TEMP"4","aut(?=/|$)","forfatter ")
+				replace string by string (TEMP"4","aut(?=/|$)","forfatter")
 				replace string by string (TEMP"4","bjd(?=/|$)","bokomslagsdesigner")
 				replace string by string (TEMP"4","bkd(?=/|$)","bokdesigner")
 				replace string by string (TEMP"4","bkp(?=/|$)","bokprodusent")
