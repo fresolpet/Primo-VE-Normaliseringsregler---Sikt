@@ -11,8 +11,13 @@ rule "Primo VE Display - contributor 700"
 priority 20
 when
 		MARC."700" has any "a,b,c,d,e,4,j,q" 
-		MARC."700"."a" match ".*" AND NOT MARC."700"."t" match ".*" AND
-		MARC.control is "001"
+		MARC."700"."a" match ".*" AND NOT 
+		MARC."700"."t" match ".*" AND NOT
+		(MARC."700"."e" match "aut" OR
+		MARC."700"."e" match "forfatter" OR
+		MARC."700"."e" match "author" OR
+		MARC."700"."4" match "aut")
+		
 then
 		set TEMP"1" to MARC."700" sub without sort "a,b,c,j,q"
 		set TEMP"5" to MARC."700" subfields "d"
@@ -413,7 +418,8 @@ rule "Primo VE Display - contributor 710"
 priority 30
     when
         MARC."710" has any "a,b,c,d,e,4,j,q"
-        MARC."710"."a" match ".*" AND NOT MARC."710"."t" match ".*" 
+        MARC."710"."a" match ".*" AND NOT 
+		MARC."710"."t" match ".*"
     then
 		set TEMP"1" to MARC."710" sub without sort "a,b,c,d,j,q"
 		set TEMP"4" to MARC."710" subfields "e,4"
