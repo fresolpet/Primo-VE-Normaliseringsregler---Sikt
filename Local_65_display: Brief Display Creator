@@ -25,7 +25,34 @@ priority 10
 		set pnx."display"."lds65" to TEMP"1"
 end
 
-rule "Primo VE - Lds65 1"
+rule "Primo VE - Lds65 - 1 "
+## Person
+priority 20
+when
+		MARC."700" has any "a,b,c,d,e,4,j,q" AND
+		MARC."700"."a" match ".*" AND
+		(MARC."700"."e" match "aut" OR
+		MARC."700"."e" match "forfatter" OR
+		MARC."700"."e" match "author" OR
+		MARC."700"."4" match "aut") AND NOT
+		MARC."700"."t" match ".*"
+then
+		set TEMP"1" to MARC."700" sub without sort "a,b,c,j,q"
+        set TEMP"5" to MARC."700" subfields "d"
+        add prefix (TEMP"5","(")
+		add suffix (TEMP"5",")")
+        concatenate with delimiter (TEMP"1",TEMP"5"," ")
+		set TEMP"2" to MARC."700" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "700" "Creator" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds65" to TEMP"1"
+end
+
+rule "Primo VE - Lds65 2"
 ## Corporation
 priority 20
 	when
@@ -42,7 +69,7 @@ priority 20
 		set pnx."display"."lds65" to TEMP"1"
 end
 
-rule "Primo VE - Lds65 2"
+rule "Primo VE - Lds65 3"
 ## Conference/Meeting/Exhibition
 priority 30
 	when
@@ -60,7 +87,7 @@ priority 30
 end
 
 
-rule "Primo VE - Lds65 3"
+rule "Primo VE - Lds65 4"
 priority 10
 	when
 		MARC."880" has any "a,b,c,d,n" AND
@@ -77,7 +104,7 @@ priority 10
 		set pnx."display"."lds65" to TEMP"1"
 end
 
-rule "Primo VE - Lds65 4"
+rule "Primo VE - Lds65 5"
 priority 20
 	when
 		MARC."880" has any "a,b,c,d,n" AND
@@ -94,7 +121,7 @@ priority 20
 		set pnx."display"."lds65" to TEMP"1"
 end
 
-rule "Primo VE - Lds65 5"
+rule "Primo VE - Lds65 6"
 priority 30
 	when
 		MARC."880" has any "a,b,c,d,n" AND
