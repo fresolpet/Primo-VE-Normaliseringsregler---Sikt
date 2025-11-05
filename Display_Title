@@ -1,18 +1,22 @@
 ## Title
-## Based on BIBSYS
-## Newest update: 6/5/2025
-## To do list:
+## Newest update: 11/05/2025
+
 
 rule "Primo VE - Title"
 priority 10
 	when
 		MARC is "245"."a"
 	then
-		set TEMP"1" to MARC."245" subfields "a,b"
-		remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
-		set TEMP"2" to MARC."245" subfields "f,g,k,n,p,s" delimited by " : " remove substring using regex "/.*"
+		set TEMP"1" to MARC."245" subfields "a"
+                 remove leading and trailing spaces (TEMP"1")
+		 remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
+                 remove leading and trailing spaces (TEMP"1")
+		set TEMP"2" to MARC."245" subfields "b"
 		remove substring using regex (TEMP"2","(,|/|:|;|=)+$")
-		concatenate with delimiter (TEMP"1",TEMP"2"," ")
+		set TEMP"3" to MARC."245" subfields "f,g,k,n,p,s" delimited by " : " remove substring using regex "/.*"
+		remove substring using regex (TEMP"3","(,|/|:|;|=)+$")
+		concatenate with delimiter (TEMP"1",TEMP"2",": ")
+		concatenate with delimiter (TEMP"1",TEMP"3",": ")
 		create pnx."display"."title" with TEMP"1"
 end
 
