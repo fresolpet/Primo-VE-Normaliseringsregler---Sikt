@@ -8,9 +8,9 @@ priority 10
 		MARC is "245"."a"
 	then
 		set TEMP"1" to MARC."245" subfields "a"
-                 remove leading and trailing spaces (TEMP"1")
-		 remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
-                 remove leading and trailing spaces (TEMP"1")
+        remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
+        remove leading and trailing spaces (TEMP"1")
 		set TEMP"2" to MARC."245" subfields "b"
 		remove substring using regex (TEMP"2","(,|/|:|;|=)+$")
 		set TEMP"3" to MARC."245" subfields "f,g,k,n,p,s" delimited by " : " remove substring using regex "/.*"
@@ -28,7 +28,9 @@ priority 5
 		MARC."246".ind"2" equals "1"
 	then
 		set TEMP"1" to MARC."245" subfields "a, b"
+		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
+        remove leading and trailing spaces (TEMP"1")
 		set TEMP"2" to MARC."245" subfields "f,g,k,n,p,s" delimited by " : " remove substring using regex "/.*"
 		set TEMP"3" to MARC."246" subfields "a"
 		concatenate with delimiter (TEMP"1",TEMP"3"," = ")
