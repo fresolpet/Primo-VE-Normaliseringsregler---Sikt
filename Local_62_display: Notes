@@ -129,14 +129,6 @@ rule "Primo VE - Lds62 10"
 		create pnx."display"."lds62" with MARC."500"."a"
 end
 
-rule "Primo VE - Lds62 11"
-#502 Avhandlinger, dissertaser og hovedoppgaver (R)
-	when
-		MARC is "502"."a"
-	then 
-		create pnx."display"."lds62" with MARC."502"."a"
-end
-
 rule "Primo VE - Lds62 12"
 #504 Bibliografi osv. (R)
 	when
@@ -275,4 +267,12 @@ rule "Primo VE - Lds62 25"
 		set TEMP"1" to MARC."588" subfields "a"
 		add prefix (TEMP"1","Siste konsulterte nummer: ")
 		create pnx."display"."lds62" with TEMP"1"
+end
+
+rule "Primo VE - Lds62 26"
+#588 Kilde for opplysningene (R)
+	when
+		MARC."588"."a" equals "Part of the metadata in this record was created by AI, based on the text of the resource."
+	then 
+		create pnx."display"."lds62" with "Deler av denne posten er blitt beriket med KI"
 end
