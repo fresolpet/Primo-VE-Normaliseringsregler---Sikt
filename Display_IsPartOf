@@ -1,6 +1,6 @@
 ## IsPartOf
 ## Based on OTB and BIBSYS
-## Newest update: 11/05/2025
+## Newest update: 5. november 2025
 
 rule "Primo VE - Ispartof 773 without 9"
 	when
