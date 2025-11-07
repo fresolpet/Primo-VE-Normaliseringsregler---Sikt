@@ -1,9 +1,6 @@
 ## Subject
 ## Based on ORBIS and BIBSYS
 ## Newest update: 5. november 2025
-## To do list:
-## * Split 653 $a into multiple fields
-## **** Have split into multiple fields, but 653 is lowercase and therefore won't match with existing 650.
 ## Currently 653 is not included here - see local field Keywords
 
 rule "Primo VE Display - Subject 600"
