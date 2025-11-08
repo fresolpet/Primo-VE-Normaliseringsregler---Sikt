@@ -398,7 +398,7 @@ priority 10
 		concatenate with delimiter (TEMP"1",TEMP"2","")
 		set TEMP"3" to multilingual by "100" "Creator" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
-		set pnx."display"."creator" to TEMP"1"
+		create pnx."display"."creator" with TEMP"1"
 end
 
 rule "Primo VE Display - contributor 700 $e,4 = aut"
