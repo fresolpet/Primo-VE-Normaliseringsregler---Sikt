@@ -1,6 +1,5 @@
 ## Title
-## Newest update: 5. november 2025
-
+## Newest update: 11/05/2025
 
 rule "Primo VE - Title"
 priority 10
@@ -25,7 +24,8 @@ priority 5
 	when
 		MARC is "245"."a" AND
 		MARC."246" has any "a" AND
-		MARC."246".ind"2" equals "1"
+		MARC."246".ind"2" equals "1" AND
+		MARC."245"."c" match "/"
 	then
 		set TEMP"1" to MARC."245" subfields "a, b"
 		remove leading and trailing spaces (TEMP"1")
@@ -37,3 +37,4 @@ priority 5
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		set pnx."display"."title" to TEMP"1"
 end
+
