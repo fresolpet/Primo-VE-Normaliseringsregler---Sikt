@@ -25,7 +25,7 @@ priority 5
 		MARC is "245"."a" AND
 		MARC."246" has any "a" AND
 		MARC."246".ind"2" equals "1" AND
-		MARC."245"."c" match "/"
+		MARC."245"."c" match ".*/.*"
 	then
 		set TEMP"1" to MARC."245" subfields "a, b"
 		remove leading and trailing spaces (TEMP"1")
