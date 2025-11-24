@@ -30,7 +30,7 @@ end
 
 rule "Primo VE - Language 008"
 	when
-       MARC.control."008"(35-37) does not equal "zxx"
+       MARC.control."008"(35-38) does not equal "zxx"
 	then
 		set TEMP"2" to MARC.control."008".Language
 		return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
