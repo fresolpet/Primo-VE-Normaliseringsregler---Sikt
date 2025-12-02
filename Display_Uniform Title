@@ -1,6 +1,6 @@
 ## Uniform Title
 ## Based on BIBSYS
-## Newest update: 05/08/2025
+## Newest update: 02/12/2025
 ## To do list:
 
 rule "Primo VE - Uniform Title 130"
@@ -110,7 +110,8 @@ rule "Primo VE - Alternate Uniform Title 880-240"
 priority 20
 	when
 		MARC is "880" AND
-		MARC."880"."6" match "240-.*"
+		MARC."880"."6" match "240-.*" AND
+                MARC."880".ind"1" equals "1"
 	then
 		set TEMP"1" to MARC."880" excluding num subfields without sort
 
