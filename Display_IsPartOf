@@ -1,6 +1,6 @@
 ## IsPartOf
 ## Based on OTB and BIBSYS
-## Newest update: 02 january 2026
+## Newest update: 10 january 2026
 
 rule "Primo VE - Ispartof 773 without 9"
 	when
@@ -32,10 +32,12 @@ rule "Primo VE - Ispartof 773 without 9 and no $t"
 	when
 		MARC."773" has any "w,x,z" AND
 		MARC."773"."9" not match ".*" AND
-		MARC."773"."t" not match ".*" 
+		MARC."773"."t" not match ".*" AND
+		MARC.control."LDR"(6-7) matches "a"
 	then	
-		set TEMP"1" to MARC."773" sub without sort or empty "w"
-		remove leading and trailing spaces (TEMP"1")
+		set TEMP"1" to position("LDR",7-8)
+		add prefix (TEMP"1","Overordnet post ")
+		remove string (TEMP"1","a")
 		set TEMP"2" to MARC."773" sub without sort or empty "a"
 		remove leading and trailing spaces (TEMP"2")
 		set TEMP"3" to MARC."773" sub without sort or empty "w"
@@ -57,10 +59,12 @@ rule "Primo VE - Ispartof 773 with 9 but no t"
 	when
 		MARC."773" has any "t,w,x,z" AND
 		MARC."773"."9" match ".*" AND
-		MARC."773"."t" not match ".*"
+		MARC."773"."t" not match ".*" AND
+		MARC.control."LDR"(6-7) matches "a"
 	then
-		set TEMP"1" to MARC."773" sub without sort or empty "w"
-		remove leading and trailing spaces (TEMP"1")
+		set TEMP"1" to position("LDR",7-8)
+		add prefix (TEMP"1","Overordnet post ")
+		remove string (TEMP"1","a")
 		set TEMP"2" to MARC."773" sub without sort or empty "a"
 		remove leading and trailing spaces (TEMP"2")
 		set TEMP"3" to MARC."773" sub without sort or empty "w"
