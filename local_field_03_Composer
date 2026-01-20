@@ -1,0 +1,69 @@
+Configuration > Discovery > Local Fields using Search and Facet Normalization Rules 
+Add 
+"Local Field 03"
+
+Configuration > Discovery > Manage Display and Local Fields
+
+Add field > Add local field
+
+Field to edit: local_field_03
+
+Display label: Composer / Komponist / Komponist
+
+Enable field for search = YES
+Enable field for facet = YES
+
+
+NORMALISERINGSREGLER:
+
+DISPLAY:
+
+rule "Primo VE - Lds03"
+	when
+		MARC."100" has any "a,b,c,d,e,j,u,q,0,4" AND 
+		(MARC."100"."4" match "cmp" OR
+		MARC."100"."e" match "composer" OR
+		MARC."100"."e" match "cmp." OR
+		MARC."100"."e" match "cmp")
+	then
+		set TEMP"1" to MARC."100" sub without sort "a,b,c,j,q"
+		create pnx."display"."lds03" with TEMP"1"
+end
+
+rule "Primo VE - Lds03 - 1"
+	when
+		MARC."700" has any "a,b,c,d,e,j,u,q,0,4" AND 
+		(MARC."700"."4" match "cmp" OR
+		MARC."700"."e" match "composer" OR
+		MARC."700"."e" match "cmp." OR
+		MARC."700"."e" match "cmp")
+	then
+		set TEMP"1" to MARC."700" sub without sort "a,b,c,j,q"
+		create pnx."display"."lds03" with TEMP"1"
+end
+
+SEARCH AND FACET:
+
+rule "Primo VE Marc - Lsr03"
+	when
+		MARC."100" has any "a,b,c,d,e,j,u,q,0,4" AND 
+		(MARC."100"."4" match "cmp" OR
+		MARC."100"."e" match "composer" OR
+		MARC."100"."e" match "cmp." OR
+		MARC."100"."e" match "cmp")
+	then
+		set TEMP"1" to MARC."100" sub without sort "a,b,c,j,q"
+		create pnx."search"."lsr03" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr03 - 1"
+	when
+		MARC."700" has any "a,b,c,d,e,j,u,q,0,4" AND 
+		(MARC."700"."4" match "cmp" OR
+		MARC."700"."e" match "composer" OR
+		MARC."700"."e" match "cmp." OR
+		MARC."700"."e" match "cmp")
+	then
+		set TEMP"1" to MARC."700" sub without sort "a,b,c,j,q"
+		create pnx."search"."lsr03" with TEMP"1"
+end
