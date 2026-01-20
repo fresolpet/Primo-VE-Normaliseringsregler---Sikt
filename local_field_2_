@@ -1,0 +1,40 @@
+Configuration > Discovery > Local Fields using Search and Facet Normalization Rules 
+Add 
+"Local Field 02"
+
+Configuration > Discovery > Manage Display and Local Fields
+
+Add field > Add local field
+
+Field to edit: local_field_02
+
+Display label: TEK-words / TEK-ord / TEK-ord
+
+Enable field for search = YES
+Enable field for facet = YES
+
+
+NORMALISERINGSREGLER:
+
+DISPLAY:
+
+rule "Primo VE - Lds02"
+	when
+		MARC is "650"."a" AND
+		MARC."650".ind"2" equals "7" AND
+		MARC."650"."2" equals "tekord"
+	then
+		create pnx."display"."lds02" with MARC "650"."a"
+end
+
+
+SEARCH AND FACET:
+
+rule "Primo VE Marc - Lsr02"
+	when
+		MARC is "650"."a" AND
+		MARC."650".ind"2" equals "7" AND
+		MARC."650"."2" equals "tekord"
+	then
+		create pnx."search"."lsr02" with MARC "650"."a"
+end
