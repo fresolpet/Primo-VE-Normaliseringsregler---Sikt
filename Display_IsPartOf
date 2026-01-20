@@ -1,6 +1,6 @@
 ## IsPartOf
 ## Based on OTB and BIBSYS
-## Newest update: 10 january 2026
+## Newest update: 13 january 2026
 
 rule "Primo VE - Ispartof 773 without 9"
 	when
@@ -8,11 +8,8 @@ rule "Primo VE - Ispartof 773 without 9"
 		MARC."773"."9" not match ".*"
 	then	
 		set TEMP"1" to MARC."773" sub without sort or empty "t"
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove leading and trailing spaces (TEMP"1")
-		add prefix (TEMP"1","'")
-		add suffix (TEMP"1","'")
-		set TEMP"2" to MARC."773" sub without sort or empty "a"
-		remove leading and trailing spaces (TEMP"2")
 		set TEMP"3" to MARC."773" sub without sort or empty "t"
 		remove substring using regex (TEMP"3","(/|:|;|=|,)+$")
 		add prefix (TEMP"3","$$Q")
@@ -20,7 +17,6 @@ rule "Primo VE - Ispartof 773 without 9"
 		set TEMP"4" to MARC."773" prima_w_relation "w"
 		set TEMP"5" to MARC."773" prima_x_relation "x"
 		set TEMP"6" to MARC."773" prima_x_relation "z"
-		concatenate with delimiter (TEMP"1",TEMP"2"," av ")
 		concatenate with delimiter (TEMP"1",TEMP"3","")
 		concatenate with delimiter (TEMP"1",TEMP"4","")
 		concatenate with delimiter (TEMP"1",TEMP"5","")
@@ -38,8 +34,7 @@ rule "Primo VE - Ispartof 773 without 9 and no $t"
 		set TEMP"1" to position("LDR",7-8)
 		add prefix (TEMP"1","Overordnet post ")
 		remove string (TEMP"1","a")
-		set TEMP"2" to MARC."773" sub without sort or empty "a"
-		remove leading and trailing spaces (TEMP"2")
+remove string (TEMP"1","m")
 		set TEMP"3" to MARC."773" sub without sort or empty "w"
 		remove substring using regex (TEMP"3","(/|:|;|=|,)+$")
 		add prefix (TEMP"3","$$Q")
@@ -47,40 +42,9 @@ rule "Primo VE - Ispartof 773 without 9 and no $t"
 		set TEMP"4" to MARC."773" prima_w_relation "w"
 		set TEMP"5" to MARC."773" prima_x_relation "x"
 		set TEMP"6" to MARC."773" prima_x_relation "z"
-		concatenate with delimiter (TEMP"1",TEMP"2"," av ")
 		concatenate with delimiter (TEMP"1",TEMP"3","")
 		concatenate with delimiter (TEMP"1",TEMP"4","")
 		concatenate with delimiter (TEMP"1",TEMP"5","")
-		concatenate with delimiter (TEMP"1",TEMP"6","")
-		create pnx."display"."ispartof" with TEMP"1"
-end
-
-rule "Primo VE - Ispartof 773 with 9 but no t"
-	when
-		MARC."773" has any "t,w,x,z" AND
-		MARC."773"."9" match ".*" AND
-		MARC."773"."t" not match ".*" AND
-		MARC.control."LDR"(6-7) matches "a"
-	then
-		set TEMP"1" to position("LDR",7-8)
-		add prefix (TEMP"1","Overordnet post ")
-		remove string (TEMP"1","a")
-		set TEMP"2" to MARC."773" sub without sort or empty "a"
-		remove leading and trailing spaces (TEMP"2")
-		set TEMP"3" to MARC."773" sub without sort or empty "w"
-		remove substring using regex (TEMP"3","(/|:|;|=|,)+$")
-		add prefix (TEMP"3","$$Q")
-		remove substring using regex (TEMP"3","^$$Q$")
-		set TEMP"4" to MARC."773" prima_w_relation "w"
-		set TEMP"5" to MARC."773" prima_x_relation "x"
-		set TEMP"6" to MARC."773" prima_x_relation "z"
-		concatenate with delimiter (TEMP"1",TEMP"2"," av ")
-		concatenate with delimiter (TEMP"1",TEMP"3","")
-		concatenate with delimiter (TEMP"1",TEMP"3","")
-		concatenate with delimiter (TEMP"1",TEMP"4","")
-		concatenate with delimiter (TEMP"1",TEMP"5","")
-		set TEMP"7" to MARC."773" subfields "9"
-		add prefix (TEMP"7","$$9")
 		concatenate with delimiter (TEMP"1",TEMP"6","")
 		create pnx."display"."ispartof" with TEMP"1"
 end
@@ -97,23 +61,5 @@ rule "Primo VE - Ispartof 880-773 without 9"
 		add prefix (TEMP"2","$$Q")
 		remove substring using regex (TEMP"2","^$$Q$")
 		concatenate with delimiter (TEMP"1",TEMP"2","")
-		create pnx."display"."ispartof" with TEMP"1"
-end
-
-rule "Primo VE - Ispartof 880-773 with 9"
-	when
-		MARC."880" has any "t,w,x,z" AND
-		MARC."880"."6" match "773-.*" AND
-		MARC."880"."9" match "773-.*"
-	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "d|g|i|u|w|x|y|z|9"
-		set TEMP"2" to MARC."880" sub without sort or empty "t"
-		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
-		add prefix (TEMP"2","$$Q")
-		remove substring using regex (TEMP"2","^$$Q$")
-		concatenate with delimiter (TEMP"1",TEMP"2","")
-		set TEMP"3" to MARC."880" subfields "9"
-		add prefix (TEMP"3","$$9")
-		concatenate with delimiter (TEMP"1",TEMP"3","")
 		create pnx."display"."ispartof" with TEMP"1"
 end
