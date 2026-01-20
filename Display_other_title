@@ -1,0 +1,181 @@
+rule "Primo VE - addtitle 246"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND NOT
+		MARC."246".ind"2" equals "0" AND NOT
+		MARC."246".ind"2" equals "1" AND NOT
+		MARC."246".ind"2" equals "2" AND NOT
+		MARC."246".ind"2" equals "3" AND NOT
+		MARC."246".ind"2" equals "4" AND NOT
+		MARC."246".ind"2" equals "5" AND NOT
+		MARC."246".ind"2" equals "6" AND NOT
+		MARC."246".ind"2" equals "7" AND NOT
+		MARC."246".ind"2" equals "8" 
+	then
+		set TEMP"1" to MARC."246" subfields "i"
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		add suffix (TEMP"1",":")
+		set TEMP"2" to MARC."246" subfields "a,b,f,g,n,p"
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 246 - 2ind0"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND
+		MARC."246".ind"2" equals "0" 
+	then
+		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		add prefix (TEMP"1","Del av tittel: ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 246 - 2ind01"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND
+		MARC."246".ind"2" equals "1" 
+	then
+		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		add prefix (TEMP"1","Parallell hovedtittel: ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 246 - 2ind2"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND
+		MARC."246".ind"2" equals "2" 
+	then
+		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		add prefix (TEMP"1","Tittelvariant: ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 246 - 2ind3"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND
+		MARC."246".ind"2" equals "3" 
+	then
+		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		add prefix (TEMP"1","Annen tittel: ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 246 - 2ind4"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND
+		MARC."246".ind"2" equals "4" 
+	then
+		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		add prefix (TEMP"1","Omslagstittel: ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 246 - 2ind5"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND
+		MARC."246".ind"2" equals "5" 
+	then
+		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		add prefix (TEMP"1","Tittel fra løst omslag: ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 246 - 2ind6"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND
+		MARC."246".ind"2" equals "6" 
+	then
+		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		add prefix (TEMP"1","Spisstittel: ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 246 - 2ind7"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND
+		MARC."246".ind"2" equals "7" 
+	then
+		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		add prefix (TEMP"1","Løpetittel: ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 246 - 2ind8"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p" AND
+		MARC."246".ind"2" equals "8" 
+	then
+		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		add prefix (TEMP"1","Ryggtittel: ")
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 247"
+	when
+		MARC."247" has any "i,a,b,f,g,n,p"
+	then
+		create pnx."display"."addtitle" with MARC."247" subfields "i,a,b,f,g,n,p"
+end
+
+rule "Primo VE - addtitle 730"
+	when
+		MARC is "730"
+	then
+		set TEMP"1" to MARC."730" excluding num subfields without sort
+		kormarc remove nonfiling brackets MARC."730" sourcetag "730" from TEMP"1"
+		create pnx."display"."addtitle" with TEMP"1"
+end
+
+rule "Primo VE - addtitle 740"
+	when
+		MARC is "740"
+	then
+		create pnx."display"."addtitle" with MARC."740" excluding num subfields without sort
+end
+
+rule "Primo VE - addtitle 840"
+	when
+		MARC is "840"
+	then
+		create pnx."display"."addtitle" with MARC."840" excluding num subfields without sort
+end
+
+rule "Primo VE - addtitle 880-246"
+	when
+		MARC."880" has any "i,a,b,f,g,n,p" AND
+		MARC."880"."6" match "246-.*"
+
+	then
+		create pnx."display"."addtitle" with MARC."880" sub without sort "i,a,b,f,g,n,p"
+end
+
+rule "Primo VE - addtitle 880-247"
+	when
+		MARC."880" has any "i,a,b,f,g,n,p" AND
+		MARC."880"."6" match "247-.*"
+	then
+		create pnx."display"."addtitle" with MARC."880" subfields "i,a,b,f,g,n,p"
+end
+
+rule "Primo VE - addtitle 880-730"
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "730-.*"
+	then
+		create pnx."display"."addtitle" with MARC."880" excluding num subfields without sort
+end
+
+rule "Primo VE - addtitle 880-740"
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "740-.*"
+	then
+		create pnx."display"."addtitle" with MARC."880" excluding num subfields without sort
+end
+
+rule "Primo VE - addtitle 880-840"
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "840-.*"
+	then
+		create pnx."display"."addtitle" with MARC."880" excluding num subfields without sort
+end
