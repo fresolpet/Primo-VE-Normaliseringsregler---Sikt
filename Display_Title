@@ -1,23 +1,5 @@
 ## Title
-## Newest update: 05. desember 2025
-
-rule "Primo VE - Title"
-priority 10
-	when
-		MARC is "245"."a"
-	then
-		set TEMP"1" to MARC."245" subfields "a"
-        remove leading and trailing spaces (TEMP"1")
-		remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
-        remove leading and trailing spaces (TEMP"1")
-		set TEMP"2" to MARC."245" subfields "b"
-		remove substring using regex (TEMP"2","(,|/|:|;|=)+$")
-		set TEMP"3" to MARC."245" subfields "f,g,k,n,p,s" delimited by " : " remove substring using regex "/.*"
-		remove substring using regex (TEMP"3","(,|/|:|;|=)+$")
-		concatenate with delimiter (TEMP"1",TEMP"2",": ")
-		concatenate with delimiter (TEMP"1",TEMP"3",": ")
-		create pnx."display"."title" with TEMP"1"
-end
+## Newest update: 20. januar 2026
 
 rule "Primo VE - Title with 246"
 priority 5
@@ -38,3 +20,31 @@ priority 5
 		set pnx."display"."title" to TEMP"1"
 end
 
+rule "Primo VE - Title"
+priority 10
+	when
+		MARC is "245"."a"
+	then
+		set TEMP"1" to MARC."245" subfields "a"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
+		remove leading and trailing spaces (TEMP"1")
+		set TEMP"2" to MARC."245" subfields "b"
+		remove substring using regex (TEMP"2","(,|/|:|;|=)+$")
+		set TEMP"3" to MARC."245" subfields "f,g,k,n,p,s" delimited by " : " remove substring using regex "///.*"
+		remove substring using regex (TEMP"3","(,|/|:|;|=)+$")
+		concatenate with delimiter (TEMP"1",TEMP"2",": ")
+		concatenate with delimiter (TEMP"1",TEMP"3",": ")
+		set pnx."display"."title" to TEMP"1"
+end
+
+rule "Primo VE - Title - No $a"
+## Hvis MARC 245 ikke har $a vil denne gjelde.
+priority 15
+	when
+		MARC is "245"
+	then
+		set TEMP"1" to MARC."245" sub without sort "a,b,f,g,k,n,p,s"
+		remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
+		set pnx."display"."title" to TEMP"1"
+end
