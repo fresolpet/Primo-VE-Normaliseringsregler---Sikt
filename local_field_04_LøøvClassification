@@ -1,1 +1,38 @@
 
+Configuration > Discovery > Local Fields using Search and Facet Normalization Rules 
+Add 
+"Local Field 04"
+
+Configuration > Discovery > Manage Display and Local Fields
+
+Add field > Add local field
+
+Field to edit: local_field_04
+
+Display label: Number of instruments / Talet på instrument / Antall instrumenter
+
+Enable field for search = YES
+Enable field for facet = YES
+
+
+NORMALISERINGSREGLER:
+
+DISPLAY:
+
+rule "Primo VE - Lds04"
+	when
+		MARC is "084"."a" AND
+		MARC."084"."2" equals "loovs"
+	then
+		create pnx."display"."lds04" with MARC "084"."a"
+end
+
+SEARCH AND FACET:
+
+rule "Primo VE Marc - Lsr04"
+	when
+		MARC is "084"."a" AND
+		MARC."084"."2" equals "loovs"
+	then
+		create pnx."search"."lsr04" with MARC "084"."a"
+end
