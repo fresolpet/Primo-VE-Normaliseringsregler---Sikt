@@ -1,5 +1,5 @@
 rule "Primo VE - Lds71"
-#Field displays 700, 710, 711, 952, 953, 954 with $t and 2nd ind not = 2 and corresponding 880s, plus 730s with 2nd ind not = 2 and corresponding 880, plus 960.
+#Field displays 700, 710, 711, 952, 953, 954 with $t and 2nd ind not = 2 and corresponding 880s, plus 730s with 2nd ind not = 2 and corresponding 880.
 # Field also displays 770, 762, 765, 767, 780, 785-787 with additional prima logic from OTB rule
 
 	when
@@ -277,39 +277,6 @@ rule "Primo VE - Lds71_880-955"
 		MARC is "880" AND
 		MARC."880"."6" match "955-.*" AND NOT
 		MARC."880".ind"2" equals "2"
-	then
-		set TEMP"1" to MARC."880" subfields "i"
-		set TEMP"2" to MARC."880" excluding subfields without sorting "[0-9]|x|i|="
-		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
-		remove string (TEMP"1"," \\(work\\)")
-		remove string (TEMP"1"," \\(expression\\)")
-		set TEMP"3" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
-		add prefix (TEMP"3","$$Q")
-        remove substring using regex (TEMP"3","^$$Q$")
-        concatenate with delimiter (TEMP"1",TEMP"3","")
-        create pnx."display"."lds71" with TEMP"1"
-end
-
-rule "Primo VE - Lds71_960"
-	when
-		MARC is "960"
-	then
-		set TEMP"1" to MARC."960" subfields "i"
-		set TEMP"2" to MARC."960" excluding subfields without sorting "[0-9]|x|i|="
-		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
-		remove string (TEMP"1"," \\(work\\)")
-		remove string (TEMP"1"," \\(expression\\)")
-		set TEMP"3" to MARC."960" excluding subfields without sorting "[0-9]|x|i|=|f"
-		add prefix (TEMP"3","$$Q")
-        remove substring using regex (TEMP"3","^$$Q$")
-        concatenate with delimiter (TEMP"1",TEMP"3","")
-        create pnx."display"."lds71" with TEMP"1"
-end
-
-rule "Primo VE - Lds71_880-960"
-	when
-		MARC is "880" AND
-		MARC."880"."6" match "960-.*"
 	then
 		set TEMP"1" to MARC."880" subfields "i"
 		set TEMP"2" to MARC."880" excluding subfields without sorting "[0-9]|x|i|="
