@@ -29,7 +29,7 @@ Duration
 Includes
     Kommentar: Denne henter kun data fra CDI. Husk derfor å inkludere "Included Works" også.
 Included Works
-    Kommentar: Henter data fra lokale MARC-poster og andre importerte kilder som ikke er CDI.
+    Kommentar: Henter data fra lokale MARC-poster og andre importerte kilder som ikke er CDI. Husk å ha med "Includes" også.
 Series
 Merged with <br> Merged into
 Relations
