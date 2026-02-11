@@ -26,16 +26,19 @@ Notes
 Description
 Contents
 Duration
-Includes - Denne henter kun data fra CDI. Husk derfor å inkludere "Included Works" også.
-Included Works - Henter data fra lokale poster
+Includes
+    Kommentar: Denne henter kun data fra CDI. Husk derfor å inkludere "Included Works" også.
+Included Works
+    Kommentar: Henter data fra lokale MARC-poster og andre importerte kilder som ikke er CDI.
 Series
 Merged with <br> Merged into
 Relations
 Child record(s) for:
 Dewey + Local Dewey
-    Kommentar: Her kan dere også legge inn flere valgfrie klassifikasjonssystemer hvis dere ønsker. Local Classification, Music Classification, UDK, UBO-classification
+    Kommentar: Her kan dere også legge inn flere valgfrie klassifikasjonssystemer hvis dere ønsker. Local Classification, Music Classification, UDK, UBO-classification. Heter kun "Dewey" i Oria-visningen.
 Subject
     Kommentar: Her kan dere også legge inn flere valgfrie emneordssystemer. Local Subjects, Geographical headings, Realfagstermer, Humord, TEK-ord (se også https://dok.unit.no/local-fields-1-50) 
-Keywords (bruk denne) - Ja, det heter dette i Alma. Når det vises i Primo VE heter det bare "Keywords".
+Keywords (bruk denne)
+    Kommentar: Ja, det heter dette i Alma. Heter bare "Keywords" i Oria-visningen.
 MMS ID
 Source
