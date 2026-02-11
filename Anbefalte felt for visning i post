@@ -1,6 +1,8 @@
 Dette er en liste over felt vi anbefaler at man bruker i fullvisning av post. Dere må ikke bruke alle, men hvis dere velger å avvike fra listen burde det være begrunnet.
 
-Oppdatert 21/01/2026
+Oppdatert 11/02/2026
+
+View Configuration > Full Record Services > Record details:
 
 Title ; Vernacular Title
 Uniform Title
@@ -18,6 +20,7 @@ Genre
 Frequency
 Is Part Of
 Bound With
+Dissertation
 Identifier
 Notes
 Description
@@ -32,7 +35,7 @@ Child record(s) for:
 Dewey + Local Dewey
     Kommentar: Her kan dere også legge inn flere valgfrie klassifikasjonssystemer hvis dere ønsker. Local Classification, Music Classification, UDK, UBO-classification
 Subject
-    Kommentar: Her kan dere også legge inn flere valgfrie emneordssystemer. Local Subjects, Geographical headings, Realfagstermer, Humord, TEK-ord (se https://dok.unit.no/local-fields-1-50) 
+    Kommentar: Her kan dere også legge inn flere valgfrie emneordssystemer. Local Subjects, Geographical headings, Realfagstermer, Humord, TEK-ord (se også https://dok.unit.no/local-fields-1-50) 
 Keywords (bruk denne) - Ja, det heter dette i Alma. Når det vises i Primo VE heter det bare "Keywords".
 MMS ID
 Source
