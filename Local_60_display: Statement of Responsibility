@@ -4,7 +4,7 @@ rule "Primo VE - Lds60"
 	then
 		set TEMP"1" to MARC."245" sub without sort "c"
 		remove substring using regex (TEMP"1","=.*$")
-    create pnx."display"."lds60" with TEMP"1"
+		create pnx."display"."lds60" with TEMP"1"
 end
 
 rule "Primo VE - Lds60 - 1"
@@ -14,6 +14,6 @@ rule "Primo VE - Lds60 - 1"
 	then
 		set TEMP"1" to MARC."880" sub without sort "c"
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-    add suffix (TEMP"1"," ")
+		add suffix (TEMP"1"," ")
 		create pnx."display"."lds60" with TEMP"1"
 end
