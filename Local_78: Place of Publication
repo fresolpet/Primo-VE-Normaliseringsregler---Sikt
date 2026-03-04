@@ -1,0 +1,181 @@
+rule "Primo VE - Lds78"
+priority 1
+## Takes priority before rules further down the list
+	when
+		MARC is "260"."a" AND
+		MARC."260".ind"1" equals "3"
+	then
+		set TEMP"1" to MARC."260" subfields "a"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."display"."lds78" to TEMP"1"
+end
+
+rule "Primo VE - Lds78 - 2"
+priority 2
+## Takes priority before rules further down the list
+	when
+		MARC is "264"."a" AND
+		MARC."264".ind"1" equals "3" AND
+		MARC."264".ind"2" equals "1"
+	then
+		set TEMP"1" to MARC."264" subfields "a"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."display"."lds78" to TEMP"1"
+end
+
+rule "Primo VE - Lds78 - 3"
+priority 3
+## Takes priority before rules further down the list
+	when
+		MARC is "260"."a"
+	then
+		set TEMP"1" to MARC."260" subfields "a"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."display"."lds78" to TEMP"1"
+end
+
+rule "Primo VE - Lds78 - 4"
+priority 4
+## Takes priority before rules further down the list
+	when
+		MARC is "264"."a"
+	then
+		set TEMP"1" to MARC."264" subfields "a"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."display"."lds78" to TEMP"1"
+end
+
+##rule "Primo VE - Lds78 - 5"
+##priority 5
+## Takes priority before rules further down the list
+##	when
+##		MARC is "773"."d"
+##	then
+##		set TEMP"1" to MARC."773"."d"
+##		remove leading and trailing spaces (TEMP"1")
+##		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+##		remove leading and trailing spaces (TEMP"1")
+##		remove substring using regex (TEMP"1",",(.*)")
+##		remove substring using regex (TEMP"1","\\]")
+##		remove substring using regex (TEMP"1","\\[")
+##		remove substring using regex (TEMP"1","\\)$")
+##		remove substring using regex (TEMP"1","^\\(")
+##		replace string by string (TEMP"1"," :",":")
+##		set pnx."display"."lds78" to TEMP"1"
+##end
+
+--------------------------------------------------------
+
+rule "Primo VE Marc - Lsr78"
+priority 1
+## Takes priority before rules further down the list
+	when
+		MARC is "260"."a" AND
+		MARC."260".ind"1" equals "3"
+	then
+		set TEMP"1" to MARC."260" subfields "a"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."search"."lsr78" to TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr78 - 2"
+priority 2
+## Takes priority before rules further down the list
+	when
+		MARC is "264"."a" AND
+		MARC."264".ind"1" equals "3" AND
+		MARC."264".ind"2" equals "1"
+	then
+		set TEMP"1" to MARC."264" subfields "a"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."search"."lsr78" to TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr78 - 3"
+priority 3
+## Takes priority before rules further down the list
+	when
+		MARC is "260"."a"
+	then
+		set TEMP"1" to MARC."260" subfields "a"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."search"."lsr78" to TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr78 - 4"
+priority 4
+## Takes priority before rules further down the list
+	when
+		MARC is "264"."a"
+	then
+		set TEMP"1" to MARC."264" subfields "a"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."search"."lsr78" to TEMP"1"
+end
+
+##rule "Primo VE Marc - Lsr78 - 5"
+##priority 5
+## Takes priority before rules further down the list
+##	when
+##		MARC is "773"."d"
+##	then
+##		set TEMP"1" to MARC."773"."d"
+##		remove leading and trailing spaces (TEMP"1")
+##		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+##		remove leading and trailing spaces (TEMP"1")
+##		remove substring using regex (TEMP"1",",(.*)")
+##		remove substring using regex (TEMP"1","\\]")
+##		remove substring using regex (TEMP"1","\\[")
+##		remove substring using regex (TEMP"1","\\)$")
+##		remove substring using regex (TEMP"1","^\\(")
+##		replace string by string (TEMP"1"," :",":")
+##		set pnx."search"."lsr78" to TEMP"1"
+##end
