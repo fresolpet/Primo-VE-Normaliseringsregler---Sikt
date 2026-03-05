@@ -391,13 +391,18 @@ priority 10
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
 		concatenate with delimiter (TEMP"1",TEMP"4"," ")
+##		set TEMP"2" to MARC."100" sub without sort "a,b,c,j,q"
 		set TEMP"2" to MARC."100" sub without sort "a"
+##		set TEMP"3" to MARC."100" subfields "d"
+##		add prefix (TEMP"3","(")
+##		add suffix (TEMP"3",")")
+##		concatenate with delimiter (TEMP"2",TEMP"3"," ")
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
 		add prefix (TEMP"2","$$Q")
 		remove substring using regex (TEMP"2","^$$Q$")
 		concatenate with delimiter (TEMP"1",TEMP"2","")
-		set TEMP"3" to multilingual by "100" "Creator" "display"
-		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set TEMP"6" to multilingual by "100" "Creator" "display"
+		concatenate with delimiter (TEMP"1",TEMP"6","")
 		create pnx."display"."creator" with TEMP"1"
 end
 
@@ -798,13 +803,18 @@ then
 		add suffix (TEMP"4",")")
 		concatenate with delimiter (TEMP"1",TEMP"4"," ")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+##		set TEMP"2" to MARC."700" sub without sort "a,b,c,j,q"
 		set TEMP"2" to MARC."700" sub without sort "a"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+##		set TEMP"3" to MARC."700" subfields "d"
+##		add prefix (TEMP"3","(")
+##		add suffix (TEMP"3",")")
+##		concatenate with delimiter (TEMP"2",TEMP"3"," ")
 		add prefix (TEMP"2","$$Q")
 		remove substring using regex (TEMP"2","^$$Q$")
 		concatenate with delimiter (TEMP"1",TEMP"2","")
-		set TEMP"3" to multilingual by "700" "Creator" "display"
-		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set TEMP"6" to multilingual by "700" "Creator" "display"
+		concatenate with delimiter (TEMP"1",TEMP"6","")
 		create pnx."display"."creator" with TEMP"1"
 end
 
