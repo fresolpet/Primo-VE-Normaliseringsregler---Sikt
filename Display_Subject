@@ -1,7 +1,6 @@
 ## Subject
 ## Based on ORBIS and BIBSYS
-## Newest update: 5. november 2025
-## Currently 653 is not included here - see local field Keywords
+## Currently 653 is not included here - see local field Keywords (bruk denne)
 
 rule "Primo VE Display - Subject 600"
 ## 600 Emneinnførsel personnavn (R)
@@ -9,7 +8,7 @@ rule "Primo VE Display - Subject 600"
 		MARC."600" has any "a-z" AND NOT
 		MARC."600"."9" match "N"
 	then
-		set TEMP"1" to MARC."600" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"1" to MARC."600" subfields "a,b,c,d-u,w" delimited by " " remove substring using regex "\\.+$"
 		set TEMP"2" to MARC."600" sub without sorting "v,x-z" delimited by " -- "
 		remove substring using regex (TEMP"2","\\.+$")
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
