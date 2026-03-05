@@ -1,24 +1,7 @@
 rule "Primo VE - Lds79"
-priority 1
+priority 11
 ## Takes priority before rules further down the list
-	when
-		MARC is "260"."b" AND
-		MARC."260".ind"1" equals "3"
-	then
-		set TEMP"1" to MARC."260" subfields "b"
-		remove leading and trailing spaces (TEMP"1")
-		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-		remove leading and trailing spaces (TEMP"1")
-		remove substring using regex (TEMP"1","\\]$")
-		remove substring using regex (TEMP"1","^\\[")
-		remove substring using regex (TEMP"1","\\)$")
-		remove substring using regex (TEMP"1","^\\(")
-		set pnx."display"."lds79" to TEMP"1"
-end
-
-rule "Primo VE - Lds79 - 2"
-priority 2
-## Takes priority before rules further down the list
+## Nytt utgavefelt etter RDA
 	when
 		MARC is "264"."b" AND
 		MARC."264".ind"1" equals "3" AND
@@ -35,11 +18,13 @@ priority 2
 		set pnx."display"."lds79" to TEMP"1"
 end
 
-rule "Primo VE - Lds79 - 3"
-priority 3
+rule "Primo VE - Lds79 - 2"
+priority 12
 ## Takes priority before rules further down the list
+## Gammelt utgavefelt før RDA
 	when
-		MARC is "260"."b"
+		MARC is "260"."b" AND
+		MARC."260".ind"1" equals "3"
 	then
 		set TEMP"1" to MARC."260" subfields "b"
 		remove leading and trailing spaces (TEMP"1")
@@ -52,8 +37,8 @@ priority 3
 		set pnx."display"."lds79" to TEMP"1"
 end
 
-rule "Primo VE - Lds79 - 4"
-priority 4
+rule "Primo VE - Lds79 - 3"
+priority 13
 ## Takes priority before rules further down the list
 	when
 		MARC is "264"."b"
@@ -69,9 +54,26 @@ priority 4
 		set pnx."display"."lds79" to TEMP"1"
 end
 
-##rule "Primo VE - Lds79 - 5"
-##priority 5
+rule "Primo VE - Lds79 - 4"
+priority 14
 ## Takes priority before rules further down the list
+	when
+		MARC is "260"."b"
+	then
+		set TEMP"1" to MARC."260" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."display"."lds79" to TEMP"1"
+end
+
+##rule "Primo VE - Lds79 - 5"
+##priority 15
+##Is the last priority before Alternate Publisher
 ##	when
 ##		MARC is "773"."d"
 ##	then
@@ -88,16 +90,15 @@ end
 ##		set pnx."display"."lds79" to TEMP"1"
 ##end
 
------------------------------------------------------------
-
-rule "Primo VE Marc - Lsr79"
-priority 1
+rule "Primo VE - Lds79 - Alt 1"
+priority 5
+## Alternate publisher
 ## Takes priority before rules further down the list
 	when
-		MARC is "260"."b" AND
-		MARC."260".ind"1" equals "3"
+		MARC is "880"."b" AND
+		MARC."880"."6" match "502-.*"
 	then
-		set TEMP"1" to MARC."260" subfields "b"
+		set TEMP"1" to MARC."880" subfields "b"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		remove leading and trailing spaces (TEMP"1")
@@ -105,12 +106,103 @@ priority 1
 		remove substring using regex (TEMP"1","^\\[")
 		remove substring using regex (TEMP"1","\\)$")
 		remove substring using regex (TEMP"1","^\\(")
-		set pnx."search"."lsr79" to TEMP"1"
+		create pnx."display"."lds79" with TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr79 - 2"
-priority 2
+rule "Primo VE - Lds79 - Alt 2"
+priority 5
+## Alternate publisher
 ## Takes priority before rules further down the list
+	when
+		MARC is "880"."b" AND
+		MARC."880"."6" match "264-.*" AND
+		MARC."880".ind"1" equals "3" AND
+		MARC."880".ind"2" equals "1" AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		create pnx."display"."lds79" with TEMP"1"
+end
+
+rule "Primo VE - Lds79 - Alt 3"
+priority 5
+## Alternate publisher
+## Takes priority before rules further down the list
+	when
+		MARC is "880"."b" AND
+		MARC."880"."6" match "260-.*" AND
+		MARC."880".ind"1" equals "3" AND NOT
+		(MARC."880"."6" match "264-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		create pnx."display"."lds79" with TEMP"1"
+end
+
+rule "Primo VE - Lds79 - Alt 4"
+priority 5
+## Alternate publisher
+## Takes priority before rules further down the list
+	when
+		MARC is "880"."b" AND
+		MARC."880"."6" match "264-.*" AND NOT
+		(MARC."880"."6" match "264-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		(MARC."880"."6" match "260-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		create pnx."display"."lds79" with TEMP"1"
+end
+
+rule "Primo VE - Lds79 - Alt 5"
+priority 5
+## Alternate publisher
+## Takes priority before rules further down the list
+	when
+		MARC is "880"."b" AND
+		MARC."880"."6" match "260-.*" AND NOT
+		(MARC."880"."6" match "260-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		MARC."880"."6" match "264-.*" AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		create pnx."display"."lds79" with TEMP"1"
+end
+
+-----------------------------------------------------------
+
+rule "Primo VE Marc - Lsr79"
+priority 11
+## Takes priority before rules further down the list
+## Nytt utgavefelt etter RDA
 	when
 		MARC is "264"."b" AND
 		MARC."264".ind"1" equals "3" AND
@@ -127,11 +219,13 @@ priority 2
 		set pnx."search"."lsr79" to TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr79 - 3"
-priority 3
+rule "Primo VE Marc - Lsr79 - 2"
+priority 12
 ## Takes priority before rules further down the list
+## Gammelt utgavefelt før RDA
 	when
-		MARC is "260"."b"
+		MARC is "260"."b" AND
+		MARC."260".ind"1" equals "3"
 	then
 		set TEMP"1" to MARC."260" subfields "b"
 		remove leading and trailing spaces (TEMP"1")
@@ -144,8 +238,8 @@ priority 3
 		set pnx."search"."lsr79" to TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr79 - 4"
-priority 4
+rule "Primo VE Marc - Lsr79 - 3"
+priority 13
 ## Takes priority before rules further down the list
 	when
 		MARC is "264"."b"
@@ -161,9 +255,26 @@ priority 4
 		set pnx."search"."lsr79" to TEMP"1"
 end
 
-##rule "Primo VE Marc - Lsr79 - 5"
-##priority 5
+rule "Primo VE Marc - Lsr79 - 4"
+priority 14
 ## Takes priority before rules further down the list
+	when
+		MARC is "260"."b"
+	then
+		set TEMP"1" to MARC."260" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		set pnx."search"."lsr79" to TEMP"1"
+end
+
+##rule "Primo VE Marc - Lsr79 - 5"
+##priority 15
+##Is the last priority before Alternate Publisher
 ##	when
 ##		MARC is "773"."d"
 ##	then
@@ -179,3 +290,110 @@ end
 ##		replace string by string (TEMP"1"," :",":")
 ##		set pnx."search"."lsr79" to TEMP"1"
 ##end
+
+rule "Primo VE Marc - Lsr79 - Alt 1"
+priority 5
+## Alternate publisher
+## Takes priority before rules further down the list
+	when
+		MARC is "880"."b" AND
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79 - Alt 2"
+priority 5
+## Alternate publisher
+## Takes priority before rules further down the list
+	when
+		MARC is "880"."b" AND
+		MARC."880"."6" match "264-.*" AND
+		MARC."880".ind"1" equals "3" AND
+		MARC."880".ind"2" equals "1" AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79 - Alt 3"
+priority 5
+## Alternate publisher
+## Takes priority before rules further down the list
+	when
+		MARC is "880"."b" AND
+		MARC."880"."6" match "260-.*" AND
+		MARC."880".ind"1" equals "3" AND NOT
+		(MARC."880"."6" match "264-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79 - Alt 4"
+priority 5
+## Alternate publisher
+## Takes priority before rules further down the list
+	when
+		MARC is "880"."b" AND
+		MARC."880"."6" match "264-.*" AND NOT
+		(MARC."880"."6" match "264-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		(MARC."880"."6" match "260-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79 - Alt 5"
+priority 5
+## Alternate publisher
+## Takes priority before rules further down the list
+	when
+		MARC is "880"."b" AND
+		MARC."880"."6" match "260-.*" AND NOT
+		(MARC."880"."6" match "260-.*" AND MARC."880".ind"1" equals "3") AND NOT
+		MARC."880"."6" match "264-.*" AND NOT
+		MARC."880"."6" match "502-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "b"
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","\\]$")
+		remove substring using regex (TEMP"1","^\\[")
+		remove substring using regex (TEMP"1","\\)$")
+		remove substring using regex (TEMP"1","^\\(")
+		create pnx."search"."lsr79" with TEMP"1"
+end
