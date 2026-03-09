@@ -1,6 +1,5 @@
 ## Creator with roles hardcoded
 ## Based on ORBIS and BIBSYS
-## Newest update: 7. november 2025
 
 rule "Primo VE Display - Creator 100"
 ## Person
@@ -385,9 +384,12 @@ priority 10
 				replace string by string (TEMP"4","forfatter/av/supplerende/tekstinnhold(?=/|$)","forfatter av supplerende tekstinnhold")
 				replace string by string (TEMP"4","issuing/body(?=/|$|.)","utstedende organ")
 				replace string by string (TEMP"4","read/by(?=/|$|.)","forteller")
+				replace string by string (TEMP"4","http://idlocgov/vocabulary/relators/[^/]*","")
 
 		# code list ends here
-
+		
+		remove leading and trailing spaces (TEMP"4")
+		remove substring using regex (TEMP"4","(/|:|;|=|,)+$")
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
 		concatenate with delimiter (TEMP"1",TEMP"4"," ")
@@ -796,9 +798,12 @@ then
 				replace string by string (TEMP"4","forfatter/av/supplerende/tekstinnhold(?=/|$)","forfatter av supplerende tekstinnhold")
 				replace string by string (TEMP"4","issuing/body(?=/|$|.)","utstedende organ")
 				replace string by string (TEMP"4","read/by(?=/|$|.)","forteller")
+				replace string by string (TEMP"4","http://idlocgov/vocabulary/relators/[^/]*","")
 
 		# code list ends here
 
+		remove leading and trailing spaces (TEMP"4")
+		remove substring using regex (TEMP"4","(/|:|;|=|,)+$")
 		add prefix (TEMP"4","(")
 		add suffix (TEMP"4",")")
 		concatenate with delimiter (TEMP"1",TEMP"4"," ")
