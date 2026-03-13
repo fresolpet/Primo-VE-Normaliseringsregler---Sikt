@@ -1,14 +1,12 @@
 ## Identifier
 ## Based on ORBIS and BIBSYS
-## Newest update: 6/17/2025
-## To do list:
 
 rule "Primo VE - Identifier 020"
 	when
 		MARC is "020"."a"
 	then
 		set TEMP"1" to MARC "020"."a"
-		add prefix (TEMP"1","$$CISBN$$V")
+		add prefix (TEMP"1","ISBN: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -17,7 +15,7 @@ rule "Primo VE - Identifier 022"
 		MARC is "022"."a"
 	then
 		set TEMP"1" to MARC "022"."a"
-		add prefix (TEMP"1","$$CISSN$$V")
+		add prefix (TEMP"1","ISSN: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -27,7 +25,7 @@ rule "Primo VE - Identifier 024 - ISRC"
 		MARC."024".ind"1" equals "0"
 	then
 		set TEMP"1" to MARC "024"."a"
-		add prefix (TEMP"1","$$CISRC$$V")
+		add prefix (TEMP"1","ISRC: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -37,7 +35,7 @@ rule "Primo VE - Identifier 024 - ISMN"
 		MARC."024".ind"1" equals "2"
 	then
 		set TEMP"1" to MARC "024"."a"
-		add prefix (TEMP"1","$$CISMN$$V")
+		add prefix (TEMP"1","ISMN: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -51,7 +49,7 @@ rule "Primo VE - Identifier 028 - 0,1"
 		MARC."028".ind"2" equals "2")
 	then
 		set TEMP"1" to MARC "028"."a"
-		add prefix (TEMP"1","$$CUtgavenummer$$V")
+		add prefix (TEMP"1","Utgavenummer: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -63,7 +61,7 @@ rule "Primo VE - Identifier 028 - 1,1"
 		MARC."028".ind"2" equals "2")
 	then
 		set TEMP"1" to MARC "028"."a"
-		add prefix (TEMP"1","$$Matrisenummer$$V")
+		add prefix (TEMP"1","Matrisenummer: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -75,7 +73,7 @@ rule "Primo VE - Identifier 028 - 2,1"
 		MARC."028".ind"2" equals "2")
 	then
 		set TEMP"1" to MARC "028"."a"
-		add prefix (TEMP"1","$$CPlatenummer$$V")
+		add prefix (TEMP"1","Platenummer: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -87,7 +85,7 @@ rule "Primo VE - Identifier 028 - 3,1"
 		MARC."028".ind"2" equals "2")
 	then
 		set TEMP"1" to MARC "028"."a"
-		add prefix (TEMP"1","$$CAnnet musikknummer$$V")
+		add prefix (TEMP"1","Annet musikknummer: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -99,7 +97,7 @@ rule "Primo VE - Identifier 028 - 4,1"
 		MARC."028".ind"2" equals "2")
 	then
 		set TEMP"1" to MARC "028"."a"
-		add prefix (TEMP"1","$$CVideonummer$$V")
+		add prefix (TEMP"1","Videonummer: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -111,7 +109,7 @@ rule "Primo VE - Identifier 028 - 5,1"
 		MARC."028".ind"2" equals "2")
 	then
 		set TEMP"1" to MARC "028"."a"
-		add prefix (TEMP"1","$$CAndre nummer$$V")
+		add prefix (TEMP"1","Andre nummer: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -123,7 +121,7 @@ rule "Primo VE - Identifier 028 - 6,1"
 		MARC."028".ind"2" equals "2")
 	then
 		set TEMP"1" to MARC "028"."a"
-		add prefix (TEMP"1","$$CDistributørnummer$$V")
+		add prefix (TEMP"1","Distributørnummer: ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -132,6 +130,6 @@ when
 MARC is "773"."x"
 then
 set TEMP"1" to MARC "773"."x"
-add prefix (TEMP"1","$$CISSN$$V")
+add prefix (TEMP"1","ISSN: ")
 create pnx."display"."identifier" with TEMP"1"
 end
