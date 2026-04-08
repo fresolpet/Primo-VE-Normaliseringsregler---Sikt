@@ -1,4 +1,4 @@
-## https://github.com/fresolpet/Primo-VE-Normaliseringsregler---Sikt/new/main
+## https://github.com/fresolpet/Primo-VE-Normaliseringsregler---Sikt/blob/main/Display_CreationDate
 
 rule "Primo VE - Date Of Publication 008"
 priority 30
@@ -65,16 +65,5 @@ priority 20
 	    remove substring using regex (TEMP"1","\\[+")
 	    remove substring using regex (TEMP"1","(\\]|:|,|=|/|\\.)+$")
 	   	remove substring using regex (TEMP"1","(\\])+")
-		set pnx."display"."creationdate" to TEMP"1"
-end
-
-rule "Primo VE - RUSSAM Creation date"
-## RUSSAM
-	when
-		MARC is "210"."d" AND
-		MARC."101"."a" equals "rus"
-	then
-		set TEMP"1" to MARC."210" sub without sort "d"
-		remove substring using regex (TEMP"1","(\\.|,|/|:|-|=)+$")
 		set pnx."display"."creationdate" to TEMP"1"
 end
