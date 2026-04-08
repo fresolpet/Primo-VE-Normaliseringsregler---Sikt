@@ -14,12 +14,3 @@ rule "Primo VE - Complete Edition 880-250"
 	then
 		create pnx."display"."edition" with MARC."880" sub without sort "3,a,b"
 end
-
-rule "Primo VE - RUSSAM Edition"
-## RUSSAM
-	when
-		MARC is "205"."a" AND
-		MARC."101"."a" equals "rus"
-	then
-		create pnx."display"."edition" with MARC."205"."a"
-end
