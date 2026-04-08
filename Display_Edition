@@ -1,3 +1,5 @@
+## https://github.com/fresolpet/Primo-VE-Normaliseringsregler---Sikt/edit/main/Display_Edition
+
 rule "Primo VE - Complete Edition 250"
 	when
 		MARC."250" has any "3,a,b"
@@ -11,4 +13,13 @@ rule "Primo VE - Complete Edition 880-250"
 		MARC."880"."6" match "250-.*"
 	then
 		create pnx."display"."edition" with MARC."880" sub without sort "3,a,b"
+end
+
+rule "Primo VE - RUSSAM Edition"
+## RUSSAM
+	when
+		MARC is "205"."a" AND
+		MARC."101"."a" equals "rus"
+	then
+		create pnx."display"."edition" with MARC."205"."a"
 end
