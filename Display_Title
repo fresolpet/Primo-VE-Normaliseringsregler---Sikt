@@ -1,5 +1,4 @@
-## Title
-## Newest update: 20. januar 2026
+## https://github.com/fresolpet/Primo-VE-Normaliseringsregler---Sikt/blob/main/Display_Title
 
 rule "Primo VE - Title with 246"
 priority 5
@@ -9,12 +8,15 @@ priority 5
 		MARC."246".ind"2" equals "1" AND
 		MARC."245"."c" match ".*/.*"
 	then
-		set TEMP"1" to MARC."245" subfields "a, b"
+		set TEMP"1" to MARC."245" subfields "a,b"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
         remove leading and trailing spaces (TEMP"1")
 		set TEMP"2" to MARC."245" subfields "f,g,k,n,p,s" delimited by " : " remove substring using regex "/.*"
-		set TEMP"3" to MARC."246" subfields "a"
+		set TEMP"3" to MARC."246" subfields "a,b"
+		remove leading and trailing spaces (TEMP"3")
+		remove substring using regex (TEMP"3","(,|/|:|;|=)+$")
+        remove leading and trailing spaces (TEMP"3")
 		concatenate with delimiter (TEMP"1",TEMP"3"," = ")
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		set pnx."display"."title" to TEMP"1"
