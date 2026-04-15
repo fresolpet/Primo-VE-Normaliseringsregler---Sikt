@@ -1,6 +1,4 @@
-## Description
-## Based on ORBIS and BIBSYS
-## Newest update: 08/11/2025
+## https://github.com/fresolpet/Primo-VE-Normaliseringsregler---Sikt/blob/main/Display_Description
 
 rule "Primo VE - Description 520 - Sikt BO - 520/ab/[-0,-1,-2,-3,-4,-8],_"
 	when
@@ -115,75 +113,6 @@ rule "Primo VE - Description 555"
 		create pnx."display"."description" with MARC."555" sub without sort "a,b,c,d,u,3"
 end
 
-rule "Primo VE - Description 710 - Sikt BO"
-	when
-		MARC "710" has any "a,b,c,d,e,m,n,o,p,s,t" AND
-		MARC "710".ind"2" equals "2" AND NOT
-		MARC."505" has any "a,t" AND NOT
-		MARC."710"."9" match ".*"
-	then
-		set TEMP"1" to MARC."710" sub without sort "a,b,c,d,e,m,n,o,p,s,t"
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 710 - Sikt BO - 710/i"
-	when
-		MARC is "710"."i" AND
-		MARC."710"."a" match ".*" AND
-		MARC."710"."t" match ".*"
-	then
-		set TEMP"1" to MARC."710" sub without sort "a,i"
-		set TEMP"2" to MARC."710" sub without sort "t"
-		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 711 - Sikt BO"
-	when
-		MARC "711" has any "a,c,d,e,n,p,q,s,t" AND
-		MARC "711".ind"2" equals "2" AND NOT
-		MARC."505" has any "a,t" AND NOT
-		MARC."711"."9" match ".*"
-	then
-		set TEMP"1" to MARC."711" sub without sort "a,c,d,e,n,p,q,s,t"
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 711 - Sikt BO - 711/i"
-	when
-		MARC is "711"."i" AND
-		MARC."711"."a" match ".*" AND
-		MARC."711"."t" match ".*"
-	then
-		set TEMP"1" to MARC."711" sub without sort "a,i"
-		set TEMP"2" to MARC."711" sub without sort "t"
-		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 730 - Sikt BO"
-	when
-		MARC "730" has any "a,c,d,e,n,p,q,s,t" AND
-		MARC "730".ind"2" equals "2" AND NOT
-		MARC."505" has any "a,t" AND NOT
-		MARC."730"."9" match ".*"
-	then
-		set TEMP"1" to MARC."730" sub without sort "a,c,d,e,n,p,q,s,t"
-		create pnx."display"."description" with TEMP"1"
-end
-
-rule "Primo VE - Description 730 - Sikt BO - 730/i"
-	when
-		MARC is "730"."i" AND
-		MARC."730"."a" match ".*" AND
-		MARC."730"."t" match ".*"
-	then
-		set TEMP"1" to MARC."730" sub without sort "a,i"
-		set TEMP"2" to MARC."730" sub without sort "t"
-		concatenate with delimiter (TEMP"1",TEMP"2"," / ")
-		create pnx."display"."description" with TEMP"1"
-end
-
 rule "Primo VE - Description 880-500"
 when
         MARC is "880" AND
@@ -196,14 +125,6 @@ rule "Primo VE - Description 880-504"
 when
         MARC is "880" AND
         MARC."880"."6" match "504-.*"
-	then
-        create pnx."display"."description" with MARC."880" excluding num subfields without sort
-end
-
-rule "Primo VE - Description 880-505"
-when
-        MARC is "880" AND
-        MARC."880"."6" match "505-.*"
 	then
         create pnx."display"."description" with MARC."880" excluding num subfields without sort
 end
