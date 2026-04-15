@@ -1,5 +1,4 @@
-## Contents
-## Newest update: 5/14/2025
+## https://github.com/fresolpet/Primo-VE-Normaliseringsregler---Sikt/edit/main/Display_Contents
 
 rule "Primo VE Display - Contents 505/0/_,0"
 	when
@@ -17,7 +16,6 @@ concatenate with delimiter (TEMP"1",TEMP"2","")
 end
 
 rule "Primo VE Display - Contents 505/1/_,0"
-
 	when
 		MARC."505" has any "a,g,r,t" AND
 		MARC."505".ind"1" equals "1"
@@ -30,7 +28,6 @@ rule "Primo VE Display - Contents 505/1/_,0"
 end
 
 rule "Primo VE Display - Contents 505/2/_,0"
-
 	when
 		MARC."505" has any "a,g,r,t" AND
 		MARC."505".ind"1" equals "2"
@@ -43,7 +40,6 @@ rule "Primo VE Display - Contents 505/2/_,0"
 end
 
 rule "Primo VE Display - Contents 505/8/_,0"
-
 	when
 		MARC."505" has any "a,g,r,t" AND
 		MARC."505".ind"1" equals "8"
@@ -56,7 +52,6 @@ rule "Primo VE Display - Contents 505/8/_,0"
 end
 
 rule "Primo VE Display - contents 880_505_0"
-
 	when
 		MARC is "880" AND
 		MARC."880".ind"1" equals "0" AND
@@ -70,7 +65,6 @@ rule "Primo VE Display - contents 880_505_0"
 end
 
 rule "Primo VE Display - contents 880_505_1"
-
 	when
 		MARC is "880" AND
 		MARC."880".ind"1" equals "1" AND
@@ -84,7 +78,6 @@ rule "Primo VE Display - contents 880_505_1"
 end
 
 rule "Primo VE Display - contents 880_505_2"
-
 	when
 		MARC is "880" AND
 		MARC."880".ind"1" equals "2" AND
@@ -98,7 +91,6 @@ rule "Primo VE Display - contents 880_505_2"
 end
 
 rule "Primo VE Display - contents 880_505_8"
-
 	when
 		MARC is "880" AND
 		MARC."880".ind"1" equals "8" AND
