@@ -7,8 +7,6 @@ rule "Primo VE Display - Contents 505/0/_,0"
 	then
 		set TEMP"1" to MARC."505" sub without sort "a,g,r,t"
 		remove leading and trailing spaces (TEMP"1")
-		add prefix (TEMP"1","<p><b>Innhold</b>: ")
-		add suffix (TEMP"1","</p>")
 set TEMP"2" to MARC."505" sub without sort "a"
 add prefix (TEMP"2","$$Q ")
 concatenate with delimiter (TEMP"1",TEMP"2","")
@@ -59,8 +57,6 @@ rule "Primo VE Display - contents 880_505_0"
 	then
 		set TEMP"1" to MARC "880" excluding num subfields without sort
 		remove leading and trailing spaces (TEMP"1")
-		add prefix (TEMP"1","<p><b>Innhold</b>: ")
-		add suffix (TEMP"1","</p>")
 		create pnx."display"."contents" with TEMP"1"
 end
 
