@@ -11,7 +11,7 @@ rule "Primo VE - Description 520 - Sikt BO - 520/ab/[-0,-1,-2,-3,-4,-8],_"
 		MARC "520".ind"1" equals "8"
 	then
 		set TEMP"1" to MARC."520" sub without sort "a,b"
-		add prefix (TEMP"1","Sammendrag: ")
+		add prefix (TEMP"1","$$Csummary$$V")
 		create pnx."display"."description" with TEMP"1"
 end
 
@@ -21,7 +21,7 @@ rule "Primo VE - Description 520 - Sikt BO - 520/ab/0,_"
 		MARC "520".ind"1" equals "0" 
 	then
 		set TEMP"1" to MARC."520" sub without sort "a,b"
-		add prefix (TEMP"1","Emne: ")
+			add prefix (TEMP"1","$$Csubject$$V")
 		create pnx."display"."description" with TEMP"1"
 end
 
@@ -31,7 +31,7 @@ rule "Primo VE - Description 520 - Sikt BO - 520/ab/1,_"
 		MARC "520".ind"1" equals "1" 
 	then
 		set TEMP"1" to MARC."520" sub without sort "a,b"
-		add prefix (TEMP"1","Anmeldelse: ")
+		add prefix (TEMP"1","$$Creview$$V")
 		create pnx."display"."description" with TEMP"1"
 end
 
@@ -41,7 +41,7 @@ rule "Primo VE - Description 520 - Sikt BO - 520/ab/2,_"
 		MARC "520".ind"1" equals "2" 
 	then
 		set TEMP"1" to MARC."520" sub without sort "a,b"
-		add prefix (TEMP"1","Omfang og innhold: ")
+		add prefix (TEMP"1","$$Cscope_content$$V")
 		create pnx."display"."description" with TEMP"1"
 end
 
@@ -51,7 +51,7 @@ rule "Primo VE - Description 520 - Sikt BO - 520/ab/3,_"
 		MARC "520".ind"1" equals "3" 
 	then
 		set TEMP"1" to MARC."520" sub without sort "a,b"
-		add prefix (TEMP"1","Abstrakt: ")
+		add prefix (TEMP"1","$$Cabstract$$V")
 		create pnx."display"."description" with TEMP"1"
 end
 
@@ -61,7 +61,7 @@ rule "Primo VE - Description 520 - Sikt BO - 520/ab/4,_"
 		MARC "520".ind"1" equals "4" 
 	then
 		set TEMP"1" to MARC."520" sub without sort "a,b"
-		add prefix (TEMP"1","Advarsel om innhold: ")
+		add prefix (TEMP"1","$$Ccontent_advice$$V")
 		create pnx."display"."description" with TEMP"1"
 end
 
@@ -79,7 +79,7 @@ rule "Primo VE - Description 522"
 		MARC is "522"."a"
 	then
 		set TEMP"1" to MARC."522" subfields "a"
-		add prefix (TEMP"1","Geographical coverage: ")
+		add prefix (TEMP"1","$$Cgeographical_coverage$$V")
 		create pnx."display"."description" with TEMP"1"
 end
 
@@ -102,7 +102,7 @@ rule "Primo VE - Description 550"
 		MARC is "550"."a"
 	then
 		set TEMP"1" to MARC."550" subfields "a"
-		add prefix (TEMP"1","Issuing body: ")
+		add prefix (TEMP"1","$$Cissuing_body$$V")
 		create pnx."display"."description" with TEMP"1"
 end
 
