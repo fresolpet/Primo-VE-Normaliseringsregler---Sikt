@@ -276,3 +276,27 @@ rule "Primo VE - Lds62 26"
 	then 
 		create pnx."display"."lds62" with "Deler av denne posten er blitt beriket med KI"
 end
+
+rule "Primo VE -  Lds62 27"
+when
+        MARC is "880" AND
+        MARC."880"."6" match "500-.*"
+	then
+        create pnx."display"."lds62" with MARC."880" excluding num subfields without sort
+end
+
+rule "Primo VE -  Lds62 28"
+when
+        MARC is "880" AND
+        MARC."880"."6" match "504-.*"
+	then
+        create pnx."display"."lds62" with MARC."880" excluding num subfields without sort
+end
+
+rule "Primo VE -  Lds62 29"
+when
+        MARC is "880" AND
+        MARC."880"."6" match "515-.*"
+	then
+        create pnx."display"."lds62" with MARC."880" excluding num subfields without sort
+end
