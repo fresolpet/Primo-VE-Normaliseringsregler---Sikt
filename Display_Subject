@@ -1,5 +1,4 @@
-## Subject
-## Based on ORBIS and BIBSYS
+## https://github.com/fresolpet/Primo-VE-Normaliseringsregler---Sikt/edit/main/Display_Subject
 ## Currently 653 is not included here - see local field Keywords (bruk denne)
 
 rule "Primo VE Display - Subject 600"
@@ -185,7 +184,7 @@ end
 
 rule "Primo VE Display - Subject 880-600"
 	when
-		MARC."880" has any "a-z"
+		MARC."880" has any "a-z" AND
 		MARC."880"."6" match "600-.*"
 	then
 		set TEMP"1" to MARC."880" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
