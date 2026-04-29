@@ -3,6 +3,7 @@
 rule "Primo VE - Description 520 - Sikt BO - 520/ab/[-0,-1,-2,-3,-4,-8],_"
 	when
 		MARC "520" has any "a,b" AND NOT
+		MARC."520"."a" match "Innførsel i Nasjonalbibliografien.*" AND NOT
 		MARC "520".ind"1" equals "0" AND NOT
 		MARC "520".ind"1" equals "1" AND NOT
 		MARC "520".ind"1" equals "2" AND NOT
@@ -21,7 +22,7 @@ rule "Primo VE - Description 520 - Sikt BO - 520/ab/0,_"
 		MARC "520".ind"1" equals "0" 
 	then
 		set TEMP"1" to MARC."520" sub without sort "a,b"
-			add prefix (TEMP"1","$$Csubject$$V")
+		add prefix (TEMP"1","$$Csubject$$V")
 		create pnx."display"."description" with TEMP"1"
 end
 
