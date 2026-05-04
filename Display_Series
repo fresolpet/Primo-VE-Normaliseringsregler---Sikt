@@ -1,6 +1,5 @@
-## Series
-## Based on BIBSYS
-## Newest update: 02/02/2026
+## https://github.com/fresolpet/Primo-VE-Normaliseringsregler---Sikt/blob/main/Display_Series
+
 rule "Primo VE - Series 800"
 	when
 		MARC."800" has any "a,t"		
@@ -25,10 +24,13 @@ rule "Primo VE - Series 830"
 		MARC."830" has any "a,p,v"
 	then
 		set TEMP"1" to MARC."830" sub without sort "a,p"
+			remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+			remove leading and trailing spaces (TEMP"1")
 		set TEMP"2" to MARC."830" sub without sort "a,p"
-		set TEMP"5" to MARC."830" sub without sort "v"
-		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+			remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+			remove leading and trailing spaces (TEMP"2")
 		add prefix (TEMP"2","$$Q")
+		set TEMP"5" to MARC."830" sub without sort "v"
 		remove substring using regex (TEMP"2","^$$Q$")
 		set TEMP"3" to MARC."830" prima_w_relation "w"
 		set TEMP"4" to MARC."830" prima_x_relation "x"
