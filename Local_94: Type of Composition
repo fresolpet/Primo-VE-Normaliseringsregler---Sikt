@@ -1,0 +1,15 @@
+rule "Primo VE - Lds94"
+	when
+		MARC is "380"."a" AND
+		MARC."380"."2" equals "emnmus"
+	then
+		create pnx."display"."lds94" with MARC "380"."a"
+end
+--------------------------------------------------------------
+rule "Primo VE Marc - Lsr94"
+	when
+		MARC is "380"."a" AND
+		MARC."380"."2" equals "emnmus"
+	then
+		create pnx."search"."lsr94" with MARC "380" subfields "a"
+end
