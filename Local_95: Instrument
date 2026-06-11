@@ -1,0 +1,43 @@
+rule "Primo VE - Lds95"
+	when
+		MARC."382" has any "a,b,n,p,s" AND
+		MARC."382"."2" equals "emnmus"
+	then
+		set TEMP"1" to MARC "382" sub without sort "a,n" wrap subfields
+		replace wrapping delimiters (TEMP"1","a",", ","")
+		replace wrapping delimiters (TEMP"1","n"," (",")")
+		remove substring using regex (TEMP"1","^, ")
+		replace string by string (TEMP"1"," ,",",")
+		set TEMP"2" to MARC."382" sub without sort "b" wrap subfields
+		replace wrapping delimiters (TEMP"2","b","","")
+		add prefix (TEMP"2",". Solist: ")
+		set TEMP"3" to MARC."382" sub without sort "s" wrap subfields
+		replace wrapping delimiters (TEMP"3","s","","")
+		add prefix (TEMP"3",". Total besetning: ")
+		set TEMP"4" to MARC."382" sub without sort "p" wrap subfields
+		replace wrapping delimiters (TEMP"4","p","","")
+		add prefix (TEMP"4",". Alternativ besetning: ")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		create pnx."display"."lds95" with TEMP"1"          
+end
+
+-------------------------------
+
+rule "Primo VE Marc - Lsr95"
+	when
+		MARC is "382"."a" AND
+		MARC."382"."2" equals "emnmus"
+	then
+		create pnx."search"."lsr95" with MARC "382"."a"
+end
+
+rule "Primo VE Marc - Lsr95 - 1"
+	when
+		MARC is "382"."b" AND
+		MARC."382"."2" equals "emnmus"
+	then
+		create pnx."search"."lsr95" with MARC "382"."b"
+end
+
