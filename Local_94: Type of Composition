@@ -1,18 +1,17 @@
 rule "Primo VE - Lds94"
-## https://github.com/fresolpet/Primo-VE-Normaliseringsregler---Sikt/blob/9a81f78c61fe9525c48cab660c55bed1105952d2/Local_94%3A%20Type%20of%20Composition
-	when
-		MARC is "380"."a" AND
-		MARC."380"."2" equals "emnmus" OR
-		MARC."380"."2" equals "musvok-sf"
-	then
-		create pnx."display"."lds94" with MARC "380"."a"
+    when
+        MARC."380" has any "a,2" AND
+        (MARC."380"."2" match "emnmus" OR
+         MARC."380"."2" match "musvok-sf")
+    then
+        create pnx."display"."lds94" with MARC "380" subfields "a"
 end
 --------------------------------------------------------------
 rule "Primo VE Marc - Lsr94"
 	when
-		MARC is "380"."a" AND
-		MARC."380"."2" equals "emnmus" OR
-		MARC."380"."2" equals "musvok-sf"
+		MARC."380" has any "a,2" AND
+		(MARC."380"."2" equals "emnmus" OR
+		MARC."380"."2" equals "musvok-sf")
 	then
 		create pnx."search"."lsr94" with MARC "380" subfields "a"
 end
