@@ -1,0 +1,295 @@
+/*
+ * NOTE ON THIS FILE
+ * The original homepage.css.tmpl used Primo-internal SCSS variables and
+ * mixins (vars.$responsiveWidth, vars.$bigFontSize, mixing.respond-to, etc.)
+ * from Ex Libris's Angular build. Those don't exist outside that build and
+ * are not valid CSS, so a plain rename would have shipped a homepage.css
+ * full of rules browsers silently ignore. Below is a converted, working
+ * version using standard breakpoints and approximate type-scale values in
+ * their place. Check spacing/font sizes against the live NDE once deployed
+ * and adjust as needed - these are reasonable defaults, not Primo's actual
+ * design tokens.
+ */
+
+:root {
+  --whiteText: #ffffff;
+}
+
+.main-landing-page {
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  gap: 5rem;
+  margin-block-end: 100px; /* remove once Featured Books is developed */
+}
+
+.main-landing-page .menu-container .menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+  grid-row-gap: 1.5rem;
+  grid-column-gap: 1rem;
+}
+
+.main-landing-page .menu-container .menu li a {
+  background-color: var(--sys-inverse-on-surface);
+  display: flex;
+  padding: 1rem;
+  border: .0625rem solid var(--sys-primary);
+  border-radius: .5rem;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-family: inherit;
+  cursor: pointer;
+  height: 100%;
+}
+
+@media (min-width: 1280px) {
+  .main-landing-page .menu-container .menu li a:hover,
+  .main-landing-page .menu-container .menu li a:focus {
+    transition: box-shadow .3s, transform .3s ease-in-out;
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+    transform: translateY(-1.1875rem);
+  }
+}
+
+.main-landing-page .menu-container .menu li a .icon {
+  background-color: var(--sys-inverse-on-surface);
+  border-radius: 50%;
+  width: 3.75rem;
+  height: 3.75rem;
+  align-items: center;
+}
+
+@media (max-width: 1279.98px) {
+  .main-landing-page .menu-container .menu li a .icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: normal;
+    justify-content: center;
+  }
+}
+
+.main-landing-page .menu-container .menu li a .icon-color circle {
+  fill: var(--sys-primary-fixed);
+}
+
+.main-landing-page .menu-container .menu li a .icon-color mask rect {
+  fill: var(--sys-on-primary-fixed-variant);
+}
+
+.main-landing-page .menu-container .menu li a .icon-color g path {
+  fill: var(--sys-on-primary-fixed-variant);
+}
+
+.main-landing-page .menu-container .menu li a span {
+  margin-top: .3125rem;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+  text-align: center;
+}
+
+@media (max-width: 1279.98px) {
+  .main-landing-page .menu-container .menu li a span {
+    font-size: .88rem;
+    min-height: 2.2rem;
+  }
+}
+
+.main-landing-page .welcome-announcements-container {
+  gap: 2rem;
+}
+
+@media (max-width: 959.98px) {
+  .main-landing-page .welcome-announcements-container {
+    flex-direction: column;
+  }
+}
+
+.main-landing-page .welcome-announcements-container .welcome {
+  padding-block: 1rem;
+  gap: 1.5rem;
+}
+
+@media (max-width: 959.98px) {
+  .main-landing-page .welcome-announcements-container .welcome {
+    padding: 0;
+  }
+}
+
+.main-landing-page .welcome-announcements-container .welcome .welcome-title {
+  margin-block-end: .5rem;
+}
+
+@media (max-width: 1279.98px) {
+  .main-landing-page .welcome-announcements-container .welcome .welcome-title {
+    font-size: 1.25rem;
+  }
+}
+
+.main-landing-page .welcome-announcements-container .welcome .welcome-content {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+@media (max-width: 1279.98px) {
+  .main-landing-page .welcome-announcements-container .welcome .welcome-content {
+    font-size: .875rem;
+  }
+}
+
+.main-landing-page .welcome-announcements-container .welcome a {
+  padding-block: .5rem;
+  padding-inline: 1rem;
+  border-radius: 2rem;
+  background-color: var(--sys-primary);
+  color: var(--whiteText);
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+@media (max-width: 1279.98px) {
+  .main-landing-page .welcome-announcements-container .welcome a {
+    font-size: .875rem;
+  }
+}
+
+.main-landing-page .welcome-announcements-container .welcome a:hover {
+  background-color: var(--sys-surface-tint);
+}
+
+.main-landing-page .welcome-announcements-container .welcome a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #000000;
+}
+
+.main-landing-page .welcome-announcements-container .announcements {
+  background-color: var(--sys-inverse-on-surface);
+  padding: 1.5rem;
+  border-radius: .5rem;
+  border: .0625rem solid var(--sys-primary);
+  max-width: 32.6875rem;
+  gap: 1rem;
+}
+
+@media (max-width: 959.98px) {
+  .main-landing-page .welcome-announcements-container .announcements {
+    padding: 1rem;
+    gap: 1rem;
+    max-width: none;
+  }
+}
+
+.main-landing-page .welcome-announcements-container .announcements .announcements-item-main-title {
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 2rem;
+}
+
+.main-landing-page .welcome-announcements-container .announcements .announcements-item-title {
+  color: var(--darkText, var(--sys-on-surface));
+}
+
+@media (max-width: 1279.98px) {
+  .main-landing-page .welcome-announcements-container .announcements .announcements-item-title {
+    font-size: 1.25rem;
+  }
+}
+/* Sikt */
+.main-landing-page .about .about-content {
+  align-items: stretch;
+}
+
+@media (max-width: 959.98px) {
+  .main-landing-page .about .about-content {
+    flex-direction: column-reverse;
+  }
+}
+
+.main-landing-page .about .about-content .about-text {
+  padding: 2rem;
+  background-color: var(--sys-inverse-on-surface);
+  /* Sikt */ 
+  gap: 1.5rem;
+  flex: 1 1 55%;
+  min-width: 0;
+}
+
+@media (max-width: 959.98px) {
+  .main-landing-page .about .about-content .about-text {
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+
+.main-landing-page .about .about-content .about-text .about-text-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 1279.98px) {
+  .main-landing-page .about .about-content .about-text .about-text-title {
+    font-size: 1.25rem;
+  }
+}
+
+.main-landing-page .about .about-content .about-text .about-text-description {
+  line-height: 2rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+@media (max-width: 1279.98px) {
+  .main-landing-page .about .about-content .about-text .about-text-description {
+    font-size: .875rem;
+    line-height: 1.4rem;
+  }
+}
+
+.main-landing-page .about .about-content .about-text .help-sign-in-container {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 1279.98px) {
+  .main-landing-page .about .about-content .about-text .help-sign-in-container {
+    font-size: .875rem;
+  }
+
+  .main-landing-page .about .about-content .about-text .help-sign-in-container ul li {
+    margin-block: .625rem;
+  }
+}
+
+.main-landing-page .about .about-content .about-text .help-sign-in-container ul li {
+  margin-block: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+/* Sikt */
+.main-landing-page .about .about-content .about-image {
+  flex: 1 1 45%;
+  min-width: 0;
+  overflow: hidden;
+}
+.main-landing-page .about .about-content .about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 .625rem .625rem 0;
+}
+
+@media (max-width: 959.98px) {
+  .main-landing-page .about .about-content .about-image img {
+    border-radius: .625rem .625rem 0 0;
+    width: 100%;
+  }
+}
