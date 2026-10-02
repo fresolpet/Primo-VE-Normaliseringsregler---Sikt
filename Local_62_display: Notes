@@ -165,7 +165,7 @@ rule "Primo VE - Lds62 16"
 #518 Målgruppenote (R)
 	when
 		MARC is "521"."a" AND
-		MARC."521".ind"1" equals "#"
+		MARC."521".ind"1" equals " "
 	then 
 		set TEMP"1" to MARC."521" subfields "a"
 		add prefix (TEMP"1","Målgruppe: ")
@@ -176,7 +176,7 @@ rule "Primo VE - Lds62 17"
 #518 Målgruppenote (R)
 	when
 		MARC is "521"."a" AND NOT
-		MARC."521".ind"1" equals "#"
+		MARC."521".ind"1" equals " "
 	then 
 		set TEMP"1" to MARC."521" subfields "a"
 		create pnx."display"."lds62" with TEMP"1"
@@ -244,7 +244,12 @@ rule "Primo VE - Lds62 23"
 		(MARC."588" has any "a" AND
 		MARC."588".ind"1" equals " " AND NOT
 		(MARC."588"."a" match "Part of the metadata in this record was created by AI.*" OR
-		MARC."588"."a" match "Part of the metadata in this record was created with the help of AI Metadata Assistant"))
+		MARC."588"."a" match "Part of the metadata in this record was created with the help of AI.*" OR
+		MARC."588"."a" match "Part of the metadata in this record was created by AI.*" OR
+		MARC."588"."a" match "Deler av denne metadataposten ble skapt ved hjelp av AI.*" OR
+		MARC."588"."a" match "Deler av denne metadataposten er generert av AI.*" OR
+		MARC."588"."a" match "Deler av metadata er skapt ved hjelp av Metadata Assistant.*" OR
+		MARC."588"."a" match "En del av metadataene i denne posten ble opprettet med hjelp av AI.*"))
 	then 
 		create pnx."display"."lds62" with MARC."588" sub without sort "a"
 end
@@ -276,7 +281,12 @@ rule "Primo VE - Lds62 26"
 	when
 		(MARC."588" has any "a" AND
 		(MARC."588"."a" match "Part of the metadata in this record was created by AI.*" OR
-		MARC."588"."a" match "Part of the metadata in this record was created with the help of AI Metadata Assistant"))
+		MARC."588"."a" match "Part of the metadata in this record was created with the help of AI.*" OR
+		MARC."588"."a" match "Part of the metadata in this record was created by AI.*" OR
+		MARC."588"."a" match "Deler av denne metadataposten ble skapt ved hjelp av AI.*" OR
+		MARC."588"."a" match "Deler av denne metadataposten er generert av AI.*" OR
+		MARC."588"."a" match "Deler av metadata er skapt ved hjelp av Metadata Assistant.*" OR
+		MARC."588"."a" match "En del av metadataene i denne posten ble opprettet med hjelp av AI.*"))
 	then 
 		create pnx."display"."lds62" with "Deler av denne posten er blitt beriket med KI"
 end
