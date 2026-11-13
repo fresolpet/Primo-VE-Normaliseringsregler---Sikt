@@ -1,0 +1,276 @@
+rule "Prima Search - subject 600 (subject)"
+	when
+		MARC."600" has any "a-z" AND NOT
+        MARC."600".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."600" sub without sort "a-z"
+		set TEMP"2" to multilingual by "600" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 610 (subject)"
+	when
+		MARC."610" has any "a-z" AND NOT
+        MARC."610".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."610" sub without sort "a-z"
+		set TEMP"2" to multilingual by "610" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 611 (subject)"
+	when
+		MARC."611" has any "a-z" AND NOT
+        MARC."611".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."611" sub without sort "a-z"
+		set TEMP"2" to multilingual by "611" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 630 (subject)"
+	when
+		MARC."630" has any "a-z" AND NOT
+        MARC."630".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."630" sub without sort "a-z"
+		kormarc remove nonfiling brackets MARC."630" sourcetag "630" from TEMP"1"
+		set TEMP"2" to multilingual by "630" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 548 (subject)"
+	when
+		MARC."548" has any "a-z" AND NOT
+        MARC."548".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."548" sub without sort "a-z"
+		set TEMP"2" to multilingual by "548" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 648 (subject)"
+	when
+		MARC."648" has any "a-z" AND NOT
+        MARC."648".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."648" sub without sort "a-z"
+		set TEMP"2" to multilingual by "648" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 650 (subject)"
+	when
+		MARC."650" has any "a-z" AND NOT
+        MARC."650".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."650" sub without sort "a-z"
+		set TEMP"2" to multilingual by "650" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 651 (subject)"
+	when
+		MARC."651" has any "a-z" AND NOT
+        MARC."651".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."651" sub without sort "a-z"
+		set TEMP"2" to multilingual by "651" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 653 (subject)"
+	when
+		MARC."653" has any "a-z" AND NOT
+        MARC."653".ind"2" equals "2"
+	then
+	        set TEMP"1" to MARC."653" subfields "a" delimited by ";" remove substring using regex "\\.+$"
+		set TEMP"2" to multilingual by "653" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2",";")
+		replace string by string (TEMP"1","\\s*;\\s*",";")
+		remove leading and trailing spaces (TEMP"1")
+		return list using regex (TEMP"3",TEMP"1","[^;]+")
+		create operational."prima_search"."subject" with list TEMP"3"
+end
+
+rule "Prima Search - subject 654 (subject)"
+	when
+		MARC."654" has any "a-z" AND NOT
+        MARC."654".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."654" sub without sort "a-z"
+		set TEMP"2" to multilingual by "654" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 656 (subject)"
+	when
+		MARC."656" has any "a-z" AND NOT
+        MARC."656".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."656" sub without sort "a-z"
+		set TEMP"2" to multilingual by "656" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 657 (subject)"
+	when
+		MARC."657" has any "a-z" AND NOT
+        MARC."657".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."657" sub without sort "a-z"
+		set TEMP"2" to multilingual by "657" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 658 (subject)"
+	when
+		MARC."658" has any "a-z" AND NOT
+        MARC."658".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."658" sub without sort "a-z"
+		set TEMP"2" to multilingual by "658" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - Subjects 689 (subject)"
+     when
+        MARC."689" has any "8,B-C,a-z"
+    then
+        create operational."prima_search"."subject" with MARC."689" subfields "8,B-C,a-z"
+end
+
+rule "Prima Search - Subjects 880-689 (subject)"
+    when
+        MARC."880" has any "a-z" AND
+        MARC."880"."6" match "689-.*"
+    then
+        create operational."prima_search"."subject" with MARC."880" subfields "a-z"
+end
+
+rule "Prima Search - subject 699 (subject)"
+	when
+		MARC."699" has any "a,d,e-g,k-p,r-t,v,x-z"
+	then
+		set TEMP"1" to MARC."699" sub without sort "a,d,e-g,k-p,r-t,v,x-z"
+		set TEMP"2" to multilingual by "699" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 880-699 (subject)"
+	when
+		MARC."880" has any "a,d,e-g,k-p,r-t,v,x-z" AND
+		MARC."880"."6" match "699-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a,d,e-g,k-p,r-t,v,x-z"
+		set TEMP"2" to multilingual by "880" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 750 (subject)"
+	when
+		MARC."750" has any "a,b,v,x,y,z"
+	then
+		set TEMP"1" to MARC."750" sub without sort "a,b,v,x,y,z"
+		set TEMP"2" to multilingual by "750" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 880-600 (subject)"
+	when
+		MARC."880" has any "a-z" AND NOT
+        MARC."880".ind"2" equals "2" AND
+		MARC."880"."6" match "600-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a-z"
+		set TEMP"2" to multilingual by "880" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 880-610 (subject)"
+	when
+		MARC."880" has any "a-z" AND NOT
+        MARC."880".ind"2" equals "2" AND
+		MARC."880"."6" match "610-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a-z"
+		set TEMP"2" to multilingual by "880" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 880-611 (subject)"
+	when
+		MARC."880" has any "a-z" AND NOT
+        MARC."880".ind"2" equals "2" AND
+		MARC."880"."6" match "611-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a-z"
+		set TEMP"2" to multilingual by "880" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 880-630 (subject)"
+	when
+		MARC."880" has any "a-z" AND NOT
+        MARC."880".ind"2" equals "2" AND
+		MARC."880"."6" match "630-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a-z"
+		set TEMP"2" to multilingual by "880" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 880-650 (subject)"
+	when
+		MARC."880" has any "a-z" AND NOT
+        MARC."880".ind"2" equals "2" AND
+		MARC."880"."6" match "650-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a-z"
+		set TEMP"2" to multilingual by "880" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 880-651 (subject)"
+	when
+		MARC."880" has any "a-z" AND NOT
+        MARC."880".ind"2" equals "2" AND
+		MARC."880"."6" match "651-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a-z"
+		set TEMP"2" to multilingual by "880" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
+
+rule "Prima Search - subject 880-653 (subject)"
+	when
+		MARC."880" has any "a-z" AND NOT
+        MARC."880".ind"2" equals "2" AND
+		MARC."880"."6" match "653-.*"
+	then
+		set TEMP"1" to MARC."880" sub without sort "a-z"
+		set TEMP"2" to multilingual by "880" "Subject" "search"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create operational."prima_search"."subject" with TEMP"1"
+end
